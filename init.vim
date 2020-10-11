@@ -1,0 +1,11 @@
+source $HOME/.config/nvim/vim-plug/plugins.vim
+source $HOME/.config/nvim/general/settings.vim
+source $HOME/.config/nvim/keys/mappings.vim
+source $HOME/.config/nvim/general/paths.vim
+source $HOME/.config/nvim/themes/monokai.vim
+source $HOME/.config/nvim/themes/airline.vim
+source $HOME/.config/nvim/plug-config/coc.vim
+source $HOME/.config/nvim/plug-config/emmet_conf.vim
+source $HOME/.config/nvim/plug-config/nerd-tree.vim
+source $HOME/.config/nvim/plug-config/start-screen.vim
+luafile $HOME/.config/nvim/lua/plug-colorizer.lua
