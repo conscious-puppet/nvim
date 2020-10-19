@@ -19,10 +19,11 @@ nnoremap <M-l>    :vertical resize +2<CR>
 inoremap <c-u> <ESC>viwUi
 " nnoremap <c-u> viwU<Esc>
 
-" TAB in general mode will move to text buffer
+" TAB in general mode will move to next buffer
 nnoremap <TAB> :bnext<CR>
 " SHIFT-TAB will go back
 nnoremap <S-TAB> :bprevious<CR>
+" nnoremap <leader><TAB> :bnext<CR>
 
 " tl in general mode will move to next tab
 nnoremap tl :tabn<CR>
@@ -36,13 +37,37 @@ nnoremap tn :tabnew<CR>
 nnoremap t<delete> :tabclose<CR>
 
 " Alternate way to save
-nnoremap <C-s> :w<CR>
+" nnoremap <C-s> :w<CR>
 " Alternate way to quit
-nnoremap <C-Q> :wq!<CR>
+" nnoremap <C-Q> :wq!<CR>
 " Use control-c instead of escape
 nnoremap <C-c> :SClose<CR>
+
+
+
 " <TAB>: completion.
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+
+" function! CleverTabNext()
+" 	 if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+" 			return "\<Tab>"
+" 	 else
+" 			return "\<C-N>"
+" 	 endif
+" endfunction
+" inoremap <Tab> <C-R>=CleverTabNext()<CR>
+
+" function! CleverTabPrevious()
+" 	 if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+" 			return "\<Tab>"
+" 	 else
+" 			return "\<C-N>"
+" 	 endif
+" endfunction
+" inoremap <S-Tab> <C-R>=CleverTabPrevious()<CR>
+
 
 " Better tabbing
 vnoremap < <gv
@@ -66,36 +91,9 @@ nnoremap \\ :vsp <bar> :te<enter>
 
 " Switch to normal mode in terminal with Esc
 tnoremap <Esc> <C-\><C-n>
+" start terminal in insert mode
+" au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+autocmd! TermOpen * startinsert
 
-
-
-" CompileAndRun in vertical split terminal
-
-" available options:
-" * g:split_term_style
-" * g:split_term_resize_cmd
-"function! TermWrapper(command) abort
-	"if !exists('g:split_term_style') | let g:split_term_style = 'vertical' | endif
-	"if g:split_term_style ==# 'vertical'
-		"let buffercmd = 'vnew'
-	"elseif g:split_term_style ==# 'horizontal'
-		"let buffercmd = 'new'
-	"else
-		"echoerr 'ERROR! g:split_term_style is not a valid value (must be ''horizontal'' or ''vertical'' but is currently set to ''' . g:split_term_style . ''')'
-		"throw 'ERROR! g:split_term_style is not a valid value (must be ''horizontal'' or ''vertical'')'
-	"endif
-	"if exists('g:split_term_resize_cmd')
-		"exec g:split_term_resize_cmd
-	"endif
-	"exec buffercmd
-	"exec 'term ' . a:command
-	"exec 'startinsert'
-"endfunction
-"
-"command! -nargs=0 CompileAndRun call TermWrapper(printf('g++ -std=c++11 -O2 -Wall %s && ./a.out', expand('%')))
-""command! -nargs=1 CompileAndRunWithFile call TermWrapper(printf('g++ -std=c++11 %s && ./a.out < %s', expand('%'), <args>))
-"autocmd FileType cpp nnoremap <f6> :CompileAndRun<CR>
-
-
-" compile and run in a new terminal window
-autocmd FileType cpp nnoremap <f6> :w <bar> :!g++ -std=c++11 -O2 -Wall % && gnome-terminal -- bash -c "./a.out; bash"<CR>
+" replace gf with gF to jump on the file at the specified line
+nnoremap gf gF

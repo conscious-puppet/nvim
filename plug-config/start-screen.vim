@@ -20,6 +20,8 @@ let g:startify_lists = [
 
 let g:startify_bookmarks = [
             \ { 'i': '~/.config/nvim/init.vim' },
+            \ { 'w': '~/Documents/vimwiki/index.md' },
+            \ { 'd': '~/Documents/vimwiki/diary/diary.md' },
             \ '~/Documents/competitive_programming',
             \ '~/Documents/competitive_programming/p',
             \ '~/Documents/competitive_programming/cp_challenges',
@@ -35,10 +37,13 @@ let g:startify_session_persistence = 1
 let g:startify_enable_special = 0
 
 
-let g:startify_custom_header = [		
-   \'            __         __         __   __  ',
-   \'     ____ _/ /_  _____/ /_  ___  / /__/ /_ ',
-   \'    / __ `/ __ \/ ___/ __ \/ _ \/ //_/ __ \',
-   \'   / /_/ / /_/ (__  ) / / /  __/ ,< / / / /',
-   \'   \__,_/_.___/____/_/ /_/\___/_/|_/_/ /_/',                                      
-   \]
+" let g:startify_custom_header = [		
+"    \'            __         __         __   __  ',
+"    \'     ____ _/ /_  _____/ /_  ___  / /__/ /_ ',
+"    \'    / __ `/ __ \/ ___/ __ \/ _ \/ //_/ __ \',
+"    \'   / /_/ / /_/ (__  ) / / /  __/ ,< / / / /',
+"    \'   \__,_/_.___/____/_/ /_/\___/_/|_/_/ /_/',                                      
+"    \]
+
+
+

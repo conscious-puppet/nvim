@@ -8,50 +8,39 @@ endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
 
-    " Better Syntax Support
-    Plug 'sheerun/vim-polyglot'
     
-    " File Explorer
-    Plug 'scrooloose/NERDTree'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'scrooloose/NERDTree'                                                " File Explorer
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'                            " File Explorer
+    Plug 'jiangmiao/auto-pairs'                                               " Auto pairs for '(' '[' '{'
+    Plug 'ryanoasis/vim-devicons'                                             " Cool Icons
+    Plug 'vim-airline/vim-airline'                                            " Status Line
+    Plug 'vim-airline/vim-airline-themes'                                     " Status Line
+    Plug 'mhinz/vim-startify'                                                 " Start Screen
+    Plug 'tpope/vim-surround'                                                 " change/insert surroundings --parentheses, brackets, quotes, XML tags
+    Plug 'ryanoasis/vim-devicons'                                             " Icons
+    " Plug 'rafi/awesome-vim-colorschemes'                                    " Themes
+    " Plug 'joshdick/onedark.vim'                                             " Themes 
+    " Plug 'drewtempelmeyer/palenight.vim'                                    " Themes 
+    " Plug 'crusoexia/vim-monokai'                                            " Themes
+    " Plug 'patstockwell/vim-monokai-tasty'                                   " Themes
+    Plug 'morhetz/gruvbox'                                                    " Themes
+    Plug 'norcalli/nvim-colorizer.lua'                                        " colors for html/css
+    " Plug 'preservim/nerdcommenter'                                          " Comments
+    Plug 'tpope/vim-commentary'                                               " Comments
     
-    " Auto pairs for '(' '[' '{'
-    Plug 'jiangmiao/auto-pairs'
-    
-    " Cool Icons
-    Plug 'ryanoasis/vim-devicons'
-    
-    " Intellisense
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    
-    " Status Line
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    
-    " Start Screen
-    Plug 'mhinz/vim-startify'
-    
-    " Emmet for auto completion of html/css used by vs code as well
-    Plug 'mattn/emmet-vim'
-    
-    " change/insert surroundings: parentheses, brackets, quotes, XML tags
-    Plug 'tpope/vim-surround'
-    
-    "Plug 'Raimondi/delimitMate'
-    
-    " syntax checking
-    Plug 'vim-syntastic/syntastic'
-    
-    " Icons
-    Plug 'ryanoasis/vim-devicons'
-    
-    " Themes
-    "Plug 'rafi/awesome-vim-colorschemes'
-    Plug 'joshdick/onedark.vim'
-    "Plug 'drewtempelmeyer/palenight.vim'
-    Plug 'crusoexia/vim-monokai'
-    Plug 'patstockwell/vim-monokai-tasty'
 
-    " colors for html/css
-    Plug 'norcalli/nvim-colorizer.lua'
+
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}                           " Intellisense --code completion
+    " Plug 'mattn/emmet-vim'                                                  " Emmet for auto completion of html/css used by vs code as well
+    "Plug 'Raimondi/delimitMate'
+    " Plug 'vim-syntastic/syntastic'                                          " syntax checking
+    Plug 'vimwiki/vimwiki'                                                    " vim-wiki notetaking tasks todo
+    Plug 'suan/vim-instant-markdown', {'for': 'markdown'}                     " markdown live preview
+    " Plug  'gabenespoli/capitalL.vim'                                        " easier location lists
+    Plug 'sheerun/vim-polyglot'                                               " Better Syntax Support --syntax highlighting
+
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                       " Fuzzy search
+    Plug 'junegunn/fzf.vim'                                                   " Fuzzy search
+    Plug 'airblade/vim-rooter'                                                " Fuzzy search
+
     call plug#end()

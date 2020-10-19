@@ -3,14 +3,17 @@ let g:mapleader = "\<Space>"
 
 syntax enable                           " Enables syntax highlighing
 set hidden                              " Required to keep multiple buffers open multiple buffers
-set wrap                                " Display long lines as just one line
+set nowrap                                " Display long lines as just one line
+" set linebreak                           " Prevents linebreak at words --with set wrap
+" set textwidth=0                         " this is recommended with wrap to stop vim from entering a newline at wrap
+" set wrapmargin=0                        " recommended with wrap
 set encoding=utf-8                      " The encoding displayed
 set pumheight=10                        " Makes popup menu smaller
 set fileencoding=utf-8                  " The encoding written to file
 set ruler              			            " Show the cursor position all the time
 set cmdheight=2                         " More space for displaying messages
 set iskeyword+=-                      	" treat dash separated words as a word text object"
-set mouse=a                             " Enable your mouse
+" set mouse=a                             " Enable your mouse
 set splitbelow                          " Horizontal splits will automatically be below
 set splitright                          " Vertical splits will automatically be to the right
 set t_Co=256                            " Support 256 colors
@@ -42,6 +45,8 @@ set incsearch                           " search as characters are entered
 set hlsearch                            " highlights matching searcher
 set ignorecase                          " makes search case insensitive
 set smartcase                           " makes search case insensitive
+set guicursor=                          " make the cursor look like it looks in terminal
+set spelllang=en                        " for spellcheck features in vim
 
 au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
 
