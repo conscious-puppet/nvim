@@ -41,6 +41,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                       " Fuzzy search
     Plug 'junegunn/fzf.vim'                                                   " Fuzzy search
-    Plug 'airblade/vim-rooter'                                                " Fuzzy search
+    " Plug 'airblade/vim-rooter'                                                " Finds the root directory and makes it the current directory -- .git and all
 
     call plug#end()

@@ -104,6 +104,8 @@ def todo_driver():
     todomd_name = vim.eval("todo_f")
     if todomd_name == current_file_name:
         return
+    if "/home/abhishek/Documents/vimwiki/TODO" in current_file_name:
+        return
 
     todomd_object = open(todomd_name, "r")
 
@@ -120,6 +122,9 @@ def todo_driver():
 EOF
 let current_f = expand('%:p')
 let todo_f = "/home/abhishek/Documents/vimwiki/TODO/general_list.md"
+if bufexists(todo_f)
+  execute "e ".todo_f." | up! | bprev"
+endif
 python3 todo_driver()
 endfunction
 
@@ -128,7 +133,8 @@ augroup updatetodo
   " after writing *.md file, update todo
   au BufWritePost *.md call UpdateTodo()
   " before leaving the todo file, write it
-  au BufLeave /home/abhishek/Documents/vimwiki/TODO/general_list.md up!
+  " au BufLeave /home/abhishek/Documents/vimwiki/TODO/general_list.md up!
+  " autocmd User Startified set buftype="startify"
 augroup END
 
 
