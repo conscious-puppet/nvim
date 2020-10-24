@@ -1,9 +1,6 @@
-" set these in ftplugins of vimwiki 
-" autocmd BufWinEnter *.md setlocal syntax=markdown
-" setlocal commentstring=<!--%s-->
-" also change the functionality of tab in normal mode to <leader><tab>, by
-" defadefault it is in insert mode, so change it to normal mode
-" in the file also add (setlocal spell) for spellcheck
+" set this in ftplugins of vimwiki 
+" change the functionality of tab in normal mode to <leader><tab>, by
+" default it is in insert mode, so change it to normal mode
 
 " config for path and settings
 let wiki = {}
@@ -39,7 +36,12 @@ augroup vimwikigroup
     " autocmd BufRead,BufNewFile diary.md VimwikiDiaryGenerateLinks
     " update only on writing the file
     autocmd BufWrite diary.md VimwikiDiaryGenerateLinks
-    
+    " to change the syntax to markdown
+    autocmd BufWinEnter *.md setlocal syntax=markdown
+    " for spellcheck
+    autocmd BufWinEnter *.md setlocal spell
+    " to correct the comment string
+    autocmd BufWinEnter *.md setlocal commentstring=<!--%s-->
     " for every markdown set the file type as vimwiki
     " au BufRead,BufNewFile *.md set filetype=vimwiki
     " list stuff
@@ -102,15 +104,9 @@ def new_todo_list(current_file_name, current_file_object, todomd_object):
 def todo_driver():
     current_file_name = vim.eval("current_f")
     todomd_name = vim.eval("todo_f")
-    if todomd_name == current_file_name:
-        return
-    if "/home/abhishek/Documents/vimwiki/TODO" in current_file_name:
-        return
 
     todomd_object = open(todomd_name, "r")
-
     current_file_object = open(current_file_name, "r")
-
 
     new_todo_file = new_todo_list(current_file_name, current_file_object, todomd_object)
     todomd_object.close()
@@ -122,10 +118,21 @@ def todo_driver():
 EOF
 let current_f = expand('%:p')
 let todo_f = "/home/abhishek/Documents/vimwiki/TODO/general_list.md"
+let path = "/home/abhishek/Documents/vimwiki/TODO"
+
+if(current_f =~? path)
+  return
+endif
+if(current_f ==? todo_f)
+  return
+endif
+
 if bufexists(todo_f)
   execute "e ".todo_f." | up! | bprev"
 endif
+
 python3 todo_driver()
+
 endfunction
 
 augroup updatetodo
