@@ -27,6 +27,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'norcalli/nvim-colorizer.lua'                                        " colors for html/css
     " Plug 'preservim/nerdcommenter'                                          " Comments
     Plug 'tpope/vim-commentary'                                               " Comments
+    " Plug 'wfxr/minimap.vim'                                                   " Minimaps
     
 
 

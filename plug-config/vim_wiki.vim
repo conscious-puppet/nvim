@@ -1,6 +1,8 @@
 " set this in ftplugins of vimwiki 
-" change the functionality of tab in normal mode to <leader><tab>, by
-" default it is in insert mode, so change it to normal mode
+" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : vimwiki#tbl#kbd_tab()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : vimwiki#tbl#kbd_shift_tab()
+" change the functionality of tab in insert mode to above for better tab
+" completion
 
 " config for path and settings
 let wiki = {}
@@ -40,6 +42,8 @@ augroup vimwikigroup
     autocmd BufWinEnter *.md setlocal syntax=markdown
     " for spellcheck
     autocmd BufWinEnter *.md setlocal spell
+    " for completeopt coc dictionary
+    autocmd BufWinEnter *.md setlocal dictionary+=/usr/share/dict/words
     " to correct the comment string
     autocmd BufWinEnter *.md setlocal commentstring=<!--%s-->
     " for every markdown set the file type as vimwiki
