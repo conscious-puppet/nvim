@@ -49,6 +49,11 @@ augroup vimwikigroup
               " \ <C-]><Esc>:VimwikiReturn 3 5<CR>
     " autocmd FileType vimwiki inoremap <silent><buffer> <S-CR>
               " \ <Esc>:VimwikiReturn 2 2<CR>
+              
+    " sets a visual line to limit the line
+    autocmd BufWinEnter *.md setlocal colorcolumn=119
+    " automatically pushes the line to new line after 117 characters
+    autocmd BufWinEnter *.md setlocal textwidth=117
 augroup end
 
 
@@ -92,13 +97,20 @@ def new_todo_list(current_file_name, current_file_object, todomd_object):
             continue
         todo_list.append(l)
 
-    while len(todo_list) > 0 and todo_list[0] == "\n":
-        todo_list = todo_list[1:]
+    while len(new_todo_file_list) > 0 and new_todo_file_list[0] == "\n":
+        new_todo_file_list = new_todo_file_list[1:]
         
     while len(todo_list) > 0 and todo_list[-1] == "\n":
         todo_list = todo_list[:-1]
 
     new_todo_file = "".join(todo_list) + "\n" + "".join(new_todo_file_list)
+    
+    while len(new_todo_file) > 0 and new_todo_file[0] == "\n":
+        new_todo_file = new_todo_file[1:]
+        
+    while len(new_todo_file) > 0 and new_todo_file[-1] == "\n":
+        new_todo_file = new_todo_file[:-1]
+
     return new_todo_file
 
 def todo_driver():
