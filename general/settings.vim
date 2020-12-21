@@ -37,7 +37,8 @@ set updatetime=300                      " Faster completion
 set timeoutlen=500                      " By default timeoutlen is 1000 ms
 set formatoptions-=cro                  " Stop newline continution of comments
 set clipboard=unnamedplus               " Copy paste between vim and everything else
-set autochdir                           " Your working directory will always be the same as your working directory
+" set autochdir                           " Your working directory will always be the same as your working directory
+set noautochdir                         " Your working directory will not change
 set path+=**                            " (Fuzzy Search) Provides tab-completion for all file-related tasks
 set wildmenu                            " Display all the matching files when we tab complete
 set showmatch                           " highlights matching brackets
@@ -45,8 +46,11 @@ set incsearch                           " search as characters are entered
 set hlsearch                            " highlights matching searcher
 set ignorecase                          " makes search case insensitive
 set smartcase                           " makes search case insensitive
-set guicursor=                          " make the cursor look like it looks in terminal
+set guicursor=                          " block cursor
 set spelllang=en                        " for spellcheck features in vim
+set foldmethod=indent                   " set fold method based on indentation
+set foldlevel=1                         " for better folds
+set shortmess+=I                        " Disable vim's startup message
 
 au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
 

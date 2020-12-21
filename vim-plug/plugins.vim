@@ -15,7 +15,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'ryanoasis/vim-devicons'                                             " Cool Icons
     Plug 'vim-airline/vim-airline'                                            " Status Line
     Plug 'vim-airline/vim-airline-themes'                                     " Status Line
-    Plug 'mhinz/vim-startify'                                                 " Start Screen
+    " Plug 'mhinz/vim-startify'                                                 " Start Screen
     Plug 'tpope/vim-surround'                                                 " change/insert surroundings --parentheses, brackets, quotes, XML tags
     Plug 'ryanoasis/vim-devicons'                                             " Icons
     " Plug 'rafi/awesome-vim-colorschemes'                                    " Themes
@@ -23,6 +23,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Plug 'drewtempelmeyer/palenight.vim'                                    " Themes 
     " Plug 'crusoexia/vim-monokai'                                            " Themes
     " Plug 'patstockwell/vim-monokai-tasty'                                   " Themes
+    " Plug 'jam1garner/vim-code-monokai'                                      " Themes
+    " Plug 'quanganhdo/grb256'                                                  " Themes
     Plug 'morhetz/gruvbox'                                                    " Themes
     Plug 'norcalli/nvim-colorizer.lua'                                        " colors for html/css
     " Plug 'preservim/nerdcommenter'                                          " Comments

@@ -1,9 +1,10 @@
 syntax on
-colorscheme vim-monokai-tasty
+" colorscheme vim-monokai-tasty
+colorscheme codedark
 
 
 " for italic
-let g:vim_monokai_tasty_italic = 1
+" let g:vim_monokai_tasty_italic = 1
 
 " checks if your terminal has 24-bit color support
 if (has("termguicolors"))

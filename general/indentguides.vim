@@ -28,3 +28,8 @@ endfunction
 
 
 command! IndentGuides :call ToggleIndentGuides()
+
+" Buffer Enter
+" augroup ToggleIndentations
+"     autocmd BufEnter *.cpp,*.c,*.h call s:ExecuteEnter()
+" augroup END

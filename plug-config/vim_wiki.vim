@@ -15,37 +15,40 @@ let wiki.links_space_char = '_'
 let g:vimwiki_list = [wiki]
 " let g:vimwiki_list = [{'path': '~/Documents/vimwiki', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '_'}}]
 
-
-" disable the <tab> mapping provided by vimwiki, which interferes with SuperTab
-" let g:vimwiki_table_mappings = 0
-
-" let g:vimwiki_global_ext = 0
-
 " make the markdown cooments proper
 " let g:vimwiki_filetypes = ['markdown', 'pandoc']
+
+
+" to make the lists fold
+let g:vimwiki_folding = 'list'
 
 " change the symbols of checklist
 " let g:vimwiki_listsyms = ' ○◐●✓'
 " let g:vimwiki_listsyms = ' ○◐●X'
 
 " to invoke and update diary
-" command! Diary VimwikiDiaryIndex
+command! Diary VimwikiDiaryIndex
 
 augroup vimwikigroup
     autocmd!
     " automatically update links on read diary
     " this is slow
-    " autocmd BufRead,BufNewFile diary.md VimwikiDiaryGenerateLinks
+    autocmd BufRead,BufNewFile diary.md VimwikiDiaryGenerateLinks
     " update only on writing the file
-    autocmd BufWrite diary.md VimwikiDiaryGenerateLinks
+    " autocmd BufWrite diary.md VimwikiDiaryGenerateLinks
+
     " to change the syntax to markdown
     autocmd BufWinEnter *.md setlocal syntax=markdown
+
     " for spellcheck
     autocmd BufWinEnter *.md setlocal spell
+
     " for completeopt coc dictionary
     autocmd BufWinEnter *.md setlocal dictionary+=/usr/share/dict/words
+
     " to correct the comment string
     autocmd BufWinEnter *.md setlocal commentstring=<!--%s-->
+
     " for every markdown set the file type as vimwiki
     " au BufRead,BufNewFile *.md set filetype=vimwiki
     " list stuff
@@ -54,20 +57,26 @@ augroup vimwikigroup
     " autocmd FileType vimwiki inoremap <silent><buffer> <S-CR>
               " \ <Esc>:VimwikiReturn 2 2<CR>
               
+
     " sets a visual line to limit the line
-    autocmd BufWinEnter *.md setlocal colorcolumn=119
+    autocmd BufWinEnter *.md setlocal colorcolumn=118
+
     " automatically pushes the line to new line after 117 characters
     autocmd BufWinEnter *.md setlocal textwidth=117
+
 augroup end
 
 
 " create new entry for today
 command! CreateEntry VimwikiMakeDiaryNote
+" go to the wiki
+command! Wiki VimwikiIndex
 
-" replace enter with alt enter
+" replace enter with alt enter to follow/create the link
 nmap <A-CR> <Plug>VimwikiFollowLink
 
-" replace tab with <cr> to follow the links in a page
+
+" replace tab with f1 to navigate through the links --didn't want to use this
 nmap <f1> <Plug>VimwikiNextLink
 nmap <S-f1> <Plug>VimwikiPrevLink
 
@@ -155,9 +164,6 @@ augroup updatetodo
   autocmd!
   " after writing *.md file, update todo
   au BufWritePost *.md call UpdateTodo()
-  " before leaving the todo file, write it
-  " au BufLeave /home/abhishek/Documents/vimwiki/TODO/general_list.md up!
-  " autocmd User Startified set buftype="startify"
 augroup END
 
 

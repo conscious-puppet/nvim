@@ -1,5 +1,3 @@
-
-
 " CompileAndRun in vertical split terminal
 
 " available options:

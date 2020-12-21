@@ -39,9 +39,7 @@ nnoremap t<delete> :tabclose<CR>
 " Alternate way to save
 " nnoremap <C-s> :w<CR>
 " Alternate way to quit
-" nnoremap <C-Q> :wq!<CR>
-" Use control-c instead of escape
-nnoremap <C-c> :SClose<CR>
+nnoremap <C-Q> :wq!<CR>
 
 
 

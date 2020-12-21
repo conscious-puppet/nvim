@@ -22,9 +22,6 @@ let g:startify_bookmarks = [
             \ { 'i': '~/.config/nvim/init.vim' },
             \ { 'w': '~/Documents/vimwiki/index.md' },
             \ { 'd': '~/Documents/vimwiki/diary/diary.md' },
-            \ '~/Documents/competitive_programming',
-            \ '~/Documents/competitive_programming/p',
-            \ '~/Documents/competitive_programming/cp_challenges',
             \ ]
 
 " Configuration options
