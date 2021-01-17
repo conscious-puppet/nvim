@@ -77,15 +77,15 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-nnoremap <Leader>o o<Esc>^Da
-nnoremap <Leader>O O<Esc>^Da
+" nnoremap <Leader>o o<Esc>^Da
+" nnoremap <Leader>O O<Esc>^Da
 
 
 " clears highlights
-nnoremap // :noh<return> 
+nnoremap // :noh<return>
 
-" LaunchTerminal in vertical split
-nnoremap \\ :vsp <bar> :te<enter>
+" " LaunchTerminal in vertical split
+" nnoremap \\ :vsp <bar> :te<enter>
 
 " Switch to normal mode in terminal with Esc
 tnoremap <Esc> <C-\><C-n>
@@ -95,3 +95,7 @@ autocmd! TermOpen * startinsert
 
 " replace gf with gF to jump on the file at the specified line
 nnoremap gf gF
+
+
+" command to open init file
+command! Initfile :e $MYVIMRC

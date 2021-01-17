@@ -1,4 +1,4 @@
-" set this in ftplugins of vimwiki 
+" set this in ftplugins of vimwiki
 " inoremap <expr><TAB> pumvisible() ? "\<C-n>" : vimwiki#tbl#kbd_tab()
 " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : vimwiki#tbl#kbd_shift_tab()
 " change the functionality of tab in insert mode to above for better tab
@@ -25,6 +25,19 @@ let g:vimwiki_folding = 'list'
 " change the symbols of checklist
 " let g:vimwiki_listsyms = ' ○◐●✓'
 " let g:vimwiki_listsyms = ' ○◐●X'
+
+" to make the conceals look normal, i.e., they are not concealed
+let g:vimwiki_conceallevel=0
+let g:vimwiki_conceal_onechar_markers=0
+
+" Conceal preformatted text markers. For example, code block
+let g:vimwiki_conceal_pre=0
+
+
+
+" Setting the value of |g:vimwiki_url_maxsave| to 0 will prevent any link shortening
+let g:vimwiki_url_maxsave=0
+
 
 " to invoke and update diary
 command! Diary VimwikiDiaryIndex
@@ -56,13 +69,16 @@ augroup vimwikigroup
               " \ <C-]><Esc>:VimwikiReturn 3 5<CR>
     " autocmd FileType vimwiki inoremap <silent><buffer> <S-CR>
               " \ <Esc>:VimwikiReturn 2 2<CR>
-              
 
     " sets a visual line to limit the line
     autocmd BufWinEnter *.md setlocal colorcolumn=118
 
     " automatically pushes the line to new line after 117 characters
     autocmd BufWinEnter *.md setlocal textwidth=117
+
+    " Necessary for vimwiki to work with indentLines extension
+    autocmd FileType vimwiki setlocal conceallevel=0 
+    autocmd FileType vimwiki setlocal concealcursor=""
 
 augroup end
 
@@ -112,7 +128,7 @@ def new_todo_list(current_file_name, current_file_object, todomd_object):
 
     while len(new_todo_file_list) > 0 and new_todo_file_list[0] == "\n":
         new_todo_file_list = new_todo_file_list[1:]
-        
+
     while len(todo_list) > 0 and todo_list[-1] == "\n":
         todo_list = todo_list[:-1]
 
@@ -129,6 +145,14 @@ def new_todo_list(current_file_name, current_file_object, todomd_object):
 def todo_driver():
     current_file_name = vim.eval("current_f")
     todomd_name = vim.eval("todo_f")
+    path = vim.eval("path")
+
+    if not os.path.exists(path):
+        os.mkdir(path)
+
+    if not os.path.exists(todomd_name):
+        todomd_object_temp = open(todomd_name, "w")
+        todomd_object_temp.close()
 
     todomd_object = open(todomd_name, "r")
     current_file_object = open(current_file_name, "r")
@@ -139,6 +163,7 @@ def todo_driver():
     
     todomd_object = open(todomd_name, "w")
     todomd_object.write(new_todo_file)
+    todomd_object.close()
 
 EOF
 let current_f = expand('%:p')

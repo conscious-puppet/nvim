@@ -2,15 +2,37 @@
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact",
+    "typescript.tsx",
     "graphql",
     "html",
     "yaml",
     "json",
     "python",
     "cpp",
-    "markdown"
+    "markdown",
+    "htmldjango",
+    "vimwiki"
   ],
   "clangd.enabled": true,
   "clangd.path": "/home/abhishek/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd",
-  "diagnostic.checkCurrentLine": true
+  "diagnostic.checkCurrentLine": true,
+  "python.jediEnabled": false,
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintArgs": [
+    "--disable=C0111",
+    "--load-plugins=pylint_django,pylint_celery"
+  ],
+  "python.linting.lintOnSave": true,
+  "python.formatting.provider": "autopep8",
+  "html.format.enable": true,
+  "emmet.includeLanguages": {
+    "htmldjango": "html"
+  },
+  "typescript.format.enabled": true,
+  "javascript.format.enabled": true,
+  "eslint.format.enable": true
 }

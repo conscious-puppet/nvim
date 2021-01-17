@@ -12,8 +12,8 @@ set pumheight=10                        " Makes popup menu smaller
 set fileencoding=utf-8                  " The encoding written to file
 set ruler              			            " Show the cursor position all the time
 set cmdheight=2                         " More space for displaying messages
-set iskeyword+=-                      	" treat dash separated words as a word text object"
-" set mouse=a                             " Enable your mouse
+set iskeyword+=-                      	" treat dash separated words as a word text object
+set mouse=a                             " Enable your mouse
 set splitbelow                          " Horizontal splits will automatically be below
 set splitright                          " Vertical splits will automatically be to the right
 set t_Co=256                            " Support 256 colors
@@ -48,11 +48,13 @@ set ignorecase                          " makes search case insensitive
 set smartcase                           " makes search case insensitive
 set guicursor=                          " block cursor
 set spelllang=en                        " for spellcheck features in vim
-set foldmethod=indent                   " set fold method based on indentation
-set foldlevel=1                         " for better folds
+" set foldmethod=indent                   " set fold method based on indentation
+" set foldlevel=-1                        " for better folds change to -1 for no folds and 0(default)
 set shortmess+=I                        " Disable vim's startup message
 
 au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
+
+
 
 " You can't stop me
 cmap w!! w !sudo tee %

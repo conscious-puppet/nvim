@@ -1,5 +1,4 @@
-let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-word', 'coc-dictionary', 'coc-jedi', 'coc-tag', 'coc-clangd']
-
+let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-tsserver', 'coc-eslint', 'coc-word', 'coc-dictionary', 'coc-jedi', 'coc-tag', 'coc-clangd', 'coc-python', 'coc-floaterm']
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -159,3 +158,70 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+
+
+" " For coc explorer
+
+
+" let g:coc_explorer_global_presets = {
+" \   '.vim': {
+" \     'root-uri': '~/.config/nvim',
+" \     'position': 'floating',
+" \     'open-action-strategy': 'sourceWindow',
+" \     'quit-on-open': v:true,
+" \   },
+" \   'cocConfig': {
+" \      'root-uri': '~/.config/coc',
+" \     'position': 'floating',
+" \     'open-action-strategy': 'sourceWindow',
+" \     'quit-on-open': v:true,
+" \   },
+" \   'tab': {
+" \     'position': 'tab',
+" \     'quit-on-open': v:true,
+" \   },
+" \   'floating': {
+" \     'position': 'floating',
+" \     'open-action-strategy': 'sourceWindow',
+" \     'quit-on-open': v:true,
+" \   },
+" \   'floatingTop': {
+" \     'position': 'floating',
+" \     'floating-position': 'center-top',
+" \     'open-action-strategy': 'sourceWindow',
+" \   },
+" \   'floatingLeftside': {
+" \     'position': 'floating',
+" \     'floating-position': 'left-center',
+" \     'floating-width': 50,
+" \     'open-action-strategy': 'sourceWindow',
+" \     'quit-on-open': v:true,
+" \   },
+" \   'floatingRightside': {
+" \     'position': 'floating',
+" \     'floating-position': 'right-center',
+" \     'floating-width': 50,
+" \     'open-action-strategy': 'sourceWindow',
+" \     'quit-on-open': v:true,
+" \   },
+" \   'simplify': {
+" \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+" \   },
+" \   'buffer': {
+" \     'sources': [{'name': 'buffer', 'expand': v:true}]
+" \   },
+" \ }
+
+" " Use preset argument to open it
+" " nnoremap <space>ee :CocCommand explorer --preset .vim<CR>
+" " nnoremap <space>ef :CocCommand explorer --preset floating<CR>
+" " nnoremap <space>ec :CocCommand explorer --preset cocConfig<CR>
+" " nnoremap <space>eb :CocCommand explorer --preset buffer<CR>
+
+" " List all presets
+" " nnoremap <space>el :CocList explPresets
+
+" " to open coc explorer
+" " nnoremap <space>e :CocCommand explorer --preset simplify<CR>
+" nnoremap <space>e :CocCommand explorer --preset floatingRightside --toggle --sources=file+<CR>

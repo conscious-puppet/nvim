@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =9
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/home/abhishek/Dev/django-projects/hellodjango'
+let g:netrw_dirhist_1='/home/abhishek/Documents/competitive_programming'
+let g:netrw_dirhist_0='/home/abhishek/Documents'
 let g:netrw_dirhist_9='/home/abhishek/Documents/webapp/technical_documentation'
 let g:netrw_dirhist_8='/home/abhishek/Documents/webapp'
 let g:netrw_dirhist_7='/home/abhishek/Documents/webapp/technical_documentation'
@@ -7,6 +10,3 @@ let g:netrw_dirhist_6='/home/abhishek/Documents'
 let g:netrw_dirhist_5='/home/abhishek/Documents/docker-tutorial'
 let g:netrw_dirhist_4='/home/abhishek/Documents/internship'
 let g:netrw_dirhist_3='/home/abhishek/Documents/git_project'
-let g:netrw_dirhist_2='/home/abhishek/Documents'
-let g:netrw_dirhist_1='/home/abhishek/Documents/conda_project'
-let g:netrw_dirhist_0='/home/abhishek/Documents/competitive_programming'
