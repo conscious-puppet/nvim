@@ -23,6 +23,10 @@ map("n", "<C-Down>", ":resize -2<CR>", opts)
 map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
+map("n", "<leader>ff", ":NvimTreeToggle<CR>", opts)
+map("n", "<leader>fw", ":Telescope live_grep<CR>", opts)
+map("n", "<leader><leader>", ":Telescope find_files<CR>", opts)
+
 -- Navigate buffers
 map("n", "<S-l>", ":bnext<CR>", opts)
 map("n", "<S-h>", ":bprevious<CR>", opts)

@@ -35,6 +35,7 @@ end
     open_fn = function()
       return require("packer.util").float { border = "none" }
     end,
+    prompt_border = "none",
   },
 }
 
@@ -46,7 +47,8 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim"              -- Useful lua functions used ny lots of plugins
 
   -- Colorscheme
-  use "abshekh/skull-vim"              -- Almost monochrome, with grey and green accent
+  -- use "abshekh/skull-vim"                  -- Almost monochrome, with grey and green accent
+  use "~/Dev/skull-vim"
 
   use "norcalli/nvim-colorizer.lua"        -- Colorize hex colors in terminal
 
@@ -77,7 +79,21 @@ return packer.startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
+  use "nvim-treesitter/playground"        -- treesitter playground
   use "p00f/nvim-ts-rainbow"              -- Rainbow Parens
+  use "windwp/nvim-autopairs"             -- Autopairs, integrates with both cmp and treesitter
+
+
+  use "numToStr/Comment.nvim"             -- Easily comment stuff
+  use {
+    "JoosepAlviste/nvim-ts-context-commentstring"
+  }
+
+  -- Git
+  use "lewis6991/gitsigns.nvim"           -- Shows git changes
+
+  use "kyazdani42/nvim-tree.lua"          -- Explorer
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
