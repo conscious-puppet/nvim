@@ -48,7 +48,10 @@ return packer.startup(function(use)
 
   -- Colorscheme
   -- use "abshekh/skull-vim"                  -- Almost monochrome, with grey and green accent
-  use "~/Dev/skull-vim"
+  -- use "kdheepak/monochrome.nvim"           -- Monochrome Colorscheme
+  -- use "tjdevries/colorbuddy.vim"           -- Colorbuddy
+  -- use "~/Dev/skull-vim"
+  use 'folke/tokyonight.nvim'
 
   use "norcalli/nvim-colorizer.lua"        -- Colorize hex colors in terminal
 

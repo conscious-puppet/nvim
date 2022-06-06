@@ -10,6 +10,7 @@ local list = {
     { key = "h", action = "close_node" },
     { key = "v", action = "vsplit" },
     { key = "?", action = "toggle_help" },
+    { key = { "<C-]>", "<2-RightMouse>", "." },    action = "cd" },
 }
 
 nvim_tree.setup {
