@@ -6,6 +6,8 @@ require "core.lsp"
 require "core.treesitter"
 
 require "config.colorscheme"
+require "config.lualine"
+require "config.bufferline"
 require "config.cmp"
 require "config.telescope"
 require "config.colorizer"

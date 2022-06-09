@@ -52,6 +52,13 @@ return packer.startup(function(use)
   -- use "tjdevries/colorbuddy.vim"           -- Colorbuddy
   -- use "~/Dev/skull-vim"
   use 'folke/tokyonight.nvim'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
+  use {
+    'akinsho/bufferline.nvim',
+    tag = "v2.*",
+    requires = 'kyazdani42/nvim-web-devicons'}
 
   use "norcalli/nvim-colorizer.lua"        -- Colorize hex colors in terminal
 
@@ -87,7 +94,12 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs"             -- Autopairs, integrates with both cmp and treesitter
 
 
-  use "numToStr/Comment.nvim"             -- Easily comment stuff
+  use {                                  -- Easily comment stuff
+      'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end
+  }
   use {
     "JoosepAlviste/nvim-ts-context-commentstring"
   }
