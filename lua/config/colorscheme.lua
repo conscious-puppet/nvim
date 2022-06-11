@@ -12,4 +12,5 @@
 
 -- vim.g.tokyonight_style = "storm"
 
+-- vim.cmd[[colorscheme koehler]]
 vim.cmd[[colorscheme tokyonight]]

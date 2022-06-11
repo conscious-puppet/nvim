@@ -5,11 +5,12 @@ end
 
 
 bufferline.setup {
-  options = {
-    diagnostics = "nvim_lsp",
-    show_buffer_icons = false,
-    show_buffer_close_icons = false,
-    show_buffer_default_icon = false,
-    show_close_icon = false,
-  }
+  closable = false,
+  clickable = true,
+  icons = false,
+  icon_separator_active = '▎',
+  icon_separator_inactive = '▎',
+  icon_close_tab = '',
+  icon_close_tab_modified = '●',
+  icon_pinned = '車',
 }
