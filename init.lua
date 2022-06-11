@@ -5,12 +5,19 @@ require "core.plugins"
 require "core.lsp"
 require "core.treesitter"
 
-require "config.colorscheme"
-require "config.lualine"
-require "config.bufferline"
 require "config.cmp"
 require "config.telescope"
 require "config.colorizer"
 require "config.autopairs"
 require "config.gitsigns"
 require "config.nvim-tree"
+require "config.ui"
+
+-- aerial.nvim
+-- nvim dap
+-- register
+-- jumplists
+-- folke/trouble.nvim
+-- vim-fugitive
+-- vim-surround
+-- tpope database explorer

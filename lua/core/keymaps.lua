@@ -27,9 +27,30 @@ map("n", "<C-Down>", ":resize -2<CR>", opts)
 map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
-map("n", "<leader>ff", ":NvimTreeToggle<CR>", opts)
-map("n", "<leader>fw", ":Telescope live_grep<CR>", opts)
-map("n", "<leader><leader>", ":Telescope find_files<CR>", opts)
+-- File Related
+map("n", "<leader>ft", ":NvimTreeToggle<CR>", opts)
+map("n", "<leader>ff", "<cmd>NvimTreeFocus<cr>", opts)
+
+-- Telescope
+local telescope_status_ok, telescope = pcall(require, "telescope.builtin")
+
+if telescope_status_ok then
+  map("n", "<leader>fw", telescope.live_grep, opts)
+  map("n", "<leader><leader>", telescope.find_files, opts)
+  map("n", "<leader>gt", telescope.git_status, opts)
+  map("n", "<leader>gb", telescope.git_branches, opts)
+  map("n", "<leader>gc", telescope.git_commits, opts)
+  map("n", "<leader>fb", telescope.buffers, opts)
+  map("n", "<leader>fm", telescope.marks, opts)
+  map("n", "<leader>fo", telescope.oldfiles, opts)
+  map("n", "<leader>sc", telescope.registers, opts)
+  map("n", "<leader>sk", telescope.keymaps, opts)
+  map("n", "<leader>sc", telescope.commands, opts)
+  map("n", "<leader>ls", telescope.lsp_document_symbols, opts)
+  map("n", "<leader>lR", telescope.lsp_references, opts)
+  map("n", "<leader>lD", telescope.diagnostics, opts)
+end
+
 
 -- Navigate buffers
 -- map("n", "<S-l>", ":bnext<CR>", opts)
@@ -40,6 +61,10 @@ map("n", "<S-h>", ":BufferPrevious<CR>", opts)
 -- Stay in indent mode
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
+
+-- Comment
+-- map("n", "<leader>/", function() require("Comment.api").toggle_current_linewise() end, opts)
+-- map("v", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<cr>", opts)
 
 -- Ctrl hjkl in command line mode
 map("c", "<C-j>", "<C-n>", { noremap = true })

@@ -52,6 +52,7 @@ return packer.startup(function(use)
   -- use "tjdevries/colorbuddy.vim"           -- Colorbuddy
   -- use "~/Dev/skull-vim"
   use 'folke/tokyonight.nvim'
+  use "EdenEast/nightfox.nvim" -- Packer
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true } }

@@ -1,4 +1,5 @@
 local M = {}
+local map = vim.keymap.set
 
 M.setup = function()
   local config = {
@@ -7,7 +8,8 @@ M.setup = function()
     underline = true,
     severity_sort = true,
     float = {
-      focusable = false,
+      border = "none",
+      focusable = true,
       style = "minimal",
       source = "always",
       header = "",
@@ -42,20 +44,22 @@ end
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-  -- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, opts)
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "gl", vim.lsp.diagnostic.show_line_diagnostics, opts)
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-  vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  map("n", "K", vim.lsp.buf.hover, opts)
+  map("n", "<leader>la", vim.lsp.buf.code_action, opts)
+  map("v", "<leader>la", vim.lsp.buf.range_code_action, opts)
+  map("n", "<leader>lf", vim.lsp.buf.formatting_sync, opts)
+  map("v", "<leader>lf", vim.lsp.buf.range_formatting, opts)
+  map("n", "<leader>lh", vim.lsp.buf.signature_help, opts)
+  map("n", "<leader>lr", vim.lsp.buf.rename, opts)
+  map("n", "<leader>ld", vim.diagnostic.open_float, opts)
+  map("n", "gD", vim.lsp.buf.declaration, opts)
+  map("n", "gi", vim.lsp.buf.implementation, opts)
+  map("n", "gd", vim.lsp.buf.definition, opts)
+  map("n", "gr", vim.lsp.buf.references, opts)
+  map("n", "gl", vim.diagnostic.open_float, opts)
+  map("n", "[d", vim.diagnostic.goto_prev, opts)
+  map("n", "]d", vim.diagnostic.goto_next, opts)
+  vim.api.nvim_buf_create_user_command(bufnr, "Format", vim.lsp.buf.formatting, { desc = "Format file with LSP" })
 end
 
 M.on_attach = function(client, bufnr)
