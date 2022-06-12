@@ -103,6 +103,7 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim" -- Shows git changes
+  use "tpope/vim-fugitive" -- Git Wrapper
 
   use "kyazdani42/nvim-tree.lua" -- Explorer
 
