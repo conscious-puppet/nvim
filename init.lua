@@ -13,11 +13,9 @@ require "config.gitsigns"
 require "config.nvim-tree"
 require "config.ui"
 
--- aerial.nvim
 -- nvim dap
 -- register
 -- jumplists
--- folke/trouble.nvim
--- vim-fugitive
 -- vim-surround
 -- tpope database explorer
+-- autosave

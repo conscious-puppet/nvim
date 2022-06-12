@@ -13,7 +13,8 @@ end
 
 create_command("Woman", woman, { desc = "Man Pages" })
 create_command("MYVIMRC", ":e $MYVIMRC", { desc = "Edit Neovim Config" })
-create_command("GitBlame", ":Gitsigns blame_line", { desc = "Toggle Current Line Git Blame" })
+create_command("CDC", ":cd %:p:h", { desc = "Change Global dir to current file" })
+create_command("LDC", ":cd %:p:h", { desc = "Change Local dir to current file" })
 
 
 -- Open terminal in insert mode
