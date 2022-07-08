@@ -51,8 +51,10 @@ return packer.startup(function(use)
   -- use "kdheepak/monochrome.nvim"           -- Monochrome Colorscheme
   -- use "tjdevries/colorbuddy.vim"           -- Colorbuddy
   -- use "~/Dev/skull-vim"
-  use 'folke/tokyonight.nvim'
-  use "EdenEast/nightfox.nvim" -- Packer
+  -- use 'folke/tokyonight.nvim'
+  -- use "EdenEast/nightfox.nvim"
+  use 'bluz71/vim-moonfly-colors'
+
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
@@ -87,6 +89,7 @@ return packer.startup(function(use)
       }
     end
   }
+  use "jose-elias-alvarez/null-ls.nvim"
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -114,7 +117,8 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim" -- Shows git changes
-  use "tpope/vim-fugitive" -- Git Wrapper
+  -- use "tpope/vim-fugitive" -- Git Wrapper
+  use "TimUntersberger/neogit"
 
   use "kyazdani42/nvim-tree.lua" -- Explorer
 

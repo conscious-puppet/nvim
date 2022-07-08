@@ -2,11 +2,25 @@ local M = {}
 local map = vim.keymap.set
 
 M.setup = function()
+  local signs = {
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
+  }
+
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  end
+
   local config = {
-    signs = true,
+    signs = {
+      active = signs
+    },
     update_in_insert = false,
     underline = true,
     severity_sort = true,
+    virtual_text = false,
     float = {
       border = "none",
       focusable = true,
@@ -18,6 +32,10 @@ M.setup = function()
   }
 
   vim.diagnostic.config(config)
+
+
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "none" })
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "none" })
 end
 
 local function lsp_highlight_document(client)
@@ -62,7 +80,7 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  if client.name == "tsserver" then
+  if client.name == "tsserver" or client.name == "hls" then
     client.resolved_capabilities.document_formatting = false
   end
   lsp_keymaps(bufnr)

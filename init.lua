@@ -10,6 +10,7 @@ require "config.telescope"
 require "config.colorizer"
 require "config.autopairs"
 require "config.gitsigns"
+require "config.neogit"
 require "config.nvim-tree"
 require "config.ui"
 

@@ -15,14 +15,16 @@
 
 -- vim.cmd[[colorscheme koehler]]
 -- vim.cmd[[colorscheme tokyonight]]
-vim.cmd [[ colorscheme terafox ]]
+-- vim.cmd [[ colorscheme terafox ]]
+vim.cmd [[ colorscheme moonfly ]]
+
 
 -- Lualine
 local lua_line_status_ok, lualine = pcall(require, 'lualine')
 if lua_line_status_ok then
   lualine.setup {
     options = {
-      -- theme = 'tokyonight',
+      theme = 'moonfly',
       -- section_separators = { left = '', right = '' },
       -- component_separators = { left = '', right = '' }
       section_separators = '',

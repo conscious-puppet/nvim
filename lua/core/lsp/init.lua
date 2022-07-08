@@ -6,6 +6,4 @@ end
 
 require("core.lsp.lsp-installer")
 require("core.lsp.handlers").setup()
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "none" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "none" })
+require("core.lsp.null-ls")
