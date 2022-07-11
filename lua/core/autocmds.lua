@@ -15,7 +15,23 @@ create_command("Woman", woman, { desc = "Man Pages" })
 create_command("MYVIMRC", ":e $MYVIMRC", { desc = "Edit Neovim Config" })
 create_command("CDC", ":cd %:p:h", { desc = "Change Global dir to current file" })
 create_command("LDC", ":cd %:p:h", { desc = "Change Local dir to current file" })
+create_command("Vterm", ":vsp | term", { desc = "Terminal in vertical split" })
+create_command("Sterm", ":sp | term", { desc = "Terminal in horizontal split" })
+create_command("Nomodifiable", ":set noma", { desc = "Set no modifiable" })
+create_command("Modifiable", ":set ma", { desc = "Set modifiable" })
+-- create_command("Bufname", ":keepalt file", { desc = "Rename buffer" })
+vim.cmd [[  
+	:command -nargs=1 Bufname keepalt file <args>
+]]
 
-
--- Open terminal in insert mode
-vim.cmd [[ autocmd TermOpen * startinsert ]]
+vim.cmd [[ 
+  augroup neovim_terminal
+      autocmd!
+      " Enter Terminal-mode (insert) automatically
+      autocmd TermOpen * startinsert
+      " Disables number lines on terminal buffers
+      autocmd TermOpen * :set nonumber norelativenumber
+      " allows you to use Ctrl-c on terminal window
+      autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
+  augroup END
+]]

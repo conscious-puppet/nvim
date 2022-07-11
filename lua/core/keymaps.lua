@@ -16,6 +16,9 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
+
+map("n", "//", ":noh<CR>", opts)
+
 -- Better window navigation
 map("n", "<C-h>", "<C-w>h")
 map("n", "<C-j>", "<C-w>j")
@@ -35,7 +38,9 @@ map("n", "<leader>ff", "<cmd>NvimTreeFocus<cr>", opts)
 local telescope_status_ok, telescope = pcall(require, "telescope.builtin")
 
 if telescope_status_ok then
+  map("n", "<leader>tt", telescope.resume, opts)
   map("n", "<leader>fw", telescope.live_grep, opts)
+  map("n", "\\\\", telescope.live_grep, opts)
   map("n", "<leader><leader>", telescope.find_files, opts)
   map("n", "<leader>gt", telescope.git_status, opts)
   map("n", "<leader>gb", telescope.git_branches, opts)
@@ -48,21 +53,20 @@ if telescope_status_ok then
   map("n", "<leader>sc", telescope.commands, opts)
   map("n", "<leader>ls", telescope.lsp_document_symbols, opts)
   map("n", "<leader>lR", telescope.lsp_references, opts)
-  map("n", "<leader>lD", telescope.diagnostics, opts)
+  -- map("n", "<leader>lD", telescope.diagnostics, opts)
 end
 
 -- Trouble
 local trouble_status_ok, _ = pcall(require, "trouble")
 if trouble_status_ok then
-  map("n", "<leader>ld", "<cmd>Trouble<cr>", { noremap = true })
+  map("n", "<leader>ld", "<cmd>Trouble document_dianostics<cr>", { noremap = true })
+  map("n", "<leader>lD", "<cmd>Trouble workspace_diagnostics<cr>", { noremap = true })
 end
 
 
 -- Navigate buffers
--- map("n", "<S-l>", ":bnext<CR>", opts)
--- map("n", "<S-h>", ":bprevious<CR>", opts)
-map("n", "<S-l>", ":BufferNext<CR>", opts)
-map("n", "<S-h>", ":BufferPrevious<CR>", opts)
+map("n", "<S-l>", ":bnext<CR>", opts)
+map("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Stay in indent mode
 map("v", "<", "<gv", opts)
@@ -72,11 +76,11 @@ map("v", ">", ">gv", opts)
 -- map("n", "<leader>/", function() require("Comment.api").toggle_current_linewise() end, opts)
 -- map("v", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<cr>", opts)
 
--- Ctrl hjkl in command line mode
-map("c", "<C-j>", "<C-n>", { noremap = true })
-map("c", "<C-k>", "<C-p>", { noremap = true })
-map("c", "<C-h>", "<Up>", { noremap = true })
-map("c", "<C-l>", "<Down>", { noremap = true })
+-- Ctrl hjkl in command line mode, not needed as nvim-cmp as auto trigger
+-- map("c", "<C-j>", "<C-n>", { noremap = true })
+-- map("c", "<C-k>", "<C-p>", { noremap = true })
+-- map("c", "<C-h>", "<Up>", { noremap = true })
+-- map("c", "<C-l>", "<Down>", { noremap = true })
 
 -- Improved Terminal Mappings
 map("t", "<esc>", "<C-\\><C-n>")

@@ -36,5 +36,10 @@ set.undofile = true -- Enable persistent undo
 set.updatetime = 300 -- Length of time to wait before triggering the plugin
 set.wrap = false -- Disable wrapping of lines longer than the width of window
 set.writebackup = false -- Disable making a backup before overwriting a file
-set.showmode = false -- Don't show --INSERT-- as we have a status line now
+set.showmode = true -- Show --INSERT--
 set.wildignorecase = true -- Ignorecase in wildmenu (primarily in command line mode i guess)
+set.list = true -- show tabs and spaces
+set.listchars:append("nbsp:␣")
+set.listchars:append("eol:↴")
+set.listchars:append("trail:.")
+-- set.iskeyword:append({',', '_', '@', '.', '-'})

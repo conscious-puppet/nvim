@@ -4,12 +4,13 @@ if not status_ok then
 end
 
 telescope.load_extension('media_files')
+telescope.load_extension('smart_history')
 
 local actions = require "telescope.actions"
 
 telescope.setup {
   defaults = {
-    borderchars = { "", "", "", "", "", "", "", "" },
+    -- borderchars = { "", "", "", "", "", "", "", "" },
     selection_strategy = "reset",
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
@@ -28,11 +29,13 @@ telescope.setup {
     },
     mappings = {
       i = {
-        ["<C-n>"] = actions.cycle_history_next,
-        ["<C-p>"] = actions.cycle_history_prev,
+        -- ["<C-n>"] = actions.cycle_history_next,
+        -- ["<C-p>"] = actions.cycle_history_prev,
 
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
+        ["<C-l>"] = actions.cycle_history_next,
+        ["<C-h>"] = actions.cycle_history_prev,
 
         ["<C-c>"] = actions.close,
 
@@ -54,7 +57,7 @@ telescope.setup {
         ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-        ["<C-l>"] = actions.complete_tag,
+        -- ["<C-l>"] = actions.complete_tag,
         ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
       },
 
@@ -72,9 +75,11 @@ telescope.setup {
 
         ["j"] = actions.move_selection_next,
         ["k"] = actions.move_selection_previous,
-        ["H"] = actions.move_to_top,
-        ["M"] = actions.move_to_middle,
-        ["L"] = actions.move_to_bottom,
+        ["<C-l>"] = actions.cycle_history_next,
+        ["<C-h>"] = actions.cycle_history_prev,
+        -- ["H"] = actions.move_to_top,
+        -- ["M"] = actions.move_to_middle,
+        -- ["L"] = actions.move_to_bottom,
 
         ["<Down>"] = actions.move_selection_next,
         ["<Up>"] = actions.move_selection_previous,
@@ -113,4 +118,8 @@ telescope.setup {
     -- }
     -- please take a look at the readme of the extension you want to configure
   },
+  history = {
+    path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+    limit = 100,
+  }
 }

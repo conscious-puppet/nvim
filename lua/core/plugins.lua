@@ -33,7 +33,7 @@ end
 packer.init {
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "none" }
+      return require("packer.util").float { border = "single" }
     end,
     prompt_border = "none",
   },
@@ -57,10 +57,12 @@ return packer.startup(function(use)
 
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
-  use 'romgrk/barbar.nvim'
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 
-  use "norcalli/nvim-colorizer.lua" -- Colorize hex colors in terminal
+  use "lukas-reineke/indent-blankline.nvim" -- indent guides
+
+  -- use "norcalli/nvim-colorizer.lua" -- Colorize hex colors in terminal
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -69,6 +71,7 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- Snippet completions
   use "hrsh7th/cmp-nvim-lsp" -- LSP completion
   use "hrsh7th/cmp-nvim-lua" -- LSP completion for neovim lsp
+  use "hrsh7th/cmp-cmdline"
 
   -- snippets
   use "L3MON4D3/LuaSnip" -- Snippet engine
@@ -94,6 +97,10 @@ return packer.startup(function(use)
   -- Telescope
   use "nvim-telescope/telescope.nvim"
   use 'nvim-telescope/telescope-media-files.nvim'
+  use {
+    'nvim-telescope/telescope-smart-history.nvim',
+    requires = "kkharji/sqlite.lua"
+  }
 
   -- Treesitter
   use {
@@ -119,6 +126,7 @@ return packer.startup(function(use)
   use "lewis6991/gitsigns.nvim" -- Shows git changes
   -- use "tpope/vim-fugitive" -- Git Wrapper
   use "TimUntersberger/neogit"
+  use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
 
   use "kyazdani42/nvim-tree.lua" -- Explorer
 

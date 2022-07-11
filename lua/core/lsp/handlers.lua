@@ -34,8 +34,17 @@ M.setup = function()
   vim.diagnostic.config(config)
 
 
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "none" })
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "none" })
+  -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "none" })
+  -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "none" })
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+    border = "single"
+  })
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signatureHelp, {
+    border = "single"
+  })
+  vim.diagnostic.config({ float = { border = "single" } })
 end
 
 local function lsp_highlight_document(client)
@@ -49,14 +58,68 @@ local function lsp_highlight_document(client)
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
 
-      augroup lsp_format_document_on_save
-        autocmd! * <buffer>
-        autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
-      augroup END
+      " augroup lsp_format_document_on_save
+      "   autocmd! * <buffer>
+      "   autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
+      " augroup END
     ]] ,
       false
     )
   end
+end
+
+local function create_context_menu(bufnr)
+
+  local telescope_status_ok, _ = pcall(require, "telescope")
+  if not telescope_status_ok then
+    return
+  end
+
+  local actions = require "telescope.actions"
+  local action_state = require "telescope.actions.state"
+  local pickers = require "telescope.pickers"
+  local finders = require "telescope.finders"
+  local sorters = require "telescope.sorters"
+
+  local mini_cursor = {
+    borderchars = {
+      preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+      prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+      results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" }
+    },
+    layout_config = {
+      height = 9,
+      width = 0.3
+    },
+    layout_strategy = "cursor",
+    results_title = false,
+    prompt_title = false,
+    sorting_strategy = "ascending",
+    theme = "cursor"
+  }
+
+  local function enter(prompt_bufnr)
+    local selected = action_state.get_selected_entry()
+    print(vim.inspect(selected))
+    actions.close(prompt_bufnr)
+  end
+
+  local opts = {
+    finder = finders.new_table { "gruvbox", "deus", "tokyonight" },
+    sorter = sorters.get_generic_fuzzy_sorter({}),
+    attach_mappings = function(prompt_bufnr, map)
+      map("i", "<CR>", enter)
+      map("n", "<CR>", enter)
+      return true
+    end,
+  }
+
+  local colors = pickers.new(mini_cursor, opts)
+
+  -- map("n", "<leader>r",
+  --   function()
+  --     colors:find()
+  --   end, { noremap = true, silent = true, buffer = bufnr })
 end
 
 local function lsp_keymaps(bufnr)
@@ -67,6 +130,8 @@ local function lsp_keymaps(bufnr)
   map("v", "<leader>la", vim.lsp.buf.range_code_action, opts)
   map("n", "<leader>lf", vim.lsp.buf.formatting_sync, opts)
   map("v", "<leader>lf", vim.lsp.buf.range_formatting, opts)
+  map("n", "Q", vim.lsp.buf.formatting_sync, opts)
+  map("v", "Q", vim.lsp.buf.range_formatting, opts)
   map("n", "<leader>lh", vim.lsp.buf.signature_help, opts)
   map("n", "<leader>lr", vim.lsp.buf.rename, opts)
   map("n", "gD", vim.lsp.buf.declaration, opts)
@@ -77,6 +142,7 @@ local function lsp_keymaps(bufnr)
   map("n", "[d", vim.diagnostic.goto_prev, opts)
   map("n", "]d", vim.diagnostic.goto_next, opts)
   vim.api.nvim_buf_create_user_command(bufnr, "Format", vim.lsp.buf.formatting, { desc = "Format file with LSP" })
+  create_context_menu(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
@@ -93,6 +159,8 @@ local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_ok then
   return
 end
+
+
 
 M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
