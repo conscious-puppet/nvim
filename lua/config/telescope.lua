@@ -5,8 +5,10 @@ end
 
 telescope.load_extension('media_files')
 telescope.load_extension('smart_history')
+telescope.load_extension("ui-select")
 
 local actions = require "telescope.actions"
+local themes = require "telescope.themes"
 
 telescope.setup {
   defaults = {
@@ -111,13 +113,34 @@ telescope.setup {
       -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
       filetypes = { "png", "webp", "jpg", "jpeg" },
       find_cmd = "rg" -- find command (defaults to `fd`)
-    }
+    },
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,
     -- }
     -- please take a look at the readme of the extension you want to configure
+    --
+    ["ui-select"] = {
+      themes.get_dropdown {
+        -- even more opts
+      }
+
+      -- pseudo code / specification for writing custom displays, like the one
+      -- for "codeactions"
+      -- specific_opts = {
+      --   [kind] = {
+      --     make_indexed = function(items) -> indexed_items, width,
+      --     make_displayer = function(widths) -> displayer
+      --     make_display = function(displayer) -> function(e)
+      --     make_ordinal = function(e) -> string
+      --   },
+      --   -- for example to disable the custom builtin "codeactions" display
+      --      do the following
+      --   codeactions = false,
+      -- }
+    }
   },
+
   history = {
     path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
     limit = 100,

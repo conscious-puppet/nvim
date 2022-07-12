@@ -101,6 +101,7 @@ return packer.startup(function(use)
     'nvim-telescope/telescope-smart-history.nvim',
     requires = "kkharji/sqlite.lua"
   }
+  use { 'nvim-telescope/telescope-ui-select.nvim' }
 
   -- Treesitter
   use {

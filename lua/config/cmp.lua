@@ -21,10 +21,10 @@ cmp.setup {
     end,
   },
   mapping = {
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-    ["<C-j>"] = cmp.mapping.select_next_item(),
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
     ["<C-h>"] = cmp.mapping.scroll_docs(-4),
     ["<C-l>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
@@ -32,6 +32,7 @@ cmp.setup {
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
     ["<CR>"] = cmp.mapping.confirm { select = false },
+    -- ["<leader>"] = cmp.mapping.confirm { select = false },
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
@@ -68,13 +69,13 @@ cmp.setup {
 cmp.setup.filetype('haskell', {
   sources = cmp.config.sources({
     {
-      name = "buffer",
+      name = "nvim_lsp",
       option = {
         keyword_pattern = [[\k\+]],
       }
     },
     {
-      name = "nvim_lsp",
+      name = "buffer",
       option = {
         keyword_pattern = [[\k\+]],
       }
@@ -132,3 +133,6 @@ cmp.setup.cmdline(':', {
     fields = { "abbr" },
   },
 })
+
+
+-- print(vim.inspect(cmp))
