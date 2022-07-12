@@ -8,7 +8,7 @@ telescope.load_extension('smart_history')
 telescope.load_extension("ui-select")
 
 local actions = require "telescope.actions"
-local themes = require "telescope.themes"
+-- local themes = require "telescope.themes"
 
 telescope.setup {
   defaults = {
@@ -121,10 +121,12 @@ telescope.setup {
     -- please take a look at the readme of the extension you want to configure
     --
     ["ui-select"] = {
-      themes.get_dropdown {
-        -- even more opts
-      }
-
+      -- themes.get_dropdown {
+      --   -- even more opts
+      -- }
+      -- themes.get_cursor {
+      --   -- even more opts
+      -- }
       -- pseudo code / specification for writing custom displays, like the one
       -- for "codeactions"
       -- specific_opts = {
