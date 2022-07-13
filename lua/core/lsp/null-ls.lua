@@ -7,7 +7,7 @@ end
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-local diagnostics = null_ls.builtins.diagnostics
+-- local diagnostics = null_ls.builtins.diagnostics
 
 local hindent_status_ok, hindent = pcall(require, "core.lsp.settings.hindent")
 if hindent_status_ok then
@@ -16,8 +16,7 @@ end
 
 null_ls.setup {
   debug = false,
-  sources = {
-    formatting.hindent,
-    diagnostics.flake8,
-  },
+  -- sources = {
+  --   formatting.hindent,
+  -- },
 }

@@ -3,12 +3,8 @@ if not status_ok then
   return
 end
 
-telescope.load_extension('media_files')
-telescope.load_extension('smart_history')
-telescope.load_extension("ui-select")
-
 local actions = require "telescope.actions"
--- local themes = require "telescope.themes"
+local themes = require "telescope.themes"
 
 telescope.setup {
   defaults = {
@@ -127,6 +123,13 @@ telescope.setup {
       -- themes.get_cursor {
       --   -- even more opts
       -- }
+      themes.get_cursor({
+
+        layout_config = {
+          height = 9,
+          width = 0.7
+        },
+      })
       -- pseudo code / specification for writing custom displays, like the one
       -- for "codeactions"
       -- specific_opts = {
@@ -148,3 +151,8 @@ telescope.setup {
     limit = 100,
   }
 }
+
+
+telescope.load_extension('media_files')
+telescope.load_extension('smart_history')
+telescope.load_extension("ui-select")

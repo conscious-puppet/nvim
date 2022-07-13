@@ -89,3 +89,14 @@ map("t", "<C-h>", "<c-\\><c-n><c-w>h")
 map("t", "<C-j>", "<c-\\><c-n><c-w>j")
 map("t", "<C-k>", "<c-\\><c-n><c-w>k")
 map("t", "<C-l>", "<c-\\><c-n><c-w>l")
+
+
+-- filetype keymaps
+-- haskell
+-- vim.cmd[[
+--   augroup inform_new_buffer
+--     autocmd!
+--     autocmd FileType haskell nmap <buffer> Q :%!hindent
+--     autocmd FileType haskell vmap <buffer> Q <esc>:!hindent
+--   augroup end
+-- ]]

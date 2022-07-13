@@ -68,72 +68,25 @@ local function lsp_highlight_document(client)
   end
 end
 
-local function create_context_menu(bufnr)
-
-  local telescope_status_ok, _ = pcall(require, "telescope")
-  if not telescope_status_ok then
-    return
-  end
-
-  local actions = require "telescope.actions"
-  local action_state = require "telescope.actions.state"
-  local pickers = require "telescope.pickers"
-  local finders = require "telescope.finders"
-  local sorters = require "telescope.sorters"
-
-  local mini_cursor = {
-    borderchars = {
-      preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-      prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
-      results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" }
-    },
-    layout_config = {
-      height = 9,
-      width = 0.3
-    },
-    layout_strategy = "cursor",
-    results_title = false,
-    prompt_title = false,
-    sorting_strategy = "ascending",
-    theme = "cursor"
-  }
-
-  local function enter(prompt_bufnr)
-    local selected = action_state.get_selected_entry()
-    print(vim.inspect(selected))
-    actions.close(prompt_bufnr)
-  end
-
-  local opts = {
-    finder = finders.new_table { "gruvbox", "deus", "tokyonight" },
-    sorter = sorters.get_generic_fuzzy_sorter({}),
-    attach_mappings = function(prompt_bufnr, map)
-      map("i", "<CR>", enter)
-      map("n", "<CR>", enter)
-      return true
-    end,
-  }
-
-  local colors = pickers.new(mini_cursor, opts)
-
-  -- map("n", "<leader>r",
-  --   function()
-  --     colors:find()
-  --   end, { noremap = true, silent = true, buffer = bufnr })
-end
-
-local function lsp_keymaps(bufnr)
+local function lsp_keymaps(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
   map("n", "K", vim.lsp.buf.hover, opts)
   map("n", "<leader>la", vim.lsp.buf.code_action, opts)
   map("v", "<leader>la", vim.lsp.buf.range_code_action, opts)
-  map("n", "<leader>lf", vim.lsp.buf.formatting_sync, opts)
-  map("v", "<leader>lf", vim.lsp.buf.range_formatting, opts)
-  map("n", "Q", vim.lsp.buf.formatting_sync, opts)
-  map("v", "Q", vim.lsp.buf.range_formatting, opts)
+  map("n", "<leader>a", vim.lsp.buf.code_action, opts)
+  map("v", "<leader>a", vim.lsp.buf.range_code_action, opts)
+
+  if client.name ~= "hls" then
+    map("n", "<leader>lf", vim.lsp.buf.formatting_sync, opts)
+    map("v", "<leader>lf", vim.lsp.buf.range_formatting, opts)
+    map("n", "Q", vim.lsp.buf.formatting_sync, opts)
+    map("v", "Q", vim.lsp.buf.range_formatting, opts)
+  end
+
   map("n", "<leader>lh", vim.lsp.buf.signature_help, opts)
   map("n", "<leader>lr", vim.lsp.buf.rename, opts)
+  map("n", "<leader>r", vim.lsp.buf.rename, opts)
   map("n", "gD", vim.lsp.buf.declaration, opts)
   map("n", "gi", vim.lsp.buf.implementation, opts)
   map("n", "gd", vim.lsp.buf.definition, opts)
@@ -141,15 +94,15 @@ local function lsp_keymaps(bufnr)
   map("n", "gl", vim.diagnostic.open_float, opts)
   map("n", "[d", vim.diagnostic.goto_prev, opts)
   map("n", "]d", vim.diagnostic.goto_next, opts)
-  vim.api.nvim_buf_create_user_command(bufnr, "Format", vim.lsp.buf.formatting, { desc = "Format file with LSP" })
-  create_context_menu(bufnr)
+  -- vim.api.nvim_buf_create_user_command(bufnr, "Format", vim.lsp.buf.formatting, { desc = "Format file with LSP" })
 end
 
 M.on_attach = function(client, bufnr)
   if client.name == "tsserver" or client.name == "hls" then
     client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
   end
-  lsp_keymaps(bufnr)
+  lsp_keymaps(client, bufnr)
   lsp_highlight_document(client)
 end
 

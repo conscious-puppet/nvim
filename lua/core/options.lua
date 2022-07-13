@@ -43,3 +43,5 @@ set.listchars:append("nbsp:␣")
 set.listchars:append("eol:↴")
 set.listchars:append("trail:.")
 -- set.iskeyword:append({',', '_', '@', '.', '-'})
+
+vim.cmd [[ autocmd FileType * set formatoptions-=o ]]
