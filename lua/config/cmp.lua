@@ -10,10 +10,6 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-local winhighlight = {
-  winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
-}
-
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -58,31 +54,7 @@ cmp.setup {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
-  window = {
-    completion = cmp.config.window.bordered(winhighlight),
-    documentation = cmp.config.window.bordered(winhighlight),
-  },
 }
-
-
--- Set configuration for specific filetype.
-cmp.setup.filetype('haskell', {
-  sources = cmp.config.sources({
-    {
-      name = "nvim_lsp",
-      option = {
-        keyword_pattern = [[\k\+]],
-      }
-    },
-    {
-      name = "buffer",
-      option = {
-        keyword_pattern = [[\k\+]],
-      }
-    },
-    { name = "path" },
-  })
-})
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
@@ -134,6 +106,5 @@ cmp.setup.cmdline(':', {
     fields = { "abbr" },
   },
 })
-
 
 -- print(vim.inspect(cmp))

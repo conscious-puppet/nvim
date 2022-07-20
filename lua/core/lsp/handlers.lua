@@ -22,7 +22,7 @@ M.setup = function()
     severity_sort = true,
     virtual_text = false,
     float = {
-      border = "none",
+      border = "single",
       focusable = true,
       style = "minimal",
       source = "always",
@@ -33,18 +33,6 @@ M.setup = function()
 
   vim.diagnostic.config(config)
 
-
-  -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "none" })
-  -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "none" })
-  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-    vim.lsp.handlers.hover, {
-    border = "single"
-  })
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-    vim.lsp.handlers.signatureHelp, {
-    border = "single"
-  })
-  vim.diagnostic.config({ float = { border = "single" } })
 end
 
 local function lsp_highlight_document(client)

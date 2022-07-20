@@ -33,7 +33,7 @@ end
 packer.init {
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "single" }
+      return require("packer.util").float { border = "none" }
     end,
     prompt_border = "none",
   },
@@ -54,6 +54,10 @@ return packer.startup(function(use)
   -- use 'folke/tokyonight.nvim'
   -- use "EdenEast/nightfox.nvim"
   use 'bluz71/vim-moonfly-colors'
+  use({
+    "catppuccin/nvim",
+    as = "catppuccin"
+  })
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -92,7 +96,7 @@ return packer.startup(function(use)
       }
     end
   }
-  use "jose-elias-alvarez/null-ls.nvim"
+  -- use "jose-elias-alvarez/null-ls.nvim"
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"

@@ -59,8 +59,10 @@ end
 -- Trouble
 local trouble_status_ok, _ = pcall(require, "trouble")
 if trouble_status_ok then
-  map("n", "<leader>ld", "<cmd>Trouble document_dianostics<cr>", { noremap = true })
+  map("n", "<leader>ld", "<cmd>Trouble document_diagnostics<cr>", { noremap = true })
   map("n", "<leader>lD", "<cmd>Trouble workspace_diagnostics<cr>", { noremap = true })
+  map("n", "<leader>d", "<cmd>Trouble document_diagnostics<cr>", { noremap = true })
+  map("n", "<leader>D", "<cmd>Trouble workspace_diagnostics<cr>", { noremap = true })
 end
 
 
