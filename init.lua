@@ -10,7 +10,7 @@ require "config.telescope"
 require "config.colorizer"
 require "config.autopairs"
 require "config.gitsigns"
-require "config.neogit"
+-- require "config.neogit"
 require "config.nvim-tree"
 require "config.ui.catppuccin"
 
@@ -20,3 +20,8 @@ require "config.ui.catppuccin"
 -- vim-surround
 -- tpope database explorer
 -- autosave
+
+
+-- Gvdiffsplit!
+-- d2o (accept left changes)  | diffget
+-- d3o (accept right changes) |

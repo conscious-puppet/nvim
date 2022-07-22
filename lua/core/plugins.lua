@@ -56,7 +56,8 @@ return packer.startup(function(use)
   use 'bluz71/vim-moonfly-colors'
   use({
     "catppuccin/nvim",
-    as = "catppuccin"
+    as = "catppuccin",
+    run = ":CatppuccinCompile"
   })
 
   use {
@@ -129,9 +130,9 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim" -- Shows git changes
-  -- use "tpope/vim-fugitive" -- Git Wrapper
-  use "TimUntersberger/neogit"
-  use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
+  use "tpope/vim-fugitive" -- Git Wrapper
+  -- use "TimUntersberger/neogit"
+  -- use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
 
   use "kyazdani42/nvim-tree.lua" -- Explorer
 

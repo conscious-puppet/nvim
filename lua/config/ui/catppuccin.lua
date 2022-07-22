@@ -4,9 +4,13 @@ vim.cmd [[colorscheme catppuccin]]
 
 
 local catppuccin = require("catppuccin")
-local colors = require("catppuccin.palettes").get_palette() -- fetch colors from palette
+local cp = require("catppuccin.palettes").get_palette() -- fetch colors from palette
 
 catppuccin.setup {
+  compile = {
+    enabled = true,
+    path = vim.fn.stdpath("cache") .. "/catppuccin",
+  },
   integrations = {
     treesitter = true,
     native_lsp = {
@@ -47,14 +51,21 @@ catppuccin.setup {
     markdown = true,
     ts_rainbow = true,
   },
-  -- vim.api.nvim_set_hl(0, "Pmenu", { bg = colors.surface0 })
-  -- vim.api.nvim_set_hl(0, "PmenuSel", { fg = colors.text, bg = colors.surface1, bold = true })
-  -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = colors.surface0 })
   custom_highlights = {
-    Comment = { fg = colors.overlay1 },
-    LineNr = { fg = colors.overlay1 },
-    CursorLine = { bg = colors.none },
-    CursorLineNr = { fg = colors.lavender },
+    TelescopeNormal = { fg = cp.red, bg = cp.red },
+    TelescopeBorder = { fg = cp.red },
+    -- TelescopePromptPrefix = { bg = cp.crust },
+    TelescopePromptNormal = { bg = cp.red },
+    TelescopeResultsNormal = { bg = cp.red },
+    TelescopePreviewNormal = { bg = cp.red },
+    TelescopePromptBorder = { bg = cp.red, fg = cp.crust },
+    TelescopeResultsBorder = { bg = cp.red, fg = cp.crust },
+    TelescopePreviewBorder = { bg = cp.red, fg = cp.crust },
+    -- TelescopePromptTitle = { fg = cp.crust },
+    -- TelescopeResultsTitle = { fg = cp.text },
+    -- TelescopePreviewTitle = { fg = cp.crust },
+    -- NormalFloat = { fg = cp.text, bg = cp.mantle }, -- Normal text in floating windows.
+    -- FloatBorder = { fg = cp.blue },
   }
 }
 
