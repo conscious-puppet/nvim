@@ -135,11 +135,11 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   border = "single"
 })
 
-local win = require("lspconfig.ui.windows")
-local _default_opts = win.default_opts
-
-win.default_opts = function (options)
-  local opts = _default_opts(options)
-  opts.border = "single"
-  return opts
-end
+-- local win = require("lspconfig.ui.windows")
+-- local _default_opts = win.default_opts
+--
+-- win.default_opts = function (options)
+--   local opts = _default_opts(options)
+--   opts.border = "single"
+--   return opts
+-- end
