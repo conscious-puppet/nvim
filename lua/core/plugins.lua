@@ -66,8 +66,14 @@ return packer.startup(function(use)
   }
 
   use "lukas-reineke/indent-blankline.nvim" -- indent guides
-
+  use "j-hui/fidget.nvim" -- progress bar
   -- use "norcalli/nvim-colorizer.lua" -- Colorize hex colors in terminal
+
+  -- Session
+  use "rmagatti/auto-session"
+  use "rmagatti/session-lens"
+
+  use "akinsho/toggleterm.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -135,6 +141,7 @@ return packer.startup(function(use)
   -- use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
 
   use "kyazdani42/nvim-tree.lua" -- Explorer
+
 
 
   -- Automatically set up your configuration after cloning packer.nvim

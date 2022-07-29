@@ -11,6 +11,9 @@ require "config.colorizer"
 require "config.autopairs"
 require "config.gitsigns"
 -- require "config.neogit"
+require "config.toggleterm"
+require "config.auto-session"
+require "config.fidget"
 require "config.nvim-tree"
 require "config.ui.catppuccin"
 
@@ -25,3 +28,4 @@ require "config.ui.catppuccin"
 -- Gvdiffsplit!
 -- d2o (accept left changes)  | diffget
 -- d3o (accept right changes) |
+

@@ -19,6 +19,7 @@ vim.g.maplocalleader = " "
 
 map("n", "//", ":noh<CR>", opts)
 
+map("n", "gf", "gF", opts)
 -- Better window navigation
 map("n", "<C-h>", "<C-w>h")
 map("n", "<C-j>", "<C-w>j")
@@ -42,9 +43,10 @@ if telescope_status_ok then
   map("n", "<leader>fw", telescope.live_grep, opts)
   map("n", "\\\\", telescope.live_grep, opts)
   map("n", "<leader><leader>", telescope.find_files, opts)
-  map("n", "<leader>gt", telescope.git_status, opts)
-  map("n", "<leader>gb", telescope.git_branches, opts)
-  map("n", "<leader>gc", telescope.git_commits, opts)
+  -- map("n", "<leader><leader>", telescope.find_files, opts, { hidden = true })
+  -- map("n", "<leader>gt", telescope.git_status, opts)
+  -- map("n", "<leader>gb", telescope.git_branches, opts)
+  -- map("n", "<leader>gc", telescope.git_commits, opts)
   map("n", "<leader>fb", telescope.buffers, opts)
   map("n", "<leader>fm", telescope.marks, opts)
   map("n", "<leader>fo", telescope.oldfiles, opts)
@@ -86,7 +88,6 @@ map("v", ">", ">gv", opts)
 
 -- Improved Terminal Mappings
 map("t", "<esc>", "<C-\\><C-n>")
-map("t", "jk", "<C-\\><C-n>")
 map("t", "<C-h>", "<c-\\><c-n><c-w>h")
 map("t", "<C-j>", "<c-\\><c-n><c-w>j")
 map("t", "<C-k>", "<c-\\><c-n><c-w>k")
