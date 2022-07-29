@@ -33,9 +33,9 @@ end
 packer.init {
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "none" }
+      return require("packer.util").float { border = "single" }
     end,
-    prompt_border = "none",
+    prompt_border = "single",
   },
 }
 

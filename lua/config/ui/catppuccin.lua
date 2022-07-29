@@ -51,22 +51,22 @@ catppuccin.setup {
     markdown = true,
     ts_rainbow = true,
   },
-  custom_highlights = {
-    TelescopeNormal = { fg = cp.red, bg = cp.red },
-    TelescopeBorder = { fg = cp.red },
-    -- TelescopePromptPrefix = { bg = cp.crust },
-    TelescopePromptNormal = { bg = cp.red },
-    TelescopeResultsNormal = { bg = cp.red },
-    TelescopePreviewNormal = { bg = cp.red },
-    TelescopePromptBorder = { bg = cp.red, fg = cp.crust },
-    TelescopeResultsBorder = { bg = cp.red, fg = cp.crust },
-    TelescopePreviewBorder = { bg = cp.red, fg = cp.crust },
-    -- TelescopePromptTitle = { fg = cp.crust },
-    -- TelescopeResultsTitle = { fg = cp.text },
-    -- TelescopePreviewTitle = { fg = cp.crust },
-    -- NormalFloat = { fg = cp.text, bg = cp.mantle }, -- Normal text in floating windows.
-    -- FloatBorder = { fg = cp.blue },
-  }
+  -- custom_highlights = {
+  --   TelescopeNormal = { fg = cp.red, bg = cp.red },
+  --   TelescopeBorder = { fg = cp.red },
+  --   -- TelescopePromptPrefix = { bg = cp.crust },
+  --   TelescopePromptNormal = { bg = cp.red },
+  --   TelescopeResultsNormal = { bg = cp.red },
+  --   TelescopePreviewNormal = { bg = cp.red },
+  --   TelescopePromptBorder = { bg = cp.red, fg = cp.crust },
+  --   TelescopeResultsBorder = { bg = cp.red, fg = cp.crust },
+  --   TelescopePreviewBorder = { bg = cp.red, fg = cp.crust },
+  --   -- TelescopePromptTitle = { fg = cp.crust },
+  --   -- TelescopeResultsTitle = { fg = cp.text },
+  --   -- TelescopePreviewTitle = { fg = cp.crust },
+  --   -- NormalFloat = { fg = cp.text, bg = cp.mantle }, -- Normal text in floating windows.
+  --   -- FloatBorder = { fg = cp.blue },
+  -- }
 }
 
 
@@ -161,21 +161,32 @@ if indent_blankline_status_ok then
   }
 end
 
+
+-- cmp
+local cmp_status_ok, cmp = pcall(require, "cmp")
+if cmp_status_ok then
+  cmp.setup {
+    window = {
+      documentation = cmp.config.window.bordered(),
+    },
+  }
+end
+
 -- lsp
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "none" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "none" })
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
 
 
 vim.diagnostic.config({ float = { border = "none" } })
 
 -- telescope
 
-local telescope_status_ok, telescope = pcall(require, "telescope")
-if telescope_status_ok then
-  telescope.setup {
-    defaults = {
-      borderchars = { "", "", "", "", "", "", "", "" },
-    }
-  }
-end
+-- local telescope_status_ok, telescope = pcall(require, "telescope")
+-- if telescope_status_ok then
+--   telescope.setup {
+--     defaults = {
+--       borderchars = { "", "", "", "", "", "", "", "" },
+--     }
+--   }
+-- end
