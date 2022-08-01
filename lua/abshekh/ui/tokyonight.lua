@@ -13,10 +13,10 @@ if lua_line_status_ok then
       component_separators = '',
     },
     sections = {
-      lualine_a = {},
+      lualine_a = { 'branch', },
       lualine_b = {},
       lualine_c = {
-        'branch', 'diff', 'diagnostics',
+        'diff', 'diagnostics',
         {
           'filename',
           file_status = true,
@@ -56,7 +56,7 @@ if lua_line_status_ok then
             packer = 'Packer',
             fzf = 'FZF',
             alpha = 'Alpha',
-            NvimTree = '',
+            NvimTree = 'NvimTree',
           },
 
           buffers_color = {
