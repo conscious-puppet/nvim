@@ -4,18 +4,7 @@ require "abshekh.autocmds"
 require "abshekh.packer"
 require "abshekh.lsp"
 require "abshekh.treesitter"
--- require "abshekh.ui.catppuccin"
-
--- require "config.cmp"
--- require "config.telescope"
--- require "config.colorizer"
--- require "config.autopairs"
--- require "config.gitsigns"
--- require "config.neogit"
--- require "config.toggleterm"
--- require "config.auto-session"
--- require "config.fidget"
--- require "config.nvim-tree"
+require "abshekh.ui.catppuccin"
 
 -- nvim dap
 -- register
