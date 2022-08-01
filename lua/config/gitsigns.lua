@@ -20,7 +20,7 @@ gitsigns.setup {
     follow_files = true,
   },
   attach_to_untracked = true,
-  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
     virt_text = true,
     virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
@@ -36,7 +36,7 @@ gitsigns.setup {
   max_file_length = 40000,
   preview_config = {
     -- Options passed to nvim_open_win
-    border = "none",
+    border = "single",
     style = "minimal",
     relative = "cursor",
     row = 0,
