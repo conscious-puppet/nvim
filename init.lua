@@ -4,7 +4,7 @@ require "abshekh.autocmds"
 require "abshekh.packer"
 require "abshekh.lsp"
 require "abshekh.treesitter"
-require "abshekh.ui.catppuccin"
+require "abshekh.ui.tokyonight"
 
 -- nvim dap
 -- register

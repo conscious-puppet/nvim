@@ -59,6 +59,7 @@ return packer.startup(function(use)
     as = "catppuccin",
     run = ":CatppuccinCompile"
   })
+  use 'folke/tokyonight.nvim'
 
   use {
     'nvim-lualine/lualine.nvim',
