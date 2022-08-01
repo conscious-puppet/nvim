@@ -13,10 +13,10 @@ if lua_line_status_ok then
       component_separators = '',
     },
     sections = {
-      lualine_a = { 'branch', },
-      lualine_b = {},
+      lualine_a = { 'mode' },
+      lualine_b = { 'branch', 'diff', },
       lualine_c = {
-        'diff', 'diagnostics',
+        'diagnostics',
         {
           'filename',
           file_status = true,
