@@ -19,7 +19,7 @@ end
 vim.cmd [[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    autocmd BufWritePost packer.lua source <afile> | PackerSync
   augroup end
 ]]
 
@@ -41,108 +41,119 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- Plugins go here
-  use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-
-  -- Colorscheme
-  -- use "abshekh/skull-vim"                  -- Almost monochrome, with grey and green accent
-  -- use "kdheepak/monochrome.nvim"           -- Monochrome Colorscheme
-  -- use "tjdevries/colorbuddy.vim"           -- Colorbuddy
-  -- use "~/Dev/skull-vim"
-  -- use 'folke/tokyonight.nvim'
-  -- use "EdenEast/nightfox.nvim"
-  use 'bluz71/vim-moonfly-colors'
-  use({
-    "catppuccin/nvim",
-    as = "catppuccin",
-    run = ":CatppuccinCompile"
-  })
-  use 'folke/tokyonight.nvim'
-
   use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    "wbthomason/packer.nvim", --------------------- Have packer manage itself
+    "nvim-lua/popup.nvim", ------------------------ An implementation of the Popup API from vim in Neovim
+    "nvim-lua/plenary.nvim", ---------------------- Useful lua functions used ny lots of plugins
   }
 
-  use "lukas-reineke/indent-blankline.nvim" -- indent guides
-  use "j-hui/fidget.nvim" -- progress bar
-  -- use "norcalli/nvim-colorizer.lua" -- Colorize hex colors in terminal
+  -- ui
+  use {
+    -- "abshekh/skull-vim", -------------------------- Almost monochrome, with grey and green accent
+    -- "kdheepak/monochrome.nvim", ------------------- Monochrome Colorscheme
+    -- "tjdevries/colorbuddy.vim", ------------------- Colorbuddy
+    -- "~/Dev/skull-vim",
+    -- "EdenEast/nightfox.nvim",
+    "bluz71/vim-moonfly-colors",
+    {
+      "catppuccin/nvim",
+      as = "catppuccin",
+      run = ":CatppuccinCompile"
+    },
+    "folke/tokyonight.nvim",
+    "rebelot/kanagawa.nvim",
 
-  -- Session
-  use "rmagatti/auto-session"
-  use "rmagatti/session-lens"
+    'nvim-lualine/lualine.nvim',
 
-  use "akinsho/toggleterm.nvim"
-
+    "lukas-reineke/indent-blankline.nvim", -------- indent guides
+    "j-hui/fidget.nvim", -------------------------- progress bar
+    -- "norcalli/nvim-colorizer.lua" ----------------- Colorize hex colors in terminal
+    "kyazdani42/nvim-web-devicons"
+  }
   -- cmp plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- Buffer completions
-  use "hrsh7th/cmp-path" -- Path completions
-  use "saadparwaiz1/cmp_luasnip" -- Snippet completions
-  use "hrsh7th/cmp-nvim-lsp" -- LSP completion
-  use "hrsh7th/cmp-nvim-lua" -- LSP completion for neovim lsp
-  use "hrsh7th/cmp-cmdline"
+  use {
+    "hrsh7th/nvim-cmp", --------------------------- The completion plugin
+    "hrsh7th/cmp-buffer", ------------------------- Buffer completions
+    "hrsh7th/cmp-path", --------------------------- Path completions
+    "saadparwaiz1/cmp_luasnip", ------------------- Snippet completions
+    "hrsh7th/cmp-nvim-lsp", ----------------------- LSP completion
+    "hrsh7th/cmp-nvim-lua", ----------------------- LSP completion for neovim lsp
+    "hrsh7th/cmp-cmdline",
 
-  -- snippets
-  use "L3MON4D3/LuaSnip" -- Snippet engine
-  use "rafamadriz/friendly-snippets" -- A bunch of snippets to use
-
+    "L3MON4D3/LuaSnip", --------------------------- Snippet engine
+    "rafamadriz/friendly-snippets", --------------- A bunch of snippets to use
+  }
 
   -- LSP
-  use "neovim/nvim-lspconfig" -- Enable LSP
-  use "williamboman/nvim-lsp-installer" -- Simple to use language server installer
   use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
+    "neovim/nvim-lspconfig",
+    -- "williamboman/nvim-lsp-installer",
+    {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+        require("trouble").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    },
+    "jose-elias-alvarez/null-ls.nvim",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+
+    -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
   }
-  -- use "jose-elias-alvarez/null-ls.nvim"
 
   -- Telescope
-  use "nvim-telescope/telescope.nvim"
-  use 'nvim-telescope/telescope-media-files.nvim'
   use {
-    'nvim-telescope/telescope-smart-history.nvim',
-    requires = "kkharji/sqlite.lua"
+    "nvim-telescope/telescope.nvim",
+    "nvim-telescope/telescope-media-files.nvim",
+    {
+      "nvim-telescope/telescope-smart-history.nvim",
+      requires = "kkharji/sqlite.lua"
+    },
+    "nvim-telescope/telescope-ui-select.nvim",
   }
-  use { 'nvim-telescope/telescope-ui-select.nvim' }
 
   -- Treesitter
   use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  }
-  use "nvim-treesitter/playground" -- treesitter playground
-  use "p00f/nvim-ts-rainbow" -- Rainbow Parens
-  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-
-
-  use { -- Easily comment stuff
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
-  }
-  use {
-    "JoosepAlviste/nvim-ts-context-commentstring"
+    {
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate",
+    },
+    "nvim-treesitter/playground", ----------- treesitter playground
+    "p00f/nvim-ts-rainbow", ----------------- Rainbow Parens
+    "windwp/nvim-autopairs", ---------------- Autopairs, integrates with both cmp and treesitter
+    { --------------------------------------- Easily comment stuff
+      'numToStr/Comment.nvim',
+      config = function()
+        require('Comment').setup()
+      end
+    },
+    "JoosepAlviste/nvim-ts-context-commentstring",
   }
 
   -- Git
-  use "lewis6991/gitsigns.nvim" -- Shows git changes
-  use "tpope/vim-fugitive" -- Git Wrapper
-  -- use "TimUntersberger/neogit"
-  -- use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
+  use {
+    "lewis6991/gitsigns.nvim", -------------- Shows git changes
+    "tpope/vim-fugitive", ------------------- Git Wrapper
+    -- "TimUntersberger/neogit",
+    -- { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" },
+  }
 
-  use "kyazdani42/nvim-tree.lua" -- Explorer
+  -- Session
+  use {
+    "rmagatti/auto-session",
+    "rmagatti/session-lens",
+  }
 
+  -- Utilities
+  use {
+    "kyazdani42/nvim-tree.lua", -------------- Explorer
+    "akinsho/toggleterm.nvim",
+  }
 
 
   -- Automatically set up your configuration after cloning packer.nvim

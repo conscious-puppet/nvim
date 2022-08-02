@@ -58,6 +58,13 @@ if telescope_status_ok then
   -- map("n", "<leader>lD", telescope.diagnostics, opts)
 end
 
+
+-- lsp lines
+-- local lsp_lines_status_ok, lsp_lines = pcall(require, "lsp_lines")
+-- if lsp_lines_status_ok then
+--   map("n", "gl", lsp_lines.toggle, opts)
+-- end
+
 -- Trouble
 local trouble_status_ok, _ = pcall(require, "trouble")
 if trouble_status_ok then
