@@ -62,6 +62,7 @@ return packer.startup(function(use)
     },
     "folke/tokyonight.nvim",
     "rebelot/kanagawa.nvim",
+    "lunarvim/horizon.nvim",
 
     'nvim-lualine/lualine.nvim',
 

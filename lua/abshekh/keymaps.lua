@@ -25,6 +25,8 @@ map("n", "<C-h>", "<C-w>h")
 map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
+
+map("n", "<C-c>", ":bd<CR>", opts)
 -- Resize with arrows
 map("n", "<C-Up>", ":resize +2<CR>", opts)
 map("n", "<C-Down>", ":resize -2<CR>", opts)
@@ -99,14 +101,3 @@ map("t", "<C-h>", "<c-\\><c-n><c-w>h")
 map("t", "<C-j>", "<c-\\><c-n><c-w>j")
 map("t", "<C-k>", "<c-\\><c-n><c-w>k")
 map("t", "<C-l>", "<c-\\><c-n><c-w>l")
-
-
--- filetype keymaps
--- haskell
--- vim.cmd[[
---   augroup inform_new_buffer
---     autocmd!
---     autocmd FileType haskell nmap <buffer> Q :%!hindent
---     autocmd FileType haskell vmap <buffer> Q <esc>:!hindent
---   augroup end
--- ]]

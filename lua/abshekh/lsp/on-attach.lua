@@ -134,6 +134,10 @@ local function hover()
   end
 end
 
+local function getFileExtension(url)
+  return url:match("^.+(%..+)$")
+end
+
 ---@param bufnr number
 local function buf_set_keymaps(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
@@ -144,8 +148,8 @@ local function buf_set_keymaps(client, bufnr)
   map("n", "<leader>a", vim.lsp.buf.code_action, opts)
   map("v", "<leader>a", vim.lsp.buf.range_code_action, opts)
   map("n", "<leader>c", find_and_run_codelens, opts)
-
-  if client.name ~= "hls" then
+  local fileExt = getFileExtension(vim.api.nvim_buf_get_name(bufnr))
+  if fileExt ~= ".hs" or fileExt ~= ".lhs" then
     map("n", "<leader>lf", vim.lsp.buf.formatting_sync, opts)
     map("v", "<leader>lf", vim.lsp.buf.range_formatting, opts)
     map("n", "Q", vim.lsp.buf.formatting_sync, opts)

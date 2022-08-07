@@ -11,33 +11,46 @@ mason.setup {
   }
 }
 
+local servers = {
+  "sumneko_lua",
+  "hls,"
+}
+
 mason_lsp_config.setup {
-  ensure_installed = { "sumneko_lua" }
+  ensure_installed = servers,
+  automatic_installation = true,
 }
 
-mason_lsp_config.setup_handlers {
-    function (server_name) -- default handler (optional)
-        require("lspconfig")[server_name].setup {}
-    end,
+local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_status_ok then
+  return
+end
 
-            ["sumneko_lua"] = function ()
-                require("lspconfig").sumneko_lua.setup {
+local opts = {}
 
-	settings = {
+for _, server in pairs(servers) do
+  opts = {
+    on_attach = require("abshekh.lsp.handlers").on_attach,
+    capabilities = require("abshekh.lsp.handlers").capabilities,
+  }
 
-		Lua = {
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				},
-			},
-		},
-	},
-                }
-            end,
-}
+  server = vim.split(server, "@")[1]
 
+  -- if server == "jsonls" then
+  --   local jsonls_opts = require "user.lsp.settings.jsonls"
+  --   opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+  -- end
+  --
+  -- if server == "yamlls" then
+  --   local yamlls_opts = require "user.lsp.settings.yamlls"
+  --   opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
+  -- end
+
+  if server == "sumneko_lua" then
+    local sumneko_opts = require("abshekh.lsp.settings.sumneko_lua")
+    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+  end
+
+  lspconfig[server].setup(opts)
+  -- ::continue::
+end
