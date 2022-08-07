@@ -4,4 +4,4 @@ if not status_ok then
   return
 end
 
-require("abshekh.lsp.handlers").setup()
+-- require("abshekh.lsp.handlers").setup()

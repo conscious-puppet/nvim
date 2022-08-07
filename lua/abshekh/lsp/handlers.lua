@@ -2,7 +2,7 @@ local M = {}
 local map = vim.keymap.set
 local ts_utils = require "nvim-treesitter.ts_utils"
 
-M.setup = function()
+local function setup()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
     { name = "DiagnosticSignWarn", text = "" },
@@ -168,6 +168,8 @@ M.on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end
+
+  setup()
   lsp_keymaps(client, bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
