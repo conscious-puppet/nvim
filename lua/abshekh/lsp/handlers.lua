@@ -137,7 +137,7 @@ end
 local function lsp_keymaps(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
-  map("n", "K", hover, opts)
+  map("n", "K", vim.lsp.buf.hover, opts)
   map("n", "<leader>la", vim.lsp.buf.code_action, opts)
   map("v", "<leader>la", vim.lsp.buf.range_code_action, opts)
   map("n", "<leader>a", vim.lsp.buf.code_action, opts)
