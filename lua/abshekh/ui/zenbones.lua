@@ -1,6 +1,5 @@
-local g = vim.g
-g.tokyonight_style = "storm"
-vim.cmd [[colorscheme tokyonight]]
+local zenbones = "rosebones"
+vim.cmd("colorscheme " .. zenbones)
 
 -- Lualine
 local lua_line_status_ok, lualine = pcall(require, 'lualine')
@@ -8,7 +7,7 @@ local lua_line_status_ok, lualine = pcall(require, 'lualine')
 if lua_line_status_ok then
   lualine.setup {
     options = {
-      theme = "tokyonight",
+      theme = zenbones,
       section_separators = '',
       component_separators = '',
     },
@@ -48,19 +47,19 @@ if lua_line_status_ok then
           hide_filename_extension = false,
           show_modified_status = true,
           mode = 0,
-          max_length = vim.o.columns * 9 / 10,
-          -- max_length = vim.o.columns,
+          -- max_length = vim.o.columns * 2 / 3,
+          max_length = vim.o.columns,
           filetype_names = {
             TelescopePrompt = 'Telescope',
             dashboard = 'Dashboard',
             packer = 'Packer',
             fzf = 'FZF',
             alpha = 'Alpha',
-            NvimTree = 'NvimTree',
+            NvimTree = '',
           },
 
           buffers_color = {
-            active = 'lualine_a_normal',
+            active = 'lualine_a_active',
             inactive = 'lualine_a_inactive',
           },
 

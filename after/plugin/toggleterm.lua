@@ -43,6 +43,7 @@ local lazygit = Terminal:new {
   cmd = "lazygit",
   hidden = true,
   direction = "float",
+  -- close_on_exit = true,
   float_opts = {
     border = "none",
     width = 100000,
@@ -54,7 +55,14 @@ local lazygit = Terminal:new {
   end,
   on_close = function(_)
     -- vim.cmd "set laststatus=3"
+    -- vim.cmd [[ silent bufdo e ]]
+    -- vim.cmd [[ tabdo e ]]
   end,
+  -- on_exit = function(_)
+  --   -- vim.cmd "set laststatus=3"
+  --   vim.cmd [[ bufdo e ]]
+  --   -- vim.cmd [[ tabdo e ]]
+  -- end,
   count = 99,
 }
 

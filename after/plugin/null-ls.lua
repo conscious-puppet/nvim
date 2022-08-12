@@ -21,4 +21,5 @@ null_ls.setup {
     -- formatting.hindent,
     code_actions.gitsigns,
   },
+  -- on_attach = require("abshekh.lsp.handlers").on_attach,
 }

@@ -35,5 +35,5 @@ mason_lsp_config.setup_handlers {
       require("abshekh.lsp.settings.sumneko_lua"),
       opts)
     lspconfig["sumneko_lua"].setup(sumneko_opts)
-  end
+  end,
 }

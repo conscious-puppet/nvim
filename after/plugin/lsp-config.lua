@@ -14,4 +14,9 @@ local opts = {
 --   opts)
 -- lspconfig.sumneko_lua.setup(sumneko_opts)
 
+-- local jsonls_opts = vim.tbl_deep_extend("force",
+--   require("abshekh.lsp.settings.jsonls"),
+--   opts)
+-- lspconfig.jsonls.setup(jsonls_opts)
+
 lspconfig.hls.setup(opts)

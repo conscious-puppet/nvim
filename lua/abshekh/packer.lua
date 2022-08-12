@@ -63,6 +63,10 @@ return packer.startup(function(use)
     "folke/tokyonight.nvim",
     "rebelot/kanagawa.nvim",
     "lunarvim/horizon.nvim",
+    {
+      "mcchrish/zenbones.nvim",
+      requires = "rktjmp/lush.nvim"
+    },
 
     'nvim-lualine/lualine.nvim',
 

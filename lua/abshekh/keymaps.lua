@@ -26,7 +26,8 @@ map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
 
-map("n", "<C-c>", ":bd<CR>", opts)
+map("n", "<C-c>", ":bd<CR>", opts) -- close current buffer
+map("n", "<C-w>m", ":tabedit %<cr>", opts) -- replicate current buffer into new tab
 -- Resize with arrows
 map("n", "<C-Up>", ":resize +2<CR>", opts)
 map("n", "<C-Down>", ":resize -2<CR>", opts)
