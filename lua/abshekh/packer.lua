@@ -144,6 +144,7 @@ return packer.startup(function(use)
   use {
     "lewis6991/gitsigns.nvim", -------------- Shows git changes
     "tpope/vim-fugitive", ------------------- Git Wrapper
+    "kdheepak/lazygit.nvim",
     -- "TimUntersberger/neogit",
     -- { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" },
   }
@@ -157,7 +158,6 @@ return packer.startup(function(use)
   -- Utilities
   use {
     "kyazdani42/nvim-tree.lua", -------------- Explorer
-    "akinsho/toggleterm.nvim",
   }
 
 

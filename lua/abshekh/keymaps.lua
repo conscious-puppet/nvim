@@ -38,6 +38,8 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 map("n", "<leader>ft", ":NvimTreeToggle<CR>", opts)
 map("n", "<leader>ff", "<cmd>NvimTreeFocus<cr>", opts)
 
+map("n", "<leader>g", "<cmd>LazyGit<cr>", opts)
+
 -- Telescope
 local telescope_status_ok, telescope = pcall(require, "telescope.builtin")
 
