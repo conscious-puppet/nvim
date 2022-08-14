@@ -1,10 +1,11 @@
-local status_ok, kanagawa = pcall(require, "kanagawa")
+local status_ok, _ = pcall(require, "kanagawa")
 
 if not status_ok then
   return
 end
 
-vim.cmd [[colorscheme kanagawa]]
+local _theme = "kanagawa"
+vim.cmd("colorscheme " .. _theme)
 
 -- Lualine
 local lua_line_status_ok, lualine = pcall(require, 'lualine')
@@ -12,7 +13,7 @@ local lua_line_status_ok, lualine = pcall(require, 'lualine')
 if lua_line_status_ok then
   lualine.setup {
     options = {
-      theme = "kanagawa",
+      theme = _theme,
       section_separators = '',
       component_separators = '',
     },

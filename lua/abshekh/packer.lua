@@ -67,6 +67,12 @@ return packer.startup(function(use)
       "mcchrish/zenbones.nvim",
       requires = "rktjmp/lush.nvim"
     },
+    "tiagovla/tokyodark.nvim",
+    "kvrohit/rasmus.nvim",
+    "navarasu/onedark.nvim",
+    "dracula/vim",
+    "tanvirtin/monokai.nvim",
+    "Yazeed1s/minimal.nvim",
 
     'nvim-lualine/lualine.nvim',
 

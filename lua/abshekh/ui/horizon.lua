@@ -1,4 +1,5 @@
-vim.cmd [[colorscheme horizon]]
+local _theme = "horizon"
+vim.cmd("colorscheme " .. _theme)
 
 -- Lualine
 local lua_line_status_ok, lualine = pcall(require, 'lualine')
@@ -6,7 +7,7 @@ local lua_line_status_ok, lualine = pcall(require, 'lualine')
 if lua_line_status_ok then
   lualine.setup {
     options = {
-      theme = "horizon",
+      theme = _theme,
       section_separators = '',
       component_separators = '',
     },
