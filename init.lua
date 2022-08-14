@@ -3,7 +3,6 @@ require "abshekh.keymaps"
 require "abshekh.autocmds"
 require "abshekh.packer"
 require "abshekh.ui.tokyonight"
-require "abshekh.change_background"
 
 -- nvim dap
 -- register
