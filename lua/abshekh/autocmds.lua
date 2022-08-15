@@ -20,8 +20,20 @@ create_command("Sterm", ":sp | term", { desc = "Terminal in horizontal split" })
 create_command("Nomodifiable", ":set noma", { desc = "Set no modifiable" })
 create_command("Modifiable", ":set ma", { desc = "Set modifiable" })
 -- create_command("Bufname", ":keepalt file", { desc = "Rename buffer" })
+create_command("Filetype", ":set filetype", {desc = "Set filetype"})
+
+
+  -- command! -nargs=1 MyCommand call s:MyFunc(myParam)
 vim.cmd [[  
 	:command -nargs=1 Bufname keepalt file <args>
+	:command -nargs=1 Type set filetype <args>
+
+  function! NewScratchTab(...)
+      tabnew
+      execute printf('set filetype=%s', a:1)
+  endfunction
+
+	:command -nargs=1 Scratch call NewScratchTab(<f-args>)
 ]]
 
 vim.cmd [[ 

@@ -2,7 +2,7 @@ require "abshekh.options"
 require "abshekh.keymaps"
 require "abshekh.autocmds"
 require "abshekh.packer"
-require "abshekh.ui.moonfly"
+require "abshekh.ui.tokyonight"
 
 -- nvim dap
 -- register

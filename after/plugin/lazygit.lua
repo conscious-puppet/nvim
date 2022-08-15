@@ -8,6 +8,6 @@ vim.cmd [[
 
   let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
   if has('nvim') && executable('nvr')
-    let $GIT_EDITOR = "nvr -cc tabe --remote-wait +'set bufhidden=wipe'"
+    let $GIT_EDITOR = "nvr -cc vsplit --remote-wait +'set bufhidden=wipe'"
   endif
 ]]
