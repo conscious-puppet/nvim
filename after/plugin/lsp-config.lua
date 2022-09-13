@@ -9,10 +9,10 @@ local opts = {
   capabilities = require("abshekh.lsp.handlers").capabilities,
 }
 
--- local sumneko_opts = vim.tbl_deep_extend("force",
---   require("abshekh.lsp.settings.sumneko_lua"),
---   opts)
--- lspconfig.sumneko_lua.setup(sumneko_opts)
+local sumneko_opts = vim.tbl_deep_extend("force",
+  require("abshekh.lsp.settings.sumneko_lua"),
+  opts)
+lspconfig.sumneko_lua.setup(sumneko_opts)
 
 -- local jsonls_opts = vim.tbl_deep_extend("force",
 --   require("abshekh.lsp.settings.jsonls"),

@@ -38,7 +38,7 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 map("n", "<leader>ft", ":NvimTreeToggle<CR>", opts)
 map("n", "<leader>ff", "<cmd>NvimTreeFocus<cr>", opts)
 
-map("n", "<leader>g", "<cmd>LazyGit<cr>", opts)
+-- map("n", "<leader>g", "<cmd>LazyGit<cr>", opts)
 
 -- Telescope
 local telescope_status_ok, telescope = pcall(require, "telescope.builtin")
@@ -46,7 +46,8 @@ local telescope_status_ok, telescope = pcall(require, "telescope.builtin")
 if telescope_status_ok then
   map("n", "<leader>tt", telescope.resume, opts)
   map("n", "<leader>fw", telescope.live_grep, opts)
-  map("n", "\\\\", telescope.live_grep, opts)
+  -- map("n", "\\\\", telescope.live_grep, opts)
+  map("n", "<leader>/", telescope.live_grep, opts)
   map("n", "<leader><leader>", telescope.find_files, opts)
   -- map("n", "<leader><leader>", telescope.find_files, opts, { hidden = true })
   -- map("n", "<leader>gt", telescope.git_status, opts)

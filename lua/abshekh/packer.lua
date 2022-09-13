@@ -112,7 +112,7 @@ return packer.startup(function(use)
     },
     "jose-elias-alvarez/null-ls.nvim",
     "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
+    -- "williamboman/mason-lspconfig.nvim", -- not required, since it is just a shallow abstraction
 
     -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
   }
@@ -129,22 +129,22 @@ return packer.startup(function(use)
   }
 
   -- Treesitter
-  use {
-    {
-      "nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate",
-    },
-    "nvim-treesitter/playground", ----------- treesitter playground
-    "p00f/nvim-ts-rainbow", ----------------- Rainbow Parens
-    "windwp/nvim-autopairs", ---------------- Autopairs, integrates with both cmp and treesitter
-    { --------------------------------------- Easily comment stuff
-      'numToStr/Comment.nvim',
-      config = function()
-        require('Comment').setup()
-      end
-    },
-    "JoosepAlviste/nvim-ts-context-commentstring",
-  }
+   use {
+     {
+       "nvim-treesitter/nvim-treesitter",
+       run = ":TSUpdate",
+     },
+     "nvim-treesitter/playground", ----------- treesitter playground
+     -- "p00f/nvim-ts-rainbow", ----------------- Rainbow Parens
+     "windwp/nvim-autopairs", ---------------- Autopairs, integrates with both cmp and treesitter
+     { --------------------------------------- Easily comment stuff
+       'numToStr/Comment.nvim',
+       config = function()
+         require('Comment').setup()
+       end
+     },
+     "JoosepAlviste/nvim-ts-context-commentstring",
+   }
 
   -- Git
   use {
@@ -164,6 +164,7 @@ return packer.startup(function(use)
   -- Utilities
   use {
     "kyazdani42/nvim-tree.lua", -------------- Explorer
+    "dstein64/vim-startuptime",
   }
 
 

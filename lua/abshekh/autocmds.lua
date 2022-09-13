@@ -46,4 +46,6 @@ vim.cmd [[
       " allows you to use Ctrl-c on terminal window
       autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
   augroup END
+
+  au BufNewFile,BufRead *.log :setl ft=json
 ]]
