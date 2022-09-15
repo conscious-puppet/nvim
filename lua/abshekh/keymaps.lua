@@ -54,6 +54,7 @@ if telescope_status_ok then
   -- map("n", "<leader>gb", telescope.git_branches, opts)
   -- map("n", "<leader>gc", telescope.git_commits, opts)
   map("n", "<leader>fb", telescope.buffers, opts)
+  map("n", "<leader>,", telescope.buffers, opts)
   map("n", "<leader>fm", telescope.marks, opts)
   map("n", "<leader>fo", telescope.oldfiles, opts)
   map("n", "<leader>sc", telescope.registers, opts)
@@ -62,6 +63,7 @@ if telescope_status_ok then
   map("n", "<leader>ls", telescope.lsp_document_symbols, opts)
   map("n", "<leader>lR", telescope.lsp_references, opts)
   -- map("n", "<leader>lD", telescope.diagnostics, opts)
+  map("n", "<leader>j", telescope.jumplist, opts)
 end
 
 
@@ -80,6 +82,12 @@ if trouble_status_ok then
   map("n", "<leader>D", "<cmd>Trouble workspace_diagnostics<cr>", { noremap = true })
 end
 
+
+local gitsigns_status_ok, _ = pcall(require, "gitsigns")
+if gitsigns_status_ok then
+  map("n", "[c", "<cmd>Gitsigns prev_hunk<cr>", { noremap = true })
+  map("n", "]c", "<cmd>Gitsigns next_hunk<cr>", { noremap = true })
+end
 
 -- Navigate buffers
 map("n", "<S-l>", ":bnext<CR>", opts)

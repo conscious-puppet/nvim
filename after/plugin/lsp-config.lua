@@ -12,11 +12,13 @@ local opts = {
 local sumneko_opts = vim.tbl_deep_extend("force",
   require("abshekh.lsp.settings.sumneko_lua"),
   opts)
-lspconfig.sumneko_lua.setup(sumneko_opts)
+lspconfig.sumneko_lua.setup(sumneko_opts) -- lua
 
 -- local jsonls_opts = vim.tbl_deep_extend("force",
 --   require("abshekh.lsp.settings.jsonls"),
 --   opts)
 -- lspconfig.jsonls.setup(jsonls_opts)
 
-lspconfig.hls.setup(opts)
+lspconfig.hls.setup(opts) -- haskell
+lspconfig.tsserver.setup(opts) -- typescript
+lspconfig.jsonls.setup(opts) -- json

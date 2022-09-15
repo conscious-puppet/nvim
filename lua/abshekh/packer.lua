@@ -79,7 +79,18 @@ return packer.startup(function(use)
     "lukas-reineke/indent-blankline.nvim", -------- indent guides
     "j-hui/fidget.nvim", -------------------------- progress bar
     -- "norcalli/nvim-colorizer.lua" ----------------- Colorize hex colors in terminal
-    "kyazdani42/nvim-web-devicons"
+    "kyazdani42/nvim-web-devicons",
+
+    { "folke/todo-comments.nvim", ----------------- todo highlight
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("todo-comments").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    },
   }
   -- cmp plugins
   use {
@@ -129,22 +140,22 @@ return packer.startup(function(use)
   }
 
   -- Treesitter
-   use {
-     {
-       "nvim-treesitter/nvim-treesitter",
-       run = ":TSUpdate",
-     },
-     "nvim-treesitter/playground", ----------- treesitter playground
-     -- "p00f/nvim-ts-rainbow", ----------------- Rainbow Parens
-     "windwp/nvim-autopairs", ---------------- Autopairs, integrates with both cmp and treesitter
-     { --------------------------------------- Easily comment stuff
-       'numToStr/Comment.nvim',
-       config = function()
-         require('Comment').setup()
-       end
-     },
-     "JoosepAlviste/nvim-ts-context-commentstring",
-   }
+  use {
+    {
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate",
+    },
+    "nvim-treesitter/playground", ----------- treesitter playground
+    -- "p00f/nvim-ts-rainbow", ----------------- Rainbow Parens
+    "windwp/nvim-autopairs", ---------------- Autopairs, integrates with both cmp and treesitter
+    { --------------------------------------- Easily comment stuff
+      'numToStr/Comment.nvim',
+      config = function()
+        require('Comment').setup()
+      end
+    },
+    "JoosepAlviste/nvim-ts-context-commentstring",
+  }
 
   -- Git
   use {
