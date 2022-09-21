@@ -8,7 +8,7 @@ local lua_line_status_ok, lualine = pcall(require, 'lualine')
 if lua_line_status_ok then
   local custom_tokyonight = require 'lualine.themes.tokyonight'
   custom_tokyonight.inactive.c.fg = '#545c7e'
-
+  -- print(vim.inspect(custom_tokyonight))
   lualine.setup {
     options = {
       theme = custom_tokyonight,
@@ -17,9 +17,18 @@ if lua_line_status_ok then
     },
     sections = {
       lualine_a = { 'mode' },
-      lualine_b = { 'branch', 'diff', },
+      lualine_b = { { 'branch', icon = '', },
+        {
+          'diff',
+          colored = true, -- Displays a colored diff status if set to true
+          diff_color = {
+            added    = 'DiagnosticHint',
+            modified = 'DiagnosticInfo',
+            removed  = 'DiagnosticError',
+          },
+          symbols = { added = ' ', modified = '柳', removed = ' ' },
+        }, },
       lualine_c = {
-        'diagnostics',
         {
           'filename',
           file_status = true,
@@ -30,6 +39,11 @@ if lua_line_status_ok then
             readonly = '[-]',
             unnamed = '[No Name]',
           }
+        },
+        {
+          'diagnostics',
+          symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+          -- symbols = { error = ' ', warn = ' ', info = ' ' },
         },
       },
       lualine_x = {
@@ -84,6 +98,7 @@ if lua_line_status_ok then
   }
 end
 
+print(vim.inspect(lualine.get_config))
 
 -- indent-blanklines
 local indent_blankline_status_ok, indent_blankline = pcall(require, 'indent_blankline')
