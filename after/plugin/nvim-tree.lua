@@ -5,6 +5,9 @@ if not status_ok then
   return
 end
 
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
+
 local list = {
     { key = { "l", "<CR>", "o" }, action = "edit" },
     { key = "h", action = "close_node" },
@@ -14,9 +17,9 @@ local list = {
 }
 
 nvim_tree.setup {
-  disable_netrw = true,
-  hijack_netrw = true,
-  hijack_unnamed_buffer_when_opening = true,
+  -- disable_netrw = false,
+  -- hijack_netrw = false,
+  -- hijack_unnamed_buffer_when_opening = false,
   renderer = {
     icons = {
       show = {

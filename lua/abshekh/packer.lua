@@ -69,28 +69,30 @@ return packer.startup(function(use)
     },
     "tiagovla/tokyodark.nvim",
     "kvrohit/rasmus.nvim",
-    "navarasu/onedark.nvim",
+    "monsonjeremy/onedark.nvim",
     "dracula/vim",
     "tanvirtin/monokai.nvim",
     "Yazeed1s/minimal.nvim",
+    "sam4llis/nvim-tundra",
 
     'nvim-lualine/lualine.nvim',
 
     "lukas-reineke/indent-blankline.nvim", -------- indent guides
-    "j-hui/fidget.nvim", -------------------------- progress bar
-    -- "norcalli/nvim-colorizer.lua" ----------------- Colorize hex colors in terminal
+    "j-hui/fidget.nvim", -------------------------- progress bar, replace with
+    ----------------------------------------------- lualine progress
+    "norcalli/nvim-colorizer.lua", ---------------- Colorize hex colors in terminal
     "kyazdani42/nvim-web-devicons",
 
-    { "folke/todo-comments.nvim", ----------------- todo highlight
-      requires = "nvim-lua/plenary.nvim",
-      config = function()
-        require("todo-comments").setup {
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
-        }
-      end
-    },
+    -- { "folke/todo-comments.nvim", ----------------- todo highlight
+    --   requires = "nvim-lua/plenary.nvim",
+    --   config = function()
+    --     require("todo-comments").setup {
+    --       -- your configuration comes here
+    --       -- or leave it empty to use the default settings
+    --       -- refer to the configuration section below
+    --     }
+    --   end
+    -- },
   }
   -- cmp plugins
   use {
@@ -100,7 +102,8 @@ return packer.startup(function(use)
     "saadparwaiz1/cmp_luasnip", ------------------- Snippet completions
     "hrsh7th/cmp-nvim-lsp", ----------------------- LSP completion
     "hrsh7th/cmp-nvim-lua", ----------------------- LSP completion for neovim lsp
-    "hrsh7th/cmp-cmdline",
+    "hrsh7th/cmp-cmdline", ----------------------- Command mode auto trigger and completion
+
 
     "L3MON4D3/LuaSnip", --------------------------- Snippet engine
     "rafamadriz/friendly-snippets", --------------- A bunch of snippets to use
@@ -161,9 +164,9 @@ return packer.startup(function(use)
   use {
     "lewis6991/gitsigns.nvim", -------------- Shows git changes
     "tpope/vim-fugitive", ------------------- Git Wrapper
-    "kdheepak/lazygit.nvim",
+    -- "kdheepak/lazygit.nvim",
     -- "TimUntersberger/neogit",
-    -- { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" },
+    { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" },
   }
 
   -- Session

@@ -117,7 +117,8 @@ local function lsp_keymaps(client, bufnr)
   map("v", "<leader>a", vim.lsp.buf.range_code_action, opts)
   map("n", "<leader>c", find_and_run_codelens, opts)
 
-  if client.name ~= "hls" then
+  -- if client.name ~= "hls" then
+  if client.supports_method "textDocument/formatting" then
     map("n", "<leader>lf", vim.lsp.buf.formatting_sync, opts)
     map("v", "<leader>lf", vim.lsp.buf.range_formatting, opts)
     map("n", "Q", vim.lsp.buf.formatting_sync, opts)
@@ -137,7 +138,7 @@ local function lsp_keymaps(client, bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  if client.name == "tsserver" or client.name == "hls" then
+  if client.name == "hls" then
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end

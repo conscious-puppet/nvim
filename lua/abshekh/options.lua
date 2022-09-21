@@ -1,11 +1,18 @@
 -- :help options
 local set = vim.opt
+-- :set diffopt+=vertical
+-- DiffAdd        guibg=#283b4d
+-- DiffChange        guibg=#272d43
+-- DiffDelete        guibg=#352d3d
+-- diffAdded        guifg=#449dab
+-- diffRemoved        guifg=#914c54
+-- diffRemoved        guibg=#352d3d
 
 set.cmdheight = 2 -- More space in neovim command line for displaying messages
 set.conceallevel = 0 -- So that `` is visile in markdown files
 set.ignorecase = true -- Ignore case in search patterns
 set.showtabline = 2 -- Always show tabs
-set.backspace = vim.opt.backspace + { "nostop" } -- Don't stop backspace at insert
+set.backspace = set.backspace + { "nostop" } -- Don't stop backspace at insert
 set.clipboard = "unnamedplus" -- Connection to the system clipboard
 set.completeopt = { "menu", "menuone", "noselect" } -- Options for insert mode completion
 set.copyindent = true -- Copy the previous indentation on autoindenting
@@ -39,9 +46,25 @@ set.writebackup = false -- Disable making a backup before overwriting a file
 set.showmode = true -- Show --INSERT--
 set.wildignorecase = true -- Ignorecase in wildmenu (primarily in command line mode i guess)
 set.list = true -- show tabs and spaces
-set.listchars:append("nbsp:␣")
-set.listchars:append("eol:↴")
-set.listchars:append("trail:.")
+set.listchars:append("nbsp:␣") -- show tabs and spaces
+set.listchars:append("eol:↴") -- show tabs and spaces
+set.listchars:append("trail:.") -- show tabs and spaces
+set.foldmethod = "expr" -- auto folds
+set.foldexpr = "nvim_treesitter#foldexpr()" -- create folds based on treesitter
+set.spell = false -- spell check
+set.spelllang = { 'en_us' } -- spell check
+set.shell = "/bin/zsh" -- set zsh as shell for integrated terminal
+set.timeout = false -- don't timeout on pressing leader key
+set.fillchars = set.fillchars + 'diff:╱'
+
 -- set.iskeyword:append({',', '_', '@', '.', '-'})
 vim.cmd [[ set isfname-=: ]]
 vim.cmd [[ autocmd FileType * set formatoptions-=o ]]
+
+-- vim.cmd [[ 
+--   augroup hightlight_override
+--       autocmd!
+--       autocmd ColorScheme * highlight diffAdded guibg=#283b4d
+--       autocmd ColorScheme * highlight diffRemoved guibg=#352d3d
+--       autocmd ColorScheme * highlight diffChanged guibg=#272d43
+-- ]]

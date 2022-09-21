@@ -1,17 +1,55 @@
-local g = vim.g
-g.tokyonight_style = "storm"
-vim.cmd [[colorscheme tokyonight]]
+require('nvim-tundra').setup({
+  transparent_background = false,
+  editor = {
+    search = {},
+    substitute = {},
+  },
+  syntax = {
+    booleans = { bold = true, italic = true },
+    comments = { bold = true, italic = true },
+    conditionals = {},
+    constants = { bold = true },
+    functions = {},
+    keywords = {},
+    loops = {},
+    numbers = { bold = true },
+    operators = { bold = true },
+    punctuation = {},
+    strings = {},
+    types = { italic = true },
+  },
+  diagnostics = {
+    errors = {},
+    warnings = {},
+    information = {},
+    hints = {},
+  },
+  plugins = {
+    lsp = true,
+    treesitter = true,
+    cmp = true,
+    context = true,
+    dbui = true,
+    gitsigns = true,
+    telescope = true,
+  },
+  overwrite = {
+    colors = {},
+    highlights = {},
+  },
+})
+
+vim.opt.background = 'dark'
+local _theme = "tundra"
+vim.cmd("colorscheme " .. _theme)
 
 -- Lualine
 local lua_line_status_ok, lualine = pcall(require, 'lualine')
 
 if lua_line_status_ok then
-  local custom_tokyonight = require 'lualine.themes.tokyonight'
-  custom_tokyonight.inactive.c.fg = '#545c7e'
-
   lualine.setup {
     options = {
-      theme = custom_tokyonight,
+      theme = "auto",
       section_separators = '',
       component_separators = '',
     },
@@ -51,7 +89,7 @@ if lua_line_status_ok then
           hide_filename_extension = false,
           show_modified_status = true,
           mode = 0,
-          max_length = vim.o.columns * 9 / 10,
+          max_length = vim.o.columns * 9.9 / 10,
           -- max_length = vim.o.columns,
           filetype_names = {
             TelescopePrompt = 'Telescope',
@@ -63,8 +101,8 @@ if lua_line_status_ok then
           },
 
           buffers_color = {
-            active = 'lualine_a_normal',
-            inactive = 'lualine_c_inactive',
+            active = 'lualine_a_inactive',
+            inactive = 'lualine_a_active',
           },
 
           symbols = {

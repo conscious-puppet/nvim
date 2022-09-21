@@ -22,6 +22,8 @@ create_command("Modifiable", ":set ma", { desc = "Set modifiable" })
 -- create_command("Bufname", ":keepalt file", { desc = "Rename buffer" })
 create_command("Filetype", ":set filetype", { desc = "Set filetype" })
 -- command! -nargs=1 MyCommand call s:MyFunc(myParam)
+create_command("CopyBufferFilepath", "let @+ = expand('%:p')", { desc = "Copy Buffer Filepath" })
+
 vim.cmd [[  
 	:command -nargs=1 Bufname keepalt file <args>
 	:command -nargs=1 Type set filetype <args>
@@ -32,6 +34,10 @@ vim.cmd [[
   endfunction
 
 	:command -nargs=1 Scratch call NewScratchTab(<f-args>)
+
+  au BufNewFile,BufRead *.log :setl ft=log
+  autocmd BufEnter,BufRead * normal zR
+
 ]]
 
 vim.cmd [[ 
@@ -44,7 +50,37 @@ vim.cmd [[
       " allows you to use Ctrl-c on terminal window
       autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
   augroup END
-
-  au BufNewFile,BufRead *.log :setl ft=log
 ]]
+
+-- autocmd BufReadPost,FileReadPost * normal zR
 -- au BufNewFile,BufRead *.log :setl ft=json
+
+
+
+-- local api = vim.api
+-- local M = {}
+-- -- function to create a list of commands and convert them to autocommands
+-- -------- This function is taken from https://github.com/norcalli/nvim_utils
+-- function M.nvim_create_augroups(definitions)
+--     for group_name, definition in pairs(definitions) do
+--         api.nvim_command('augroup '..group_name)
+--         api.nvim_command('autocmd!')
+--         for _, def in ipairs(definition) do
+--             local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
+--             api.nvim_command(command)
+--         end
+--         api.nvim_command('augroup END')
+--     end
+-- end
+--
+--
+-- local autoCommands = {
+--     -- other autocommands
+--     open_folds = {
+--         {"BufReadPost,FileReadPost", "*", "normal zR"}
+--     }
+-- }
+--
+-- M.nvim_create_augroups(autoCommands)
+--
+-- return M

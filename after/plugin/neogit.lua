@@ -4,6 +4,11 @@ if not status_ok_neogit then
 end
 
 neogit.setup {
+  signs = {
+    section = { "", "" },
+    item = { "", "" },
+    hunk = { "", "" },
+  },
   integrations = {
     diffview = true
   }

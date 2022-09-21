@@ -22,3 +22,4 @@ lspconfig.sumneko_lua.setup(sumneko_opts) -- lua
 lspconfig.hls.setup(opts) -- haskell
 lspconfig.tsserver.setup(opts) -- typescript
 lspconfig.jsonls.setup(opts) -- json
+lspconfig.pylsp.setup(opts) -- python

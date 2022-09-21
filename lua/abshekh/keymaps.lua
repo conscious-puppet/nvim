@@ -39,6 +39,21 @@ map("n", "<leader>ft", ":NvimTreeToggle<CR>", opts)
 map("n", "<leader>ff", "<cmd>NvimTreeFocus<cr>", opts)
 
 -- map("n", "<leader>g", "<cmd>LazyGit<cr>", opts)
+-- map("n", "<leader>g", "<cmd>tab G<cr>", opts)
+map("n", "<leader>g", "<cmd>DiffviewOpen<cr>", opts)
+
+function vim.getVisualSelection()
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg('v')
+	vim.fn.setreg('v', {})
+
+	text = string.gsub(text, "\n", "")
+	if #text > 0 then
+		return text
+	else
+		return ''
+	end
+end
 
 -- Telescope
 local telescope_status_ok, telescope = pcall(require, "telescope.builtin")
@@ -48,6 +63,10 @@ if telescope_status_ok then
   map("n", "<leader>fw", telescope.live_grep, opts)
   -- map("n", "\\\\", telescope.live_grep, opts)
   map("n", "<leader>/", telescope.live_grep, opts)
+  map("v", "<leader>/", function ()
+    local text = vim.getVisualSelection()
+	  telescope.live_grep({ default_text = text })
+  end, opts)
   map("n", "<leader><leader>", telescope.find_files, opts)
   -- map("n", "<leader><leader>", telescope.find_files, opts, { hidden = true })
   -- map("n", "<leader>gt", telescope.git_status, opts)

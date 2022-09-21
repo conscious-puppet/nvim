@@ -2,21 +2,21 @@ local g = vim.g
 g.tokyonight_style = "storm"
 vim.cmd [[colorscheme tokyonight]]
 
+
 -- Lualine
 local lua_line_status_ok, lualine = pcall(require, 'lualine')
 
 if lua_line_status_ok then
   local custom_tokyonight = require 'lualine.themes.tokyonight'
   custom_tokyonight.inactive.c.fg = '#545c7e'
-
   lualine.setup {
     options = {
       theme = custom_tokyonight,
-      section_separators = '',
-      component_separators = '',
+      component_separators = { left = '', right = '' },
+      section_separators = { left = '', right = '' },
     },
     sections = {
-      lualine_a = { 'mode' },
+      lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
       lualine_b = { 'branch', 'diff', },
       lualine_c = {
         'diagnostics',
@@ -37,7 +37,8 @@ if lua_line_status_ok then
         -- 'fileformat',
         'filetype',
         'progress',
-        'location'
+        { 'location',
+          separator = { right = '' }, left_padding = 2 }
       },
       lualine_y = {},
       lualine_z = {}

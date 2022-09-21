@@ -1,5 +1,7 @@
-local _theme = "onedark"
-vim.cmd("colorscheme " .. _theme)
+-- local _theme = "onedark"
+-- vim.cmd("colorscheme " .. _theme)
+
+require('onedark').setup()
 
 -- Lualine
 local lua_line_status_ok, lualine = pcall(require, 'lualine')

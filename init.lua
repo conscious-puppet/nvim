@@ -5,8 +5,7 @@ require "abshekh.packer"
 require "abshekh.ui.tokyonight"
 
 -- nvim dap
--- register
--- jumplists
+-- register | paste registers
 -- vim-surround
 -- tpope database explorer
 -- autosave
