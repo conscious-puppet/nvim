@@ -12,13 +12,15 @@ local code_actions = null_ls.builtins.code_actions
 
 -- local hindent_status_ok, hindent = pcall(require, "abshekh.lsp.settings.hindent")
 -- if hindent_status_ok then
---   formatting.hindent = hindent
+--   formatting.hindent_all = hindent.all
+--   formatting.hindent_range = hindent.range
 -- end
 
 null_ls.setup {
   debug = false,
   sources = {
-    -- formatting.hindent,
+    -- formatting.hindent_all,
+    -- formatting.hindent_range,
     code_actions.gitsigns,
     diagnostics.todo_comments,
     diagnostics.codespell,

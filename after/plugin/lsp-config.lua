@@ -23,3 +23,4 @@ lspconfig.hls.setup(opts) -- haskell
 lspconfig.tsserver.setup(opts) -- typescript
 lspconfig.jsonls.setup(opts) -- json
 lspconfig.pylsp.setup(opts) -- python
+lspconfig.rust_analyzer.setup(opts) -- rust

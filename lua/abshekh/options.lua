@@ -43,7 +43,7 @@ set.undofile = true -- Enable persistent undo
 set.updatetime = 300 -- Length of time to wait before triggering the plugin
 set.wrap = false -- Disable wrapping of lines longer than the width of window
 set.writebackup = false -- Disable making a backup before overwriting a file
-set.showmode = true -- Show --INSERT--
+set.showmode = false -- Show --INSERT--
 set.wildignorecase = true -- Ignorecase in wildmenu (primarily in command line mode i guess)
 set.list = true -- show tabs and spaces
 set.listchars:append("nbsp:␣") -- show tabs and spaces
@@ -61,10 +61,10 @@ set.fillchars = set.fillchars + 'diff:╱'
 vim.cmd [[ set isfname-=: ]]
 vim.cmd [[ autocmd FileType * set formatoptions-=o ]]
 
--- vim.cmd [[ 
---   augroup hightlight_override
---       autocmd!
---       autocmd ColorScheme * highlight diffAdded guibg=#283b4d
---       autocmd ColorScheme * highlight diffRemoved guibg=#352d3d
---       autocmd ColorScheme * highlight diffChanged guibg=#272d43
--- ]]
+vim.cmd [[ 
+  augroup hightlight_override
+      autocmd!
+      autocmd ColorScheme * highlight diffAdded guibg=#283b4d
+      autocmd ColorScheme * highlight diffRemoved guibg=#352d3d
+      autocmd ColorScheme * highlight diffChanged guibg=#272d43
+]]

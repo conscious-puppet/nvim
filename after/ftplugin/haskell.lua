@@ -2,6 +2,8 @@ vim.opt_local.iskeyword:append("'")
 
 local map = vim.keymap.set
 
+vim.cmd[[setlocal formatprg=hindent]]
+
 -- local preserve = function(arguments)
 --   -- local arguments = string.format("keepjumps keeppatterns execute %q", arguments)
 --   -- local original_cursor = vim.fn.winsaveview()

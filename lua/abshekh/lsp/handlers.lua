@@ -9,8 +9,8 @@ local function setup()
     -- { name = "DiagnosticSignHint", text = "" },
     -- { name = "DiagnosticSignInfo", text = "" },
     { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "ﴞ" },
     { name = "DiagnosticSignInfo", text = "" },
   }
 

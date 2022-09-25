@@ -121,6 +121,7 @@ return packer.startup(function(use)
           -- your configuration comes here
           -- or leave it empty to use the default settings
           -- refer to the configuration section below
+          use_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
         }
       end
     },
@@ -140,6 +141,7 @@ return packer.startup(function(use)
       requires = "kkharji/sqlite.lua"
     },
     "nvim-telescope/telescope-ui-select.nvim",
+    "nvim-telescope/telescope-file-browser.nvim"
   }
 
   -- Treesitter

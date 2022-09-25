@@ -109,30 +109,30 @@ diffview.setup({
       ["<leader>cb"] = actions.conflict_choose("base"), -- Choose the BASE version of a conflict
       ["<leader>ca"] = actions.conflict_choose("all"), -- Choose all the versions of a conflict
       ["dx"]         = actions.conflict_choose("none"), -- Delete the conflict region
-      ["<leader>g"]  = "<cmd>DiffviewClose<cr>",
-      -- { { "n" }, "<leader>g", "<Cmd>DiffviewClose<CR>", { silent = true } },
+      ["<leader>gg"]  = "<cmd>DiffviewClose<cr>",
+      -- { { "n" }, "<leader>gg", "<Cmd>DiffviewClose<CR>", { silent = true } },
     },
     diff1 = { --[[ Mappings in single window diff layouts ]]
-      ["<leader>g"]  = "<cmd>DiffviewClose<cr>",
+      ["<leader>gg"]  = "<cmd>DiffviewClose<cr>",
     },
     diff2 = { --[[ Mappings in 2-way diff layouts ]]
-      ["<leader>g"]  = "<cmd>DiffviewClose<cr>",
+      ["<leader>gg"]  = "<cmd>DiffviewClose<cr>",
     },
     diff3 = {
       -- Mappings in 3-way diff layouts
-      ["<leader>g"]  = "<cmd>DiffviewClose<cr>",
+      ["<leader>gg"]  = "<cmd>DiffviewClose<cr>",
       { { "n", "x" }, "2do", actions.diffget("ours") }, -- Obtain the diff hunk from the OURS version of the file
       { { "n", "x" }, "3do", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
     },
     diff4 = {
       -- Mappings in 4-way diff layouts
-      ["<leader>g"]  = "<cmd>DiffviewClose<cr>",
+      ["<leader>gg"]  = "<cmd>DiffviewClose<cr>",
       { { "n", "x" }, "1do", actions.diffget("base") }, -- Obtain the diff hunk from the BASE version of the file
       { { "n", "x" }, "2do", actions.diffget("ours") }, -- Obtain the diff hunk from the OURS version of the file
       { { "n", "x" }, "3do", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
     },
     file_panel = {
-      ["<leader>g"]     = "<cmd>DiffviewClose<cr>",
+      ["<leader>gg"]     = "<cmd>DiffviewClose<cr>",
       ["j"]             = actions.next_entry, -- Bring the cursor to the next file entry
       ["<down>"]        = actions.next_entry,
       ["k"]             = actions.prev_entry, -- Bring the cursor to the previous file entry.
@@ -167,7 +167,7 @@ diffview.setup({
       -- ["]c"]            = actions.next_conflict,
     },
     file_history_panel = {
-      ["<leader>g"]     = "<cmd>DiffviewClose<cr>",
+      ["<leader>gg"]     = "<cmd>DiffviewClose<cr>",
       ["g!"]            = actions.options, -- Open the option panel
       ["<C-A-d>"]       = actions.open_in_diffview, -- Open the entry under the cursor in a diffview
       ["y"]             = actions.copy_hash, -- Copy the commit hash of the entry under the cursor
@@ -196,7 +196,7 @@ diffview.setup({
       ["g<C-x>"]        = actions.cycle_layout,
     },
     option_panel = {
-      ["<leader>g"]     = "<cmd>DiffviewClose<cr>",
+      ["<leader>gg"]     = "<cmd>DiffviewClose<cr>",
       ["<tab>"]         = actions.select_entry,
       ["q"]             = actions.close,
     },

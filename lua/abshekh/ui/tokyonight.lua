@@ -17,17 +17,25 @@ if lua_line_status_ok then
     },
     sections = {
       lualine_a = { 'mode' },
-      lualine_b = { { 'branch', icon = '', },
+      lualine_b = {
+        -- 'branch', 
+        { 'branch', icon = '', },
         {
           'diff',
-          colored = true, -- Displays a colored diff status if set to true
+          colored = true,
+          -- diff_color = {
+          --   added    = 'DiagnosticHint',
+          --   modified = 'DiagnosticInfo',
+          --   removed  = 'DiagnosticError',
+          -- },
           diff_color = {
-            added    = 'DiagnosticHint',
-            modified = 'DiagnosticInfo',
-            removed  = 'DiagnosticError',
+            added    = { fg = '#1abc9c' },
+            modified = { fg = '#0db9d7' },
+            removed  = { fg = '#db4b4b' },
           },
           symbols = { added = ' ', modified = '柳', removed = ' ' },
-        }, },
+        },
+      },
       lualine_c = {
         {
           'filename',
@@ -42,7 +50,8 @@ if lua_line_status_ok then
         },
         {
           'diagnostics',
-          symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+          symbols = { error = ' ', warn = ' ', info = ' ', hint = 'ﴞ ' },
+          -- symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
           -- symbols = { error = ' ', warn = ' ', info = ' ' },
         },
       },

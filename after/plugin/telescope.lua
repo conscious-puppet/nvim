@@ -146,7 +146,20 @@ telescope.setup {
       --      do the following
       --   codeactions = false,
       -- }
-    }
+    },
+    file_browser = {
+      theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      -- mappings = {
+      --   ["i"] = {
+      --     -- your custom insert mode mappings
+      --   },
+      --   ["n"] = {
+      --     -- your custom normal mode mappings
+      --   },
+      -- },
+    },
   },
 
   history = {
@@ -159,3 +172,4 @@ telescope.setup {
 telescope.load_extension('media_files')
 telescope.load_extension('smart_history')
 telescope.load_extension("ui-select")
+telescope.load_extension("file_browser")
