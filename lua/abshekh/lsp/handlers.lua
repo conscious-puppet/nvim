@@ -27,7 +27,6 @@ local function setup()
     severity_sort = true,
     virtual_text = false,
     float = {
-      border = "single",
       focusable = true,
       style = "minimal",
       source = "always",

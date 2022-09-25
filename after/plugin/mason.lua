@@ -8,9 +8,6 @@ if not status_ok_mason then
 end
 
 mason.setup {
-  ui = {
-    border = "single",
-  }
 }
 
 -- local servers = {

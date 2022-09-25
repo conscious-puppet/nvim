@@ -3,6 +3,13 @@ if not status_ok then
   return
 end
 
+local theme = vim.g.colors_name
+local border = "single"
+
+if theme == "onedark" then
+  border = "none"
+end
+
 gitsigns.setup {
   signs = {
     add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
@@ -36,7 +43,7 @@ gitsigns.setup {
   max_file_length = 40000,
   preview_config = {
     -- Options passed to nvim_open_win
-    border = "single",
+    border = border,
     style = "minimal",
     relative = "cursor",
     row = 0,

@@ -29,16 +29,6 @@ if not status_ok then
   return
 end
 
--- Have packer use a popup window
-packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "single" }
-    end,
-    prompt_border = "single",
-  },
-}
-
 -- Install your plugins here
 return packer.startup(function(use)
   use {

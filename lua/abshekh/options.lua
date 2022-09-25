@@ -60,11 +60,3 @@ set.fillchars = set.fillchars + 'diff:╱'
 -- set.iskeyword:append({',', '_', '@', '.', '-'})
 vim.cmd [[ set isfname-=: ]]
 vim.cmd [[ autocmd FileType * set formatoptions-=o ]]
-
-vim.cmd [[ 
-  augroup hightlight_override
-      autocmd!
-      autocmd ColorScheme * highlight diffAdded guibg=#283b4d
-      autocmd ColorScheme * highlight diffRemoved guibg=#352d3d
-      autocmd ColorScheme * highlight diffChanged guibg=#272d43
-]]

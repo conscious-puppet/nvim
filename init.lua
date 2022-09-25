@@ -2,7 +2,7 @@ require "abshekh.options"
 require "abshekh.keymaps"
 require "abshekh.autocmds"
 require "abshekh.packer"
-require "abshekh.ui.tokyonight"
+require "abshekh.themes.onedark"
 
 -- nvim dap
 -- register | paste registers
@@ -14,4 +14,3 @@ require "abshekh.ui.tokyonight"
 -- Gvdiffsplit!
 -- d2o (accept left changes)  | diffget
 -- d3o (accept right changes) |
-

@@ -8,7 +8,6 @@ local themes = require "telescope.themes"
 
 telescope.setup {
   defaults = {
-    -- borderchars = { "", "", "", "", "", "", "", "" },
     wrap_results = true,
     selection_strategy = "reset",
     sorting_strategy = "ascending",
