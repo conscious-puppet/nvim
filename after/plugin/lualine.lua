@@ -27,7 +27,7 @@ elseif theme == "onedark" then
   theme.inactive.a.gui = nil
   theme.normal.c.fg = '#798294'
   theme.normal.c.bg = '#21252b'
-  active_buffers_color = "lualine_a_normal"
+  active_buffers_color = "lualine_a_insert"
   inactive_buffers_color = "lualine_c_normal"
 end
 
@@ -39,37 +39,27 @@ lualine.setup {
     component_separators = '',
   },
   sections = {
-    lualine_a = { 'mode' },
+    -- lualine_a = { 'mode' },
+    lualine_a = {},
     lualine_b = {
       -- 'branch', 
     },
     lualine_c = {
-      { 'branch', icon = '' },
+      { 'branch', icon = 'שׂ',
+        color = {
+          fg = theme.normal.a.fg,
+          bg = theme.normal.a.bg,
+        }
+      },
       {
         'diff',
         colored = true,
-        -- diff_color = {
-        --   added    = 'DiagnosticHint',
-        --   modified = 'DiagnosticInfo',
-        --   removed  = 'DiagnosticError',
-        -- },
         diff_color = {
           added    = { fg = '#1abc9c' },
           modified = { fg = '#0db9d7' },
           removed  = { fg = '#db4b4b' },
         },
         symbols = { added = ' ', modified = '柳', removed = ' ' },
-      },
-      {
-        'filename',
-        file_status = true,
-        path = 1,
-        shorting_target = 40,
-        symbols = {
-          modified = '[+]',
-          readonly = '[-]',
-          unnamed = '[No Name]',
-        }
       },
       {
         'diagnostics',
@@ -80,51 +70,57 @@ lualine.setup {
     },
     lualine_x = {
       'encoding',
-      -- 'fileformat',
       'filetype',
-      'progress',
-      'location'
     },
     lualine_y = {},
-    lualine_z = {}
-  },
-
-  tabline = {
-    lualine_a = {
+    lualine_z = {
       {
-        'buffers',
-        show_filename_only = true,
-        hide_filename_extension = false,
-        show_modified_status = true,
-        mode = 0,
-        max_length = vim.o.columns * 9 / 10,
-        -- max_length = vim.o.columns,
-        filetype_names = {
-          TelescopePrompt = 'Telescope',
-          dashboard = 'Dashboard',
-          packer = 'Packer',
-          fzf = 'FZF',
-          alpha = 'Alpha',
-          NvimTree = 'NvimTree',
-        },
-
-        buffers_color = {
+        'tabs',
+        tabs_color = {
           active = active_buffers_color,
           inactive = inactive_buffers_color,
         },
-
-        symbols = {
-          modified = ' ●',
-          alternate_file = '',
-          directory = '',
-        },
       }
-    },
-
+    }
+  },
+  winbar = {
+    lualine_a = {},
     lualine_b = {},
-    lualine_c = {},
+    lualine_c = {
+      {
+        'filename',
+        file_status = true,
+        path = 1,
+        shorting_target = 40,
+        symbols = {
+          modified = '',
+          readonly = '',
+          unnamed = '[No Name]',
+        }
+      },
+    },
     lualine_x = {},
     lualine_y = {},
-    lualine_z = { 'tabs' }
+    lualine_z = {}
+  },
+  inactive_winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {
+      {
+        'filename',
+        file_status = true,
+        path = 1,
+        shorting_target = 40,
+        symbols = {
+          modified = '',
+          readonly = '',
+          unnamed = '[No Name]',
+        }
+      },
+    },
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
   },
 }

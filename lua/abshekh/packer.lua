@@ -35,54 +35,28 @@ return packer.startup(function(use)
     "wbthomason/packer.nvim", --------------------- Have packer manage itself
     "nvim-lua/popup.nvim", ------------------------ An implementation of the Popup API from vim in Neovim
     "nvim-lua/plenary.nvim", ---------------------- Useful lua functions used ny lots of plugins
+    "kyazdani42/nvim-web-devicons", --------------- Icons used by a bunch of plugins
   }
 
   -- ui
   use {
-    -- "abshekh/skull-vim", -------------------------- Almost monochrome, with grey and green accent
-    -- "kdheepak/monochrome.nvim", ------------------- Monochrome Colorscheme
-    -- "tjdevries/colorbuddy.vim", ------------------- Colorbuddy
-    -- "~/Dev/skull-vim",
-    -- "EdenEast/nightfox.nvim",
     "bluz71/vim-moonfly-colors",
-    {
-      "catppuccin/nvim",
-      as = "catppuccin",
-      run = ":CatppuccinCompile"
-    },
     "folke/tokyonight.nvim",
-    "rebelot/kanagawa.nvim",
-    "lunarvim/horizon.nvim",
-    {
-      "mcchrish/zenbones.nvim",
-      requires = "rktjmp/lush.nvim"
-    },
-    "tiagovla/tokyodark.nvim",
-    "kvrohit/rasmus.nvim",
     "monsonjeremy/onedark.nvim",
-    "dracula/vim",
-    "tanvirtin/monokai.nvim",
-    "Yazeed1s/minimal.nvim",
-    "sam4llis/nvim-tundra",
-
     'nvim-lualine/lualine.nvim',
-
     "lukas-reineke/indent-blankline.nvim", -------- indent guides
-    "j-hui/fidget.nvim", -------------------------- progress bar, replace with
-    ----------------------------------------------- lualine progress
+    "j-hui/fidget.nvim", -------------------------- progress bar
     "norcalli/nvim-colorizer.lua", ---------------- Colorize hex colors in terminal
-    "kyazdani42/nvim-web-devicons",
-
-    -- { "folke/todo-comments.nvim", ----------------- todo highlight
-    --   requires = "nvim-lua/plenary.nvim",
-    --   config = function()
-    --     require("todo-comments").setup {
-    --       -- your configuration comes here
-    --       -- or leave it empty to use the default settings
-    --       -- refer to the configuration section below
-    --     }
-    --   end
-    -- },
+    --
+    --   -- { "folke/todo-comments.nvim", ----------------- todo highlight
+    --   --   config = function()
+    --   --     require("todo-comments").setup {
+    --   --       -- your configuration comes here
+    --   --       -- or leave it empty to use the default settings
+    --   --       -- refer to the configuration section below
+    --   --     }
+    --   --   end
+    --   -- },
   }
   -- cmp plugins
   use {
@@ -102,21 +76,17 @@ return packer.startup(function(use)
   -- LSP
   use {
     "neovim/nvim-lspconfig",
-    -- "williamboman/nvim-lsp-installer",
     {
       "folke/trouble.nvim",
-      requires = "kyazdani42/nvim-web-devicons",
       config = function()
         require("trouble").setup {
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
-          use_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
+          use_diagnostic_signs = true
         }
       end
     },
     "jose-elias-alvarez/null-ls.nvim",
     "williamboman/mason.nvim",
+    -- "williamboman/nvim-lsp-installer", -- not required, using mason
     -- "williamboman/mason-lspconfig.nvim", -- not required, since it is just a shallow abstraction
 
     -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -130,8 +100,8 @@ return packer.startup(function(use)
       "nvim-telescope/telescope-smart-history.nvim",
       requires = "kkharji/sqlite.lua"
     },
-    "nvim-telescope/telescope-ui-select.nvim",
-    "nvim-telescope/telescope-file-browser.nvim"
+    -- "nvim-telescope/telescope-ui-select.nvim",
+    -- "nvim-telescope/telescope-file-browser.nvim"
   }
 
   -- Treesitter
@@ -141,7 +111,7 @@ return packer.startup(function(use)
       run = ":TSUpdate",
     },
     "nvim-treesitter/playground", ----------- treesitter playground
-    -- "p00f/nvim-ts-rainbow", ----------------- Rainbow Parens
+    -- "p00f/nvim-ts-rainbow", ----------------- Rainbow Parens, performance issue
     "windwp/nvim-autopairs", ---------------- Autopairs, integrates with both cmp and treesitter
     { --------------------------------------- Easily comment stuff
       'numToStr/Comment.nvim',
@@ -151,26 +121,27 @@ return packer.startup(function(use)
     },
     "JoosepAlviste/nvim-ts-context-commentstring",
   }
-
+  --
   -- Git
   use {
     "lewis6991/gitsigns.nvim", -------------- Shows git changes
     "tpope/vim-fugitive", ------------------- Git Wrapper
+    "sindrets/diffview.nvim",
     -- "kdheepak/lazygit.nvim",
     -- "TimUntersberger/neogit",
-    { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" },
   }
 
-  -- Session
-  use {
-    "rmagatti/auto-session",
-    "rmagatti/session-lens",
-  }
+  -- -- Session
+  -- use {
+  --   "rmagatti/auto-session",
+  --   "rmagatti/session-lens",
+  -- }
 
   -- Utilities
   use {
     "kyazdani42/nvim-tree.lua", -------------- Explorer
-    "dstein64/vim-startuptime",
+    "ahmedkhalf/project.nvim",
+    --   -- "dstein64/vim-startuptime",
   }
 
 

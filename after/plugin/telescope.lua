@@ -167,8 +167,14 @@ telescope.setup {
   }
 }
 
+local function load_extension(ext)
+  local ext_status, _ = pcall(require, ext)
+  if ext_status then
+    telescope.load_extension(ext)
+  end
+end
 
-telescope.load_extension('media_files')
-telescope.load_extension('smart_history')
-telescope.load_extension("ui-select")
-telescope.load_extension("file_browser")
+load_extension('media_files')
+load_extension('smart_history')
+load_extension("ui-select")
+load_extension("file_browser")

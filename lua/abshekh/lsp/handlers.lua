@@ -1,6 +1,6 @@
 local M = {}
 local map = vim.keymap.set
-local ts_utils = require "nvim-treesitter.ts_utils"
+local ts_utils_status, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
 
 local function setup()
   local signs = {
@@ -39,7 +39,10 @@ local function setup()
 end
 
 local function highlight_references()
-  local node = ts_utils.get_node_at_cursor()
+  local node
+  if ts_utils_status then
+    node = ts_utils.get_node_at_cursor()
+  end
   while node ~= nil do
     local node_type = node:type()
     if node_type == "string"
@@ -142,8 +145,8 @@ end
 
 M.on_attach = function(client, bufnr)
   if client.name == "hls" then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
   end
 
   setup()
@@ -172,6 +175,6 @@ if not status_ok then
   return
 end
 
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 return M

@@ -20,13 +20,8 @@ vim.g.maplocalleader = " "
 map("n", "//", ":noh<CR>", opts)
 
 map("n", "gf", "gF", opts)
--- Better window navigation
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-j>", "<C-w>j")
-map("n", "<C-k>", "<C-w>k")
-map("n", "<C-l>", "<C-w>l")
 
-map("n", "<C-c>", ":bd<CR>", opts) -- close current buffer
+map("n", "<C-q>", ":bd<CR>", opts) -- close current buffer
 map("n", "<C-w>m", ":tabedit %<cr>", opts) -- replicate current buffer into new tab
 -- Resize with arrows
 map("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -128,7 +123,7 @@ map("v", ">", ">gv", opts)
 
 -- Improved Terminal Mappings
 map("t", "<esc>", "<C-\\><C-n>")
-map("t", "<C-h>", "<c-\\><c-n><c-w>h")
-map("t", "<C-j>", "<c-\\><c-n><c-w>j")
-map("t", "<C-k>", "<c-\\><c-n><c-w>k")
-map("t", "<C-l>", "<c-\\><c-n><c-w>l")
+-- map("t", "<C-h>", "<c-\\><c-n><c-w>h")
+-- map("t", "<C-j>", "<c-\\><c-n><c-w>j")
+-- map("t", "<C-k>", "<c-\\><c-n><c-w>k")
+-- map("t", "<C-l>", "<c-\\><c-n><c-w>l")

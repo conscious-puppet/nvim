@@ -48,3 +48,23 @@ if mason_status_ok then
     }
   }
 end
+
+
+-- telescope
+
+local telescope_status_ok, telescope = pcall(require, "telescope")
+if telescope_status_ok then
+  telescope.setup {
+    defaults = {
+      borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+      -- title = false,
+      results_title = false,
+      -- prompt_title = false,
+      -- dynamic_preview_title = false
+    },
+    live_grep = {
+      default_text = "function",
+      prompt_title = false,
+    }
+  }
+end

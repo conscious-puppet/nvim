@@ -5,172 +5,210 @@ if not status_ok then
 end
 -- Lua
 local actions = require("diffview.actions")
+local lazy = require("diffview.lazy")
+local StandardView = lazy.access("diffview.scene.views.standard.standard_view", "StandardView") ---@type StandardView|LazyModule
+local lib = lazy.require("diffview.lib")
+local git = lazy.require("diffview.git.utils")
+local api = vim.api
 
--- print(vim.inspect(actions))
+local function git_prev_jump()
+  local view = lib.get_current_view()
+
+  if view and view:instanceof(StandardView.__get()) then
+    local main = view.cur_layout:get_main_win()
+    local curfile = main.file
+
+    if main:is_valid() and curfile:is_valid() then
+      local conflicts, _, cur_idx = git.parse_conflicts(
+        api.nvim_buf_get_lines(curfile.bufnr, 0, -1, false),
+        main.id
+      )
+
+      if #conflicts > 0 then
+        local prev_idx = (math.max(cur_idx, 1) - 2) % #conflicts + 1
+        local prev_conflict = conflicts[prev_idx]
+        local curwin = api.nvim_get_current_win()
+
+        api.nvim_win_call(main.id, function()
+          api.nvim_win_set_cursor(main.id, { prev_conflict.first, 0 })
+          if curwin ~= main.id then view.cur_layout:sync_scroll() end
+        end)
+
+        api.nvim_echo({ { ("Conflict [%d/%d]"):format(prev_idx, #conflicts) } }, false, {})
+      else
+        local max = -1
+        local target
+
+        for _, win in ipairs(view.cur_layout.windows) do
+          local c = api.nvim_buf_line_count(api.nvim_win_get_buf(win.id))
+          if c > max then
+            max = c
+            target = win.id
+          end
+        end
+
+        if target then
+          api.nvim_win_call(target, function()
+            vim.cmd [[norm! [c]]
+          end)
+        end
+      end
+    end
+  end
+end
+
+local function git_next_jump()
+  local view = lib.get_current_view()
+
+  if view and view:instanceof(StandardView.__get()) then
+    local main = view.cur_layout:get_main_win()
+    local curfile = main.file
+
+    if main:is_valid() and curfile:is_valid() then
+      local conflicts, _, cur_idx = git.parse_conflicts(
+        api.nvim_buf_get_lines(curfile.bufnr, 0, -1, false),
+        main.id
+      )
+
+      if #conflicts > 0 then
+        local next_idx = math.min(cur_idx, #conflicts) % #conflicts + 1
+        local next_conflict = conflicts[next_idx]
+        local curwin = api.nvim_get_current_win()
+
+        api.nvim_win_call(main.id, function()
+          api.nvim_win_set_cursor(main.id, { next_conflict.first, 0 })
+          if curwin ~= main.id then view.cur_layout:sync_scroll() end
+        end)
+
+        api.nvim_echo({ { ("Conflict [%d/%d]"):format(next_idx, #conflicts) } }, false, {})
+      else
+        local max = -1
+        local target
+
+        for _, win in ipairs(view.cur_layout.windows) do
+          local c = api.nvim_buf_line_count(api.nvim_win_get_buf(win.id))
+          if c > max then
+            max = c
+            target = win.id
+          end
+        end
+
+        if target then
+          api.nvim_win_call(target, function()
+            vim.cmd [[norm! ]c]]
+          end)
+        end
+      end
+    end
+  end
+end
 
 diffview.setup({
-  diff_binaries = false, -- Show diffs for binaries
-  enhanced_diff_hl = false, -- See ':h diffview-config-enhanced_diff_hl'
-  git_cmd = { "git" }, -- The git executable followed by default args.
-  use_icons = false, -- Requires nvim-web-devicons
-  watch_index = true, -- Update views and index buffers when the git index changes.
-  icons = { -- Only applies when use_icons is true.
-    folder_closed = "",
-    folder_open = "",
-  },
+  diff_binaries = false,
+  enhanced_diff_hl = false,
+  git_cmd = { "git" },
+  use_icons = false,
   signs = {
     fold_closed = "",
     fold_open = "",
     done = "✓",
   },
   view = {
-    -- Configure the layout and behavior of different types of views.
-    -- Available layouts:
-    --  'diff1_plain'
-    --    |'diff2_horizontal'
-    --    |'diff2_vertical'
-    --    |'diff3_horizontal'
-    --    |'diff3_vertical'
-    --    |'diff3_mixed'
-    --    |'diff4_mixed'
-    -- For more info, see ':h diffview-config-view.x.layout'.
     default = {
-      -- Config for changed files, and staged files in diff views.
       layout = "diff2_horizontal",
     },
     merge_tool = {
-      -- Config for conflicted files in diff views during a merge or rebase.
       layout = "diff3_mixed",
-      disable_diagnostics = true, -- Temporarily disable diagnostics for conflict buffers while in the view.
+      disable_diagnostics = true,
     },
     file_history = {
-      -- Config for changed files in file history views.
       layout = "diff2_horizontal",
     },
   },
   file_panel = {
-    listing_style = "tree", -- One of 'list' or 'tree'
-    tree_options = { -- Only applies when listing_style is 'tree'
-      flatten_dirs = true, -- Flatten dirs that only contain one single dir
-      folder_statuses = "only_folded", -- One of 'never', 'only_folded' or 'always'.
-    },
-    win_config = { -- See ':h diffview-config-win_config'
+    win_config = {
       position = "left",
-      width = 35,
+      width = 30,
       win_opts = {}
     },
   },
-  file_history_panel = {
-    log_options = { -- See ':h diffview-config-log_options'
-      single_file = {
-        diff_merges = "combined",
-      },
-      multi_file = {
-        diff_merges = "first-parent",
-      },
-    },
-    win_config = { -- See ':h diffview-config-win_config'
-      position = "bottom",
-      height = 16,
-      win_opts = {}
-    },
-  },
-  commit_log_panel = {
-    win_config = { -- See ':h diffview-config-win_config'
-      win_opts = {},
-    }
-  },
-  default_args = { -- Default args prepended to the arg-list for the listed commands
-    DiffviewOpen = {},
-    DiffviewFileHistory = {},
-  },
-  hooks = { }, -- See ':h diffview-config-hooks'
   keymaps = {
-    disable_defaults = true, -- Disable the default keymaps
+    disable_defaults = true,
     view = {
-      -- The `view` bindings are active in the diff buffers, only when the current
-      -- tabpage is a Diffview.
-      ["<tab>"]      = actions.select_next_entry, -- Open the diff for the next file
-      ["<s-tab>"]    = actions.select_prev_entry, -- Open the diff for the previous file
-      ["gf"]         = actions.goto_file, -- Open the file in a new split in the previous tabpage
-      ["<C-w><C-f>"] = actions.goto_file_split, -- Open the file in a new split
-      ["<C-w>gf"]    = actions.goto_file_tab, -- Open the file in a new tabpage
-      ["<leader>e"]  = actions.focus_files, -- Bring focus to the file panel
-      ["<leader>b"]  = actions.toggle_files, -- Toggle the file panel.
-      ["<leader>ff"] = actions.focus_files, -- Bring focus to the file panel
-      ["<leader>ft"] = actions.toggle_files, -- Toggle the file panel.
-      ["g<C-x>"]     = actions.cycle_layout, -- Cycle through available layouts.
-      ["[x"]         = actions.prev_conflict, -- In the merge_tool: jump to the previous conflict
-      ["]x"]         = actions.next_conflict, -- In the merge_tool: jump to the next conflict
-      -- ["[c"]         = actions.prev_conflict, -- In the merge_tool: jump to the previous conflict
-      -- ["]c"]         = actions.next_conflict, -- In the merge_tool: jump to the next conflict
-      ["<leader>co"] = actions.conflict_choose("ours"), -- Choose the OURS version of a conflict
-      ["<leader>ct"] = actions.conflict_choose("theirs"), -- Choose the THEIRS version of a conflict
-      ["<leader>cb"] = actions.conflict_choose("base"), -- Choose the BASE version of a conflict
-      ["<leader>ca"] = actions.conflict_choose("all"), -- Choose all the versions of a conflict
-      ["dx"]         = actions.conflict_choose("none"), -- Delete the conflict region
-      ["<leader>gg"]  = "<cmd>DiffviewClose<cr>",
-      -- { { "n" }, "<leader>gg", "<Cmd>DiffviewClose<CR>", { silent = true } },
+      ["<tab>"]      = actions.select_next_entry,
+      ["<s-tab>"]    = actions.select_prev_entry,
+      ["gf"]         = actions.goto_file_edit,
+      ["<C-w><C-f>"] = actions.goto_file_split,
+      ["<C-w>gf"]    = actions.goto_file_tab,
+      ["<leader>ff"] = actions.focus_files,
+      ["<leader>ft"] = actions.toggle_files,
+      ["<leader>co"] = actions.conflict_choose("ours"),
+      ["<leader>ct"] = actions.conflict_choose("theirs"),
+      ["<leader>cb"] = actions.conflict_choose("base"),
+      ["<leader>ca"] = actions.conflict_choose("all"),
+      ["dx"]         = actions.conflict_choose("none"),
+      ["<leader>gg"] = "<cmd>DiffviewClose<cr>",
+      ["[c"]         = "[c",
+      ["]c"]         = "]c",
+      ["[x"]         = actions.prev_conflict,
+      ["]x"]         = actions.next_conflict,
+      ["q"]          = actions.close
     },
-    diff1 = { --[[ Mappings in single window diff layouts ]]
-      ["<leader>gg"]  = "<cmd>DiffviewClose<cr>",
+    diff1 = {
+      ["<leader>gg"] = "<cmd>DiffviewClose<cr>",
     },
-    diff2 = { --[[ Mappings in 2-way diff layouts ]]
-      ["<leader>gg"]  = "<cmd>DiffviewClose<cr>",
+    diff2 = {
+      ["<leader>gg"] = "<cmd>DiffviewClose<cr>",
     },
     diff3 = {
-      -- Mappings in 3-way diff layouts
-      ["<leader>gg"]  = "<cmd>DiffviewClose<cr>",
-      { { "n", "x" }, "2do", actions.diffget("ours") }, -- Obtain the diff hunk from the OURS version of the file
-      { { "n", "x" }, "3do", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
+      ["<leader>gg"] = "<cmd>DiffviewClose<cr>",
+      { { "n", "x" }, "2do", actions.diffget("ours") },
+      { { "n", "x" }, "3do", actions.diffget("theirs") },
     },
     diff4 = {
-      -- Mappings in 4-way diff layouts
-      ["<leader>gg"]  = "<cmd>DiffviewClose<cr>",
-      { { "n", "x" }, "1do", actions.diffget("base") }, -- Obtain the diff hunk from the BASE version of the file
-      { { "n", "x" }, "2do", actions.diffget("ours") }, -- Obtain the diff hunk from the OURS version of the file
-      { { "n", "x" }, "3do", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
+      ["<leader>gg"] = "<cmd>DiffviewClose<cr>",
+      { { "n", "x" }, "1do", actions.diffget("base") },
+      { { "n", "x" }, "2do", actions.diffget("ours") },
+      { { "n", "x" }, "3do", actions.diffget("theirs") },
     },
     file_panel = {
-      ["<leader>gg"]     = "<cmd>DiffviewClose<cr>",
-      ["j"]             = actions.next_entry, -- Bring the cursor to the next file entry
-      ["<down>"]        = actions.next_entry,
-      ["k"]             = actions.prev_entry, -- Bring the cursor to the previous file entry.
-      ["<up>"]          = actions.prev_entry,
-      ["<cr>"]          = actions.select_entry, -- Open the diff for the selected entry.
-      ["l"]             = actions.select_entry, -- Open the diff for the selected entry.
-      ["o"]             = actions.select_entry,
-      ["<2-LeftMouse>"] = actions.select_entry,
-      ["-"]             = actions.toggle_stage_entry, -- Stage / unstage the selected entry.
-      ["S"]             = actions.stage_all, -- Stage all entries.
-      ["U"]             = actions.unstage_all, -- Unstage all entries.
-      ["X"]             = actions.restore_entry, -- Restore entry to the state on the left side.
-      ["L"]             = actions.open_commit_log, -- Open the commit log panel.
-      ["<c-b>"]         = actions.scroll_view(-0.25), -- Scroll the view up
-      ["<c-f>"]         = actions.scroll_view(0.25), -- Scroll the view down
+      ["<leader>gg"]    = "<cmd>DiffviewClose<cr>",
+      ["j"]             = actions.select_next_entry,
+      ["k"]             = actions.select_prev_entry,
       ["<tab>"]         = actions.select_next_entry,
       ["<s-tab>"]       = actions.select_prev_entry,
-      ["gf"]            = actions.goto_file,
-      ["<C-w><C-f>"]    = actions.goto_file_split,
+      ["<cr>"]          = actions.focus_entry,
+      ["zR"]            = actions.open_all_folds,
+      ["zM"]            = actions.close_all_folds,
+      ["l"]             = actions.focus_entry,
+      ["o"]             = actions.focus_entry,
+      ["<2-LeftMouse>"] = actions.select_entry,
+      ["-"]             = actions.toggle_stage_entry,
+      ["S"]             = actions.stage_all,
+      ["U"]             = actions.unstage_all,
+      ["X"]             = actions.restore_entry,
+      ["L"]             = actions.open_commit_log,
+      ["<c-b>"]         = actions.scroll_view(-0.25),
+      ["<c-f>"]         = actions.scroll_view(0.25),
+      ["gf"]            = actions.goto_file_edit,
       ["<C-w>gf"]       = actions.goto_file_tab,
-      ["i"]             = actions.listing_style, -- Toggle between 'list' and 'tree' views
-      ["f"]             = actions.toggle_flatten_dirs, -- Flatten empty subdirectories in tree listing style.
-      ["R"]             = actions.refresh_files, -- Update stats and entries in the file list.
-      ["<leader>e"]     = actions.focus_files,
-      ["<leader>b"]     = actions.toggle_files,
-      ["<leader>ff"]    = actions.focus_files, -- Bring focus to the file panel
-      ["<leader>ft"]    = actions.toggle_files, -- Toggle the file panel.
+      ["i"]             = actions.listing_style,
+      ["f"]             = actions.toggle_flatten_dirs,
+      ["R"]             = actions.refresh_files,
+      ["<leader>ff"]    = actions.focus_files,
+      ["<leader>ft"]    = actions.toggle_files,
       ["g<C-x>"]        = actions.cycle_layout,
-      ["[x"]            = actions.prev_conflict,
-      ["]x"]            = actions.next_conflict,
-      -- ["[c"]            = actions.prev_conflict,
-      -- ["]c"]            = actions.next_conflict,
+      ["p"]             = function() git_prev_jump() end,
+      ["n"]             = function() git_next_jump() end,
+      ["q"]             = "<cmd>DiffviewClose<cr>",
+      ["c"]             = "<cmd>Git commit<cr>",
+
     },
     file_history_panel = {
-      ["<leader>gg"]     = "<cmd>DiffviewClose<cr>",
-      ["g!"]            = actions.options, -- Open the option panel
-      ["<C-A-d>"]       = actions.open_in_diffview, -- Open the entry under the cursor in a diffview
-      ["y"]             = actions.copy_hash, -- Copy the commit hash of the entry under the cursor
+      ["<leader>gg"]    = "<cmd>DiffviewClose<cr>",
+      ["?"]             = actions.options,
+      ["<C-A-d>"]       = actions.open_in_diffview,
+      ["y"]             = actions.copy_hash,
       ["L"]             = actions.open_commit_log,
       ["zR"]            = actions.open_all_folds,
       ["zM"]            = actions.close_all_folds,
@@ -178,9 +216,9 @@ diffview.setup({
       ["<down>"]        = actions.next_entry,
       ["k"]             = actions.prev_entry,
       ["<up>"]          = actions.prev_entry,
-      ["<cr>"]          = actions.select_entry,
-      ["o"]             = actions.select_entry,
-      ["l"]             = actions.select_entry,
+      ["<cr>"]          = actions.focus_entry,
+      ["o"]             = actions.focus_entry,
+      ["l"]             = actions.focus_entry,
       ["<2-LeftMouse>"] = actions.select_entry,
       ["<c-b>"]         = actions.scroll_view(-0.25),
       ["<c-f>"]         = actions.scroll_view(0.25),
@@ -191,14 +229,15 @@ diffview.setup({
       ["<C-w>gf"]       = actions.goto_file_tab,
       ["<leader>e"]     = actions.focus_files,
       ["<leader>b"]     = actions.toggle_files,
-      ["<leader>ff"]    = actions.focus_files, -- Bring focus to the file panel
-      ["<leader>ft"]    = actions.toggle_files, -- Toggle the file panel.
+      ["<leader>ff"]    = actions.focus_files,
+      ["<leader>ft"]    = actions.toggle_files,
       ["g<C-x>"]        = actions.cycle_layout,
+      ["q"]             = actions.close
     },
     option_panel = {
-      ["<leader>gg"]     = "<cmd>DiffviewClose<cr>",
-      ["<tab>"]         = actions.select_entry,
-      ["q"]             = actions.close,
+      ["<leader>gg"] = "<cmd>DiffviewClose<cr>",
+      ["<tab>"]      = actions.select_entry,
+      ["q"]          = actions.close,
     },
   },
 })

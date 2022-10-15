@@ -2,7 +2,7 @@ require "abshekh.options"
 require "abshekh.keymaps"
 require "abshekh.autocmds"
 require "abshekh.packer"
-require "abshekh.themes.onedark"
+require "abshekh.themes.tokyonight"
 
 -- nvim dap
 -- register | paste registers
