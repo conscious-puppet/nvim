@@ -152,6 +152,8 @@ diffview.setup({
       ["]c"]         = "]c",
       ["[x"]         = actions.prev_conflict,
       ["]x"]         = actions.next_conflict,
+      ["[["]         = function() git_prev_jump() end,
+      ["]]"]         = function() git_next_jump() end,
       ["q"]          = actions.close
     },
     diff1 = {
@@ -198,10 +200,14 @@ diffview.setup({
       ["<leader>ff"]    = actions.focus_files,
       ["<leader>ft"]    = actions.toggle_files,
       ["g<C-x>"]        = actions.cycle_layout,
-      ["p"]             = function() git_prev_jump() end,
+      ["N"]             = function() git_prev_jump() end,
       ["n"]             = function() git_next_jump() end,
+      ["[["]            = function() git_prev_jump() end,
+      ["]]"]            = function() git_next_jump() end,
       ["q"]             = "<cmd>DiffviewClose<cr>",
       ["c"]             = "<cmd>Git commit<cr>",
+      ["p"]             = "<cmd>Git! pull<cr>",
+      ["P"]             = "<cmd>Git! push<cr>",
 
     },
     file_history_panel = {

@@ -11,7 +11,18 @@ local function woman()
 
 end
 
+
+local function preview_notes()
+  local telescope_builtin_status_ok, telescope_builtin = pcall(require, "telescope.builtin")
+  if not telescope_builtin_status_ok then
+    return
+  end
+  telescope_builtin.find_files({ previewer = false, cwd = "~/notes/" })
+
+end
+
 create_command("Woman", woman, { desc = "Man Pages" })
+create_command("Notes", preview_notes, { desc = "Search Notes" })
 create_command("MYVIMRC", ":e $MYVIMRC", { desc = "Edit Neovim Config" })
 create_command("CDC", ":cd %:p:h", { desc = "Change Global dir to current file" })
 create_command("LDC", ":cd %:p:h", { desc = "Change Local dir to current file" })
@@ -23,6 +34,8 @@ create_command("Modifiable", ":set ma", { desc = "Set modifiable" })
 create_command("Filetype", ":set filetype", { desc = "Set filetype" })
 -- command! -nargs=1 MyCommand call s:MyFunc(myParam)
 create_command("CopyBufferFilepath", "let @+ = expand('%:p')", { desc = "Copy Buffer Filepath" })
+create_command("TodoCapture", ":5sp ~/notes/todo.md", { desc = "Write to todo.md" })
+create_command("WorkCapture", ":5sp ~/notes/work/work.md", { desc = "Write to work.md" })
 
 vim.cmd [[  
 	:command -nargs=1 Bufname keepalt file <args>

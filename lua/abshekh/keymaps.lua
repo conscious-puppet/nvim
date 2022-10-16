@@ -56,7 +56,6 @@ local telescope_status_ok, telescope = pcall(require, "telescope.builtin")
 if telescope_status_ok then
   map("n", "<leader>tt", telescope.resume, opts)
   map("n", "<leader>fw", telescope.live_grep, opts)
-  -- map("n", "\\\\", telescope.live_grep, opts)
   map("n", "<leader>/", telescope.live_grep, opts)
   map("v", "<leader>/", function ()
     local text = vim.getVisualSelection()

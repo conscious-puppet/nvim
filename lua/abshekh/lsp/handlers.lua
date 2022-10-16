@@ -27,6 +27,7 @@ local function setup()
     severity_sort = true,
     virtual_text = false,
     float = {
+      border = "single",
       focusable = true,
       style = "minimal",
       source = "always",
@@ -125,10 +126,8 @@ local function lsp_keymaps(client, bufnr)
 
   -- if client.name ~= "hls" then
   if client.supports_method "textDocument/formatting" then
-    map("n", "<leader>lf", vim.lsp.buf.formatting_sync, opts)
-    map("v", "<leader>lf", vim.lsp.buf.range_formatting, opts)
-    map("n", "Q", vim.lsp.buf.formatting_sync, opts)
-    map("v", "Q", vim.lsp.buf.range_formatting, opts)
+    map({ "n", "v" }, "<leader>lf", vim.lsp.buf.format, opts)
+    map({ "n", "v" }, "Q", vim.lsp.buf.format, opts)
   end
 
   map("n", "<leader>lh", vim.lsp.buf.signature_help, opts)

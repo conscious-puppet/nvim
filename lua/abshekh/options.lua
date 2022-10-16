@@ -2,7 +2,7 @@
 local set = vim.opt
 -- :set diffopt+=vertical
 
-set.cmdheight      = 1 -- More space in neovim command line for displaying messages
+set.cmdheight      = 1 -- Less space in neovim command line for displaying messages
 set.conceallevel   = 0 -- So that `` is visile in markdown files
 set.ignorecase     = true -- Ignore case in search patterns
 set.showtabline    = 0 -- Don't show tab line
@@ -21,7 +21,7 @@ set.mouse          = "a" -- Enable mouse support
 set.number         = true -- Show numberline
 set.preserveindent = true -- Preserve indent structure as much as possible
 set.pumheight      = 10 -- Height of the pop up menu
-set.relativenumber = false -- Show relative numberline
+set.relativenumber = true -- Show relative numberline
 set.scrolloff      = 8 -- Number of lines to keep above and below the cursor
 set.shiftwidth     = 2 -- Number of space inserted for indentation
 set.sidescrolloff  = 8 -- Number of columns to keep at the sides of the cursor
@@ -45,6 +45,7 @@ set.foldexpr       = "nvim_treesitter#foldexpr()" -- create folds based on trees
 set.foldlevel      = 99
 set.foldlevelstart = 99
 set.foldtext       = [[substitute(getline(v:foldstart),'\\\\t',repeat('\\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
+set.foldenable     = false
 set.spell          = false -- spell check
 set.spelllang      = { 'en_us' } -- spell check
 set.shell          = "/bin/zsh" -- set zsh as shell for integrated terminal

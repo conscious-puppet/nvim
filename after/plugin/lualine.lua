@@ -8,12 +8,49 @@ local theme = vim.g.colors_name
 local active_buffers_color = "lualine_a_normal"
 local inactive_buffers_color = "lualine_a_active"
 
+local function transparenct_sections(theme)
+  -- theme.normal.a.bg = nil
+  -- theme.normal.a.fg = nil
+  -- theme.normal.a.fg = '#7aa2f7'
+  theme.insert.a.bg = nil
+  theme.insert.a.fg = '#a9b1d6'
+  theme.visual.a.bg = nil
+  theme.visual.a.fg = '#a9b1d6'
+  theme.command.a.bg = nil
+  theme.command.a.fg = '#a9b1d6'
+  theme.replace.a.bg = nil
+  theme.replace.a.fg = '#a9b1d6'
+  theme.inactive.a.bg = nil
+  theme.inactive.a.fg = '#545c7e'
+
+  theme.normal.b.bg = nil
+  theme.normal.b.fg = '#a9b1d6'
+  theme.insert.b.bg = nil
+  theme.insert.b.fg = '#a9b1d6'
+  theme.visual.b.bg = nil
+  theme.visual.b.fg = '#a9b1d6'
+  theme.command.b.bg = nil
+  theme.command.b.fg = '#a9b1d6'
+  theme.replace.b.bg = nil
+  theme.replace.b.fg = '#a9b1d6'
+  theme.inactive.b.bg = nil
+  theme.inactive.b.fg = '#545c7e'
+
+  theme.normal.c.bg = nil
+  theme.normal.c.fg = '#a9b1d6'
+  theme.inactive.c.bg = nil
+  theme.inactive.c.fg = '#545c7e'
+
+  return theme
+end
+
 if theme == "moonfly" then
   theme = require 'lualine.themes.moonfly'
   theme.normal.c.bg = '#080808'
 elseif theme == "tokyonight" then
   theme = require 'lualine.themes.tokyonight'
   theme.inactive.c.fg = '#545c7e'
+  theme = transparenct_sections(theme) -- for transparency 
   active_buffers_color = "lualine_a_normal"
   inactive_buffers_color = "lualine_c_inactive"
 elseif theme == "onedark" then

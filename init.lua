@@ -4,11 +4,16 @@ require "abshekh.autocmds"
 require "abshekh.packer"
 require "abshekh.themes.tokyonight"
 
+
 -- nvim dap
+-- code lens, run, debug in rust
 -- register | paste registers
 -- vim-surround
 -- tpope database explorer
 -- autosave
+-- :AddProject to project.nvim
+-- undo tree
+-- focus/zen mode folke
 
 
 -- Gvdiffsplit!
