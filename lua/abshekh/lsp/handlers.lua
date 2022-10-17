@@ -117,14 +117,11 @@ end
 local function lsp_keymaps(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
-  map("n", "K", vim.lsp.buf.hover, opts)
-  map("n", "<leader>la", vim.lsp.buf.code_action, opts)
-  map("v", "<leader>la", vim.lsp.buf.range_code_action, opts)
-  map("n", "<leader>a", vim.lsp.buf.code_action, opts)
-  map("v", "<leader>a", vim.lsp.buf.range_code_action, opts)
+  map({ "n", "v" }, "K", vim.lsp.buf.hover, opts)
+  map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts)
+  map({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
   map("n", "<leader>c", find_and_run_codelens, opts)
 
-  -- if client.name ~= "hls" then
   if client.supports_method "textDocument/formatting" then
     map({ "n", "v" }, "<leader>lf", vim.lsp.buf.format, opts)
     map({ "n", "v" }, "Q", vim.lsp.buf.format, opts)
@@ -170,10 +167,8 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-  return
+if status_ok then
+  M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 end
-
-M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 return M

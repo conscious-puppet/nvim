@@ -26,6 +26,7 @@ local cmp_status_ok, cmp = pcall(require, "cmp")
 if cmp_status_ok then
   local border = cmp.config.window.bordered()
   border.border = "single"
+  border.winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None"
   cmp.setup {
     window = {
       documentation = border,

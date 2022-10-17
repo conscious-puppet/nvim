@@ -142,7 +142,7 @@ return packer.startup(function(use)
     "kyazdani42/nvim-tree.lua", -------------- Explorer
     "ahmedkhalf/project.nvim",
     --   -- "dstein64/vim-startuptime",
-    "kg8m/vim-simple-align",
+    "junegunn/vim-easy-align",
     "dhruvasagar/vim-table-mode",
   }
 

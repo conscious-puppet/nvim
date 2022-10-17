@@ -53,6 +53,17 @@ vim.cmd [[
 
 ]]
 
+
+vim.cmd [[  
+  function! CopyMessages(...)
+      execute printf('redir @+')
+      execute printf('%smessage', a:1)
+      execute printf('redir END')
+  endfunction
+
+	:command -nargs=1 CopyMessages call CopyMessages(<f-args>)
+]]
+
 vim.cmd [[ 
   augroup neovim_terminal
       autocmd!

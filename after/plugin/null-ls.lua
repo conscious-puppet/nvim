@@ -23,7 +23,7 @@ null_ls.setup {
     -- formatting.hindent_range,
     code_actions.gitsigns,
     diagnostics.todo_comments,
-    diagnostics.codespell,
+    -- diagnostics.codespell,
   },
   on_attach = require("abshekh.lsp.handlers").on_attach,
 }

@@ -82,7 +82,7 @@ lualine.setup {
       -- 'branch', 
     },
     lualine_c = {
-      { 'branch', icon = 'שׂ',
+      { 'FugitiveHead', icon = 'שׂ',
         color = {
           fg = theme.normal.a.fg,
           bg = theme.normal.a.bg,
