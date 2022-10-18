@@ -1,4 +1,5 @@
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
+
 if not status_ok then
   return
 end
@@ -37,10 +38,17 @@ nvim_tree.setup {
       list = list,
     },
   },
-  -- sync_root_with_cwd = true,
-  -- respect_buf_cwd = true,
+  sync_root_with_cwd = true,
+  respect_buf_cwd = true,
   update_focused_file = {
     enable = true,
     update_root = true
+  },
+  actions = {
+    change_dir = {
+      enable = false,
+      global = false,
+      restrict_above_cwd = false,
+    }
   },
 }

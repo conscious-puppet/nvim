@@ -38,28 +38,30 @@ map("n", "<leader>ff", "<cmd>NvimTreeFocus<cr>", opts)
 map("n", "<leader>gg", "<cmd>DiffviewOpen<cr>", opts)
 
 function vim.getVisualSelection()
-	vim.cmd('noau normal! "vy"')
-	local text = vim.fn.getreg('v')
-	vim.fn.setreg('v', {})
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg('v')
+  vim.fn.setreg('v', {})
 
-	text = string.gsub(text, "\n", "")
-	if #text > 0 then
-		return text
-	else
-		return ''
-	end
+  text = string.gsub(text, "\n", "")
+  if #text > 0 then
+    return text
+  else
+    return ''
+  end
 end
 
 -- Telescope
 local telescope_status_ok, telescope = pcall(require, "telescope.builtin")
+local project_nvim_status, _ = pcall(require, "project_nvim")
+local ezbookmarks_status_ok, ezbookmarks = pcall(require, "ezbookmarks")
 
 if telescope_status_ok then
   map("n", "<leader>tt", telescope.resume, opts)
   map("n", "<leader>fw", telescope.live_grep, opts)
   map("n", "<leader>/", telescope.live_grep, opts)
-  map("v", "<leader>/", function ()
+  map("v", "<leader>/", function()
     local text = vim.getVisualSelection()
-	  telescope.live_grep({ default_text = text })
+    telescope.live_grep({ default_text = text })
   end, opts)
   map("n", "<leader><leader>", telescope.find_files, opts)
   -- map("n", "<leader><leader>", telescope.find_files, opts, { hidden = true })
@@ -77,6 +79,16 @@ if telescope_status_ok then
   map("n", "<leader>lR", telescope.lsp_references, opts)
   -- map("n", "<leader>lD", telescope.diagnostics, opts)
   map("n", "<leader>j", telescope.jumplist, opts)
+
+  if project_nvim_status then
+    map("n", "<leader>pp", "<cmd>Telescope projects<cr>", opts)
+  end
+
+  if ezbookmarks_status_ok then
+    map("n", "<leader><CR>", ezbookmarks.OpenBookmark, opts)
+    map("n", "<leader>bm", ezbookmarks.AddBookmark, opts)
+    map("n", "<leader>bM", ezbookmarks.RemoveBookmark, opts)
+  end
 end
 
 

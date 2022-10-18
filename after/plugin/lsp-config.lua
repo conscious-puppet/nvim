@@ -24,3 +24,5 @@ lspconfig.tsserver.setup(opts) -- typescript
 lspconfig.jsonls.setup(opts) -- json
 lspconfig.pylsp.setup(opts) -- python
 lspconfig.rust_analyzer.setup(opts) -- rust
+lspconfig.marksman.setup(opts) -- markdown
+lspconfig.purescriptls.setup(opts) -- purescript

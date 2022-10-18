@@ -98,7 +98,7 @@ return packer.startup(function(use)
     "nvim-telescope/telescope-media-files.nvim",
     {
       "nvim-telescope/telescope-smart-history.nvim",
-      requires = "kkharji/sqlite.lua"
+      requires = "kkharji/sqlite.lua",
     },
     -- "nvim-telescope/telescope-ui-select.nvim",
     -- "nvim-telescope/telescope-file-browser.nvim"
@@ -141,9 +141,16 @@ return packer.startup(function(use)
   use {
     "kyazdani42/nvim-tree.lua", -------------- Explorer
     "ahmedkhalf/project.nvim",
+    "lifer0se/ezbookmarks.nvim",
     --   -- "dstein64/vim-startuptime",
     "junegunn/vim-easy-align",
     "dhruvasagar/vim-table-mode",
+
+  }
+
+  -- for purescript
+  use {
+    "purescript-contrib/purescript-vim"
   }
 
 

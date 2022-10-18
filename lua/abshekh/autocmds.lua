@@ -27,7 +27,7 @@ create_command("MYVIMRC", ":e $MYVIMRC", { desc = "Edit Neovim Config" })
 create_command("CDC", ":cd %:p:h", { desc = "Change Global dir to current file" })
 create_command("LDC", ":cd %:p:h", { desc = "Change Local dir to current file" })
 create_command("Vterm", ":vsp | term", { desc = "Terminal in vertical split" })
-create_command("Sterm", ":sp | term", { desc = "Terminal in horizontal split" })
+create_command("Sterm", ":9sp | term", { desc = "Terminal in horizontal split" })
 create_command("Nomodifiable", ":set noma", { desc = "Set no modifiable" })
 create_command("Modifiable", ":set ma", { desc = "Set modifiable" })
 -- create_command("Bufname", ":keepalt file", { desc = "Rename buffer" })
@@ -48,7 +48,8 @@ vim.cmd [[
 
 	:command -nargs=1 Scratch call NewScratchTab(<f-args>)
 
-  au BufNewFile,BufRead *.log :setl ft=log
+  au BufNewFile,BufRead *.log  :setl ft=log
+  au BufNewFile,BufRead *.purs :setl ft=purescript
   autocmd BufEnter,BufRead * normal zR
 
 ]]

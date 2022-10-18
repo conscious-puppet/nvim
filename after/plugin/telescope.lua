@@ -7,92 +7,82 @@ local actions = require "telescope.actions"
 local themes = require "telescope.themes"
 
 telescope.setup {
-  defaults = {
-    wrap_results = true,
+  defaults = { -- 
+    prompt_prefix      = " ",
+    selection_caret    = " ",
+    wrap_results       = true,
     selection_strategy = "reset",
-    sorting_strategy = "ascending",
-    layout_strategy = "horizontal",
-    layout_config = {
-      horizontal = {
+    sorting_strategy   = "ascending",
+    layout_strategy    = "horizontal",
+    layout_config      = {
+      horizontal     = {
         prompt_position = "top",
         preview_width = 0.55,
         results_width = 0.8,
       },
-      vertical = {
+      vertical       = {
         mirror = false,
       },
-      width = 0.87,
-      height = 0.80,
+      width          = 0.87,
+      height         = 0.80,
       preview_cutoff = 120,
     },
-    mappings = {
+    mappings           = {
       i = {
+        ["<C-j>"]      = actions.move_selection_next,
+        ["<C-k>"]      = actions.move_selection_previous,
+        ["<C-l>"]      = actions.cycle_history_next,
+        ["<C-h>"]      = actions.cycle_history_prev,
+        ["<C-c>"]      = actions.close,
+        ["<Down>"]     = actions.move_selection_next,
+        ["<Up>"]       = actions.move_selection_previous,
+        ["<CR>"]       = actions.select_default,
+        ["<C-x>"]      = actions.select_horizontal,
+        ["<C-v>"]      = actions.select_vertical,
+        ["<C-t>"]      = actions.select_tab,
+        ["<C-u>"]      = actions.preview_scrolling_up,
+        ["<C-d>"]      = actions.preview_scrolling_down,
+        ["<PageUp>"]   = actions.results_scrolling_up,
+        ["<PageDown>"] = actions.results_scrolling_down,
+        ["<Tab>"]      = actions.toggle_selection + actions.move_selection_worse,
+        ["<S-Tab>"]    = actions.toggle_selection + actions.move_selection_better,
+        ["<C-q>"]      = actions.send_to_qflist + actions.open_qflist,
+        ["<M-q>"]      = actions.send_selected_to_qflist + actions.open_qflist,
+        ["<C-_>"]      = actions.which_key, -- keys from pressing <C-/>
         -- ["<C-n>"] = actions.cycle_history_next,
         -- ["<C-p>"] = actions.cycle_history_prev,
-
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-        ["<C-l>"] = actions.cycle_history_next,
-        ["<C-h>"] = actions.cycle_history_prev,
-
-        ["<C-c>"] = actions.close,
-
-        ["<Down>"] = actions.move_selection_next,
-        ["<Up>"] = actions.move_selection_previous,
-
-        ["<CR>"] = actions.select_default,
-        ["<C-x>"] = actions.select_horizontal,
-        ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
-
-        ["<C-u>"] = actions.preview_scrolling_up,
-        ["<C-d>"] = actions.preview_scrolling_down,
-
-        ["<PageUp>"] = actions.results_scrolling_up,
-        ["<PageDown>"] = actions.results_scrolling_down,
-
-        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-        ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         -- ["<C-s>"] = actions.send_selected_to_qflist + actions.open_qflist,
         -- ["<C-l>"] = actions.complete_tag,
-        ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
+
       },
 
       n = {
-        ["<esc>"] = actions.close,
-        ["<CR>"] = actions.select_default,
-        ["<C-x>"] = actions.select_horizontal,
-        ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
-
-        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-        ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-        -- ["<C-s>"] = actions.send_selected_to_qflist + actions.open_qflist,
-
-        ["j"] = actions.move_selection_next,
-        ["k"] = actions.move_selection_previous,
-        ["<C-l>"] = actions.cycle_history_next,
-        ["<C-h>"] = actions.cycle_history_prev,
+        ["<esc>"]      = actions.close,
+        ["<CR>"]       = actions.select_default,
+        ["<C-x>"]      = actions.select_horizontal,
+        ["<C-v>"]      = actions.select_vertical,
+        ["<C-t>"]      = actions.select_tab,
+        ["<Tab>"]      = actions.toggle_selection + actions.move_selection_worse,
+        ["<S-Tab>"]    = actions.toggle_selection + actions.move_selection_better,
+        ["<C-q>"]      = actions.send_to_qflist + actions.open_qflist,
+        ["<M-q>"]      = actions.send_selected_to_qflist + actions.open_qflist,
+        ["j"]          = actions.move_selection_next,
+        ["k"]          = actions.move_selection_previous,
+        ["<C-l>"]      = actions.cycle_history_next,
+        ["<C-h>"]      = actions.cycle_history_prev,
+        ["<Down>"]     = actions.move_selection_next,
+        ["<Up>"]       = actions.move_selection_previous,
+        ["gg"]         = actions.move_to_top,
+        ["G"]          = actions.move_to_bottom,
+        ["<C-u>"]      = actions.preview_scrolling_up,
+        ["<C-d>"]      = actions.preview_scrolling_down,
+        ["<PageUp>"]   = actions.results_scrolling_up,
+        ["<PageDown>"] = actions.results_scrolling_down,
+        ["?"]          = actions.which_key,
         -- ["H"] = actions.move_to_top,
         -- ["M"] = actions.move_to_middle,
         -- ["L"] = actions.move_to_bottom,
-
-        ["<Down>"] = actions.move_selection_next,
-        ["<Up>"] = actions.move_selection_previous,
-        ["gg"] = actions.move_to_top,
-        ["G"] = actions.move_to_bottom,
-
-        ["<C-u>"] = actions.preview_scrolling_up,
-        ["<C-d>"] = actions.preview_scrolling_down,
-
-        ["<PageUp>"] = actions.results_scrolling_up,
-        ["<PageDown>"] = actions.results_scrolling_down,
-
-        ["?"] = actions.which_key,
+        -- ["<C-s>"] = actions.send_selected_to_qflist + actions.open_qflist,
       },
     },
   },
@@ -162,19 +152,17 @@ telescope.setup {
   },
 
   history = {
-    path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+    path = "~/.local/share/nvim/databases/telescope_history.sqlite3",
     limit = 100,
-  }
+  },
 }
 
 local function load_extension(ext)
-  local ext_status, _ = pcall(require, ext)
-  if ext_status then
-    telescope.load_extension(ext)
-  end
+  pcall(telescope.load_extension, ext)
 end
 
-load_extension('media_files')
-load_extension('smart_history')
-load_extension("ui-select")
-load_extension("file_browser")
+load_extension("smart_history")
+load_extension("media_files")
+-- load_extension("ui-select")
+-- load_extension("file_browser")
+load_extension("projects")

@@ -4,12 +4,14 @@ if not project_nvim_status then
   return
 end
 
-project_nvim.setup {}
+project_nvim.setup {
+  manual_mode = true,
+}
 
-local telescope_status, telescope = pcall(require, "telescope")
-if telescope_status then
-  telescope.load_extension("projects")
-  local opts = { noremap = true, silent = true }
-  local map = vim.keymap.set
-  map("n", "<leader>pp", "<cmd>Telescope projects<cr>", opts)
+function _ADD_CURR_DIR_TO_PROJECTS()
+  local historyfile = require("project_nvim.utils.path").historyfile
+  local curr_directory = vim.fn.expand("%:p:h")
+  vim.cmd("!echo " .. curr_directory .. " >> " .. historyfile)
 end
+
+vim.cmd("command! AddProject lua _ADD_CURR_DIR_TO_PROJECTS()")
