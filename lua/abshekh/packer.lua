@@ -140,8 +140,8 @@ return packer.startup(function(use)
   -- Utilities
   use {
     "kyazdani42/nvim-tree.lua", -------------- Explorer
-    "ahmedkhalf/project.nvim",
-    "lifer0se/ezbookmarks.nvim",
+    -- "ahmedkhalf/project.nvim",
+    -- "lifer0se/ezbookmarks.nvim",
     --   -- "dstein64/vim-startuptime",
     "junegunn/vim-easy-align",
     "dhruvasagar/vim-table-mode",

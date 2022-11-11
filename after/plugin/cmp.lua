@@ -57,55 +57,55 @@ cmp.setup {
   },
 }
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-  mapping = cmp.mapping.preset.cmdline(
-    {
-      ["<C-j>"] = cmp.mapping.preset.cmdline()["<Tab>"],
-      ["<C-k>"] = cmp.mapping.preset.cmdline()["<S-Tab>"],
-    }
-  ),
-  sources = {
-    { name = 'buffer' }
-  },
-  formatting = {
-    fields = { "abbr" },
-  },
-})
-
-cmp.setup.cmdline('?', {
-  mapping = cmp.mapping.preset.cmdline(
-    {
-      ["<C-j>"] = cmp.mapping.preset.cmdline()["<Tab>"],
-      ["<C-k>"] = cmp.mapping.preset.cmdline()["<S-Tab>"],
-    }
-  ),
-  sources = {
-    { name = 'buffer' }
-  },
-  formatting = {
-    fields = { "abbr" },
-  },
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-
-cmp.setup.cmdline(':', {
-  -- completion = { autocomplete = false },
-  mapping = cmp.mapping.preset.cmdline(
-    {
-      ["<C-j>"] = cmp.mapping.preset.cmdline()["<Tab>"],
-      ["<C-k>"] = cmp.mapping.preset.cmdline()["<S-Tab>"],
-    }
-  ),
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline' }
-  }),
-  formatting = {
-    fields = { "abbr" },
-  },
-})
+-- -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+-- cmp.setup.cmdline('/', {
+--   mapping = cmp.mapping.preset.cmdline(
+--     {
+--       ["<C-j>"] = cmp.mapping.preset.cmdline()["<Tab>"],
+--       ["<C-k>"] = cmp.mapping.preset.cmdline()["<S-Tab>"],
+--     }
+--   ),
+--   sources = {
+--     { name = 'buffer' }
+--   },
+--   formatting = {
+--     fields = { "abbr" },
+--   },
+-- })
+--
+-- cmp.setup.cmdline('?', {
+--   mapping = cmp.mapping.preset.cmdline(
+--     {
+--       ["<C-j>"] = cmp.mapping.preset.cmdline()["<Tab>"],
+--       ["<C-k>"] = cmp.mapping.preset.cmdline()["<S-Tab>"],
+--     }
+--   ),
+--   sources = {
+--     { name = 'buffer' }
+--   },
+--   formatting = {
+--     fields = { "abbr" },
+--   },
+-- })
+--
+-- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+--
+-- cmp.setup.cmdline(':', {
+--   -- completion = { autocomplete = false },
+--   mapping = cmp.mapping.preset.cmdline(
+--     {
+--       ["<C-j>"] = cmp.mapping.preset.cmdline()["<Tab>"],
+--       ["<C-k>"] = cmp.mapping.preset.cmdline()["<S-Tab>"],
+--     }
+--   ),
+--   sources = cmp.config.sources({
+--     { name = 'path' }
+--   }, {
+--     { name = 'cmdline' }
+--   }),
+--   formatting = {
+--     fields = { "abbr" },
+--   },
+-- })
 
 -- print(vim.inspect(cmp))

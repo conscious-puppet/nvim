@@ -74,6 +74,7 @@ vim.cmd [[
       autocmd TermOpen * :set nonumber norelativenumber
       " allows you to use Ctrl-c on terminal window
       autocmd TermOpen * nnoremap <buffer> <C-c> i<C-c>
+      autocmd TermClose * call feedkeys("i")
   augroup END
 ]]
 

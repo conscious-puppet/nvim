@@ -52,8 +52,8 @@ end
 
 -- Telescope
 local telescope_status_ok, telescope = pcall(require, "telescope.builtin")
-local project_nvim_status, _ = pcall(require, "project_nvim")
-local ezbookmarks_status_ok, ezbookmarks = pcall(require, "ezbookmarks")
+-- local project_nvim_status, _ = pcall(require, "project_nvim")
+-- local ezbookmarks_status_ok, ezbookmarks = pcall(require, "ezbookmarks")
 
 if telescope_status_ok then
   map("n", "<leader>tt", telescope.resume, opts)
@@ -80,15 +80,15 @@ if telescope_status_ok then
   -- map("n", "<leader>lD", telescope.diagnostics, opts)
   map("n", "<leader>j", telescope.jumplist, opts)
 
-  if project_nvim_status then
-    map("n", "<leader>pp", "<cmd>Telescope projects<cr>", opts)
-  end
-
-  if ezbookmarks_status_ok then
-    map("n", "<leader><CR>", ezbookmarks.OpenBookmark, opts)
-    map("n", "<leader>bm", ezbookmarks.AddBookmark, opts)
-    map("n", "<leader>bM", ezbookmarks.RemoveBookmark, opts)
-  end
+  -- if project_nvim_status then
+  --   map("n", "<leader>pp", "<cmd>Telescope projects<cr>", opts)
+  -- end
+  --
+  -- if ezbookmarks_status_ok then
+  --   map("n", "<leader><CR>", ezbookmarks.OpenBookmark, opts)
+  --   map("n", "<leader>bm", ezbookmarks.AddBookmark, opts)
+  --   map("n", "<leader>bM", ezbookmarks.RemoveBookmark, opts)
+  -- end
 end
 
 

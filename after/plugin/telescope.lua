@@ -15,17 +15,14 @@ telescope.setup {
     sorting_strategy   = "ascending",
     layout_strategy    = "horizontal",
     layout_config      = {
-      horizontal     = {
+      horizontal = {
         prompt_position = "top",
-        preview_width = 0.55,
-        results_width = 0.8,
+        preview_width = 0.50,
       },
-      vertical       = {
-        mirror = false,
-      },
-      width          = 0.87,
-      height         = 0.80,
-      preview_cutoff = 120,
+      -- width      = 0.87,
+      -- height     = 0.80,
+      width      = function(_, max_columns, _) return max_columns end,
+      height     = function(_, _, max_lines) return max_lines end
     },
     mappings           = {
       i = {
@@ -165,4 +162,4 @@ load_extension("smart_history")
 load_extension("media_files")
 -- load_extension("ui-select")
 -- load_extension("file_browser")
-load_extension("projects")
+-- load_extension("projects")
