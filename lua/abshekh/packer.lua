@@ -86,8 +86,8 @@ return packer.startup(function(use)
     },
     "jose-elias-alvarez/null-ls.nvim",
     "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim", -- not required, since it is just a shallow abstraction
     -- "williamboman/nvim-lsp-installer", -- not required, using mason
-    -- "williamboman/mason-lspconfig.nvim", -- not required, since it is just a shallow abstraction
 
     -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
   }

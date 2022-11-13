@@ -5,13 +5,13 @@ require "abshekh.packer"
 require "abshekh.themes.tokyonight"
 
 
+-- horizontal split toggle term
 -- nvim dap
 -- code lens, run, debug in rust
 -- register | paste registers
 -- vim-surround
 -- tpope database explorer
 -- autosave
--- :AddProject to project.nvim
 -- undo tree
 -- focus/zen mode folke
 
@@ -19,3 +19,5 @@ require "abshekh.themes.tokyonight"
 -- Gvdiffsplit!
 -- d2o (accept left changes)  | diffget
 -- d3o (accept right changes) |
+
+-- lsp handlers, code lens and debugger
