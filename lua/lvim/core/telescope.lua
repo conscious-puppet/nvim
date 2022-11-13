@@ -73,8 +73,8 @@ function M.config()
   end
   lvim.builtin.telescope = vim.tbl_extend("force", lvim.builtin.telescope, {
     defaults = {
-      prompt_prefix = lvim.icons.ui.Telescope .. " ",
-      selection_caret = lvim.icons.ui.Forward .. " ",
+      prompt_prefix = lvim.icons.ui.Search .. " ",
+      selection_caret = lvim.icons.ui.DoubleChevronRight .. " ",
       entry_prefix = "  ",
       initial_mode = "insert",
       selection_strategy = "reset",
@@ -90,9 +90,10 @@ function M.config()
             end
             return math.floor(cols * 0.6)
           end,
-          mirror = false,
+          mirror = true,
         },
-        vertical = { mirror = false },
+        vertical = { mirror = true },
+        anchor = "N",
       },
       vimgrep_arguments = {
         "rg",
@@ -111,8 +112,10 @@ function M.config()
           ["<C-n>"] = actions.move_selection_next,
           ["<C-p>"] = actions.move_selection_previous,
           ["<C-c>"] = actions.close,
-          ["<C-j>"] = actions.cycle_history_next,
-          ["<C-k>"] = actions.cycle_history_prev,
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
+          ["<C-h>"] = actions.cycle_history_next,
+          ["<C-l>"] = actions.cycle_history_prev,
           ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
           ["<CR>"] = actions.select_default,
         },
@@ -124,7 +127,7 @@ function M.config()
       },
       pickers = get_pickers(actions),
       file_ignore_patterns = {},
-      path_display = { "smart" },
+      -- path_display = { "smart" },
       winblend = 0,
       border = {},
       borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
