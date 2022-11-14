@@ -15,16 +15,23 @@ local function transparenct_sections(theme)
       theme[k].b.fg= "#a9b1d6"
       theme[k].c.bg = nil
       theme[k].c.fg= "#a9b1d6"
-    elseif k == "insert" or k == "visual" or k == "command" or k == "replace" then
+    elseif k == "insert"
+        or k == "visual"
+        or k == "command"
+        or k == "replace" then
       theme[k].a.bg = nil
       theme[k].a.fg= "#a9b1d6"
       theme[k].b.bg = nil
       theme[k].b.fg= "#a9b1d6"
+    elseif k == "inactive" then
+      theme[k].a.bg = nil
+      theme[k].a.fg = '#545c7e'
+      theme[k].b.bg = nil
+      theme[k].b.fg = '#545c7e'
+      theme[k].c.bg = nil
+      theme[k].c.fg = '#545c7e'
     end
   end
-  theme.inactive.a.fg = '#545c7e'
-  theme.inactive.b.fg = '#545c7e'
-  theme.inactive.c.fg = '#545c7e'
   return theme
 end
 
