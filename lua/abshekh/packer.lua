@@ -29,6 +29,17 @@ if not status_ok then
   return
 end
 
+packer.init {
+  display = {
+    open_fn = function()
+      return require("packer.util").float {
+        border = vim.g.border_style
+      }
+    end,
+    prompt_border = vim.g.border_style,
+  },
+}
+
 -- Install your plugins here
 return packer.startup(function(use)
   use {

@@ -1,6 +1,6 @@
 local M = {}
-local map = vim.keymap.set
 local ts_utils_status, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
+local keymaps = require "abshekh.keymaps.lsp"
 
 local function setup()
   local signs = {
@@ -27,7 +27,7 @@ local function setup()
     severity_sort = true,
     virtual_text = false,
     float = {
-      border = "single",
+      border = vim.g.border_style,
       focusable = true,
       style = "minimal",
       source = "always",
@@ -37,6 +37,11 @@ local function setup()
   }
 
   vim.diagnostic.config(config)
+
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover,
+    { border = vim.g.border_style })
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help,
+    { border = vim.g.border_style })
 end
 
 local function highlight_references()
@@ -92,61 +97,38 @@ local function buf_autocmd_codelens(bufnr)
 end
 
 -- Finds and runs the closest codelens (searches upwards only)
-local function find_and_run_codelens()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-  local lenses = vim.lsp.codelens.get(bufnr)
-
-  lenses = vim.tbl_filter(function(lense)
-    return lense.range.start.line < row
-  end, lenses)
-
-  if #lenses == 0 then
-    return vim.notify "Could not find codelens to run."
-  end
-
-  table.sort(lenses, function(a, b)
-    return a.range.start.line > b.range.start.line
-  end)
-
-  vim.api.nvim_win_set_cursor(0, { lenses[1].range.start.line + 1, lenses[1].range.start.character })
-  vim.lsp.codelens.run()
-  vim.api.nvim_win_set_cursor(0, { row, col }) -- restore cursor, TODO: also restore position
-end
-
-local function lsp_keymaps(client, bufnr)
-  local opts = { noremap = true, silent = true, buffer = bufnr }
-
-  map({ "n", "v" }, "K", vim.lsp.buf.hover, opts)
-  map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts)
-  map({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
-  map("n", "<leader>c", find_and_run_codelens, opts)
-
-  if client.supports_method "textDocument/formatting" then
-    map({ "n", "v" }, "<leader>lf", vim.lsp.buf.format, opts)
-    map({ "n", "v" }, "Q", vim.lsp.buf.format, opts)
-  end
-
-  map("n", "<leader>lh", vim.lsp.buf.signature_help, opts)
-  map("n", "<leader>lr", vim.lsp.buf.rename, opts)
-  map("n", "<leader>r", vim.lsp.buf.rename, opts)
-  map("n", "gD", vim.lsp.buf.declaration, opts)
-  map("n", "gi", vim.lsp.buf.implementation, opts)
-  map("n", "gd", vim.lsp.buf.definition, opts)
-  map("n", "gr", vim.lsp.buf.references, opts)
-  map("n", "gl", vim.diagnostic.open_float, opts)
-  map("n", "[d", vim.diagnostic.goto_prev, opts)
-  map("n", "]d", vim.diagnostic.goto_next, opts)
-end
+-- local function find_and_run_codelens()
+--   local bufnr = vim.api.nvim_get_current_buf()
+--   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+--   local lenses = vim.lsp.codelens.get(bufnr)
+--
+--   lenses = vim.tbl_filter(function(lense)
+--     return lense.range.start.line < row
+--   end, lenses)
+--
+--   if #lenses == 0 then
+--     return vim.notify "Could not find codelens to run."
+--   end
+--
+--   table.sort(lenses, function(a, b)
+--     return a.range.start.line > b.range.start.line
+--   end)
+--
+--   vim.api.nvim_win_set_cursor(0, { lenses[1].range.start.line + 1, lenses[1].range.start.character })
+--   vim.lsp.codelens.run()
+--   vim.api.nvim_win_set_cursor(0, { row, col }) -- restore cursor, TODO: also restore position
+-- end
 
 M.on_attach = function(client, bufnr)
-  if client.name == "hls" then
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
+  if vim.g.disable_formatting[client.name] then
+    client.server_capabilities.documentFormatting              = false
+    client.server_capabilities.documentFormattingProvider      = false
+    client.server_capabilities.documentRangeFormatting         = false
+    client.server_capabilities.documentRangeFormattingProvider = false
   end
 
   setup()
-  lsp_keymaps(client, bufnr)
+  keymaps.lsp_keymaps(client, bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -154,9 +136,11 @@ M.on_attach = function(client, bufnr)
     client.config.flags.allow_incremental_sync = true
   end
 
-  if client.supports_method "textDocument/documentHighlight" then
-    buf_autocmd_document_highlight(bufnr)
-  end
+  -- if client.supports_method "textDocument/documentHighlight" then
+  --   buf_autocmd_document_highlight(bufnr)
+  -- else
+  --   vim.api.nvim_del_augroup_by_name("lsp_document_highlight")
+  -- end
 
   if client.supports_method "textDocument/codeLens" then
     buf_autocmd_codelens(bufnr)

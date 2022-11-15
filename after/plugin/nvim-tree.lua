@@ -18,8 +18,8 @@ local list = {
 nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
-  hijack_unnamed_buffer_when_opening = true,
-  open_on_setup = true,
+  hijack_unnamed_buffer_when_opening = false,
+  open_on_setup = false,
   renderer = {
     icons = {
       show = {
@@ -38,11 +38,11 @@ nvim_tree.setup {
       list = list,
     },
   },
-  sync_root_with_cwd = true,
+  sync_root_with_cwd = false,
   respect_buf_cwd = true,
   update_focused_file = {
     enable = true,
-    update_root = true
+    update_root = false
   },
   actions = {
     change_dir = {

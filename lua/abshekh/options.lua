@@ -53,7 +53,7 @@ set.timeout        = false -- don't timeout on pressing leader key
 set.fillchars      = set.fillchars + 'diff:╱' + 'fold: '
 set.shortmess      = set.shortmess + "atI" -- I to remove intro screen for now
 set.listchars:append("nbsp:␣") -- show tabs and spaces
-set.listchars:append("eol:↴") -- show tabs and spaces
+-- set.listchars:append("eol:↴") -- show tabs and spaces
 set.listchars:append("trail:.") -- show tabs and spaces
 
 -- set.iskeyword:append({',', '_', '@', '.', '-'})

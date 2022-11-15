@@ -17,12 +17,16 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 
-map("n", "//", ":noh<CR>", opts)
+map("n", "//", "<CMD>noh<CR>", opts)
 
 map("n", "gf", "gF", opts)
 
 -- map("n", "<C-q>", ":bd<CR>", opts) -- close current buffer
-map("n", "<C-w>m", ":tabedit %<cr>", opts) -- replicate current buffer into new tab
+map("n", "<C-w>m", "<CMD>tabedit %<CR>", opts) -- replicate current buffer into new tab
+map("n", "]q", "<CMD>cnext<CR>", opts)
+map("n", "[q", "<CMD>cprev<CR>", opts)
+map("n", "<C-q>", "<CMD>call QuickFixToggle()<CR>", opts)
+
 -- Resize with arrows
 map("n", "<C-Up>", ":resize +2<CR>", opts)
 map("n", "<C-Down>", ":resize -2<CR>", opts)
@@ -36,48 +40,6 @@ map("n", "<leader>ff", "<cmd>NvimTreeFocus<cr>", opts)
 -- map("n", "<leader>g", "<cmd>LazyGit<cr>", opts)
 -- map("n", "<leader>g", "<cmd>tab G<cr>", opts)
 map("n", "<leader>gg", "<cmd>DiffviewOpen<cr>", opts)
-
-function vim.getVisualSelection()
-  vim.cmd('noau normal! "vy"')
-  local text = vim.fn.getreg('v')
-  vim.fn.setreg('v', {})
-
-  text = string.gsub(text, "\n", "")
-  if #text > 0 then
-    return text
-  else
-    return ''
-  end
-end
-
--- Telescope
-local telescope_status_ok, telescope = pcall(require, "telescope.builtin")
-if telescope_status_ok then
-  map("n", "<leader>tt", telescope.resume, opts)
-  map("n", "<leader>fw", telescope.live_grep, opts)
-  map("n", "<leader>/", telescope.live_grep, opts)
-  map("v", "<leader>/", function()
-    local text = vim.getVisualSelection()
-    telescope.live_grep({ default_text = text })
-  end, opts)
-  map("n", "<leader><leader>", telescope.find_files, opts)
-  -- map("n", "<leader><leader>", telescope.find_files, opts, { hidden = true })
-  map("n", "<leader>gs", telescope.git_status, opts)
-  map("n", "<leader>gb", telescope.git_branches, opts)
-  map("n", "<leader>gc", telescope.git_commits, opts)
-  map("n", "<leader>fb", telescope.buffers, opts)
-  map("n", "<leader>,", telescope.buffers, opts)
-  map("n", "<leader>fm", telescope.marks, opts)
-  map("n", "<leader>fo", telescope.oldfiles, opts)
-  map("n", "<leader>sc", telescope.registers, opts)
-  map("n", "<leader>sk", telescope.keymaps, opts)
-  map("n", "<leader>sc", telescope.commands, opts)
-  map("n", "<leader>ls", telescope.lsp_document_symbols, opts)
-  map("n", "<leader>lR", telescope.lsp_references, opts)
-  -- map("n", "<leader>lD", telescope.diagnostics, opts)
-  map("n", "<leader>j", telescope.jumplist, opts)
-end
-
 
 -- lsp lines
 -- local lsp_lines_status_ok, lsp_lines = pcall(require, "lsp_lines")

@@ -2,8 +2,6 @@ vim.opt_local.iskeyword:append("'")
 
 local map = vim.keymap.set
 
-vim.cmd[[setlocal formatprg=hindent]]
-
 -- local preserve = function(arguments)
 --   -- local arguments = string.format("keepjumps keeppatterns execute %q", arguments)
 --   -- local original_cursor = vim.fn.winsaveview()
@@ -25,10 +23,21 @@ vim.cmd[[setlocal formatprg=hindent]]
 -- end
 --   , { buffer = true, noremap = true })
 
-
-map("n", "Q", "<cmd>%!hindent<CR>", { buffer = true, noremap = true })
-map({ "v", "x" }, "Q", "<esc><cmd>'<,'>!hindent<cr>", { buffer = true, noremap = true })
-
+local hindent_dirs = { "work" }
+for _, dir in ipairs(hindent_dirs) do
+  if string.find(vim.api.nvim_buf_get_name(0), dir) then
+    local disable_formatting = vim.g.disable_formatting
+    disable_formatting.hls = true
+    vim.g.disable_formatting = disable_formatting
+    vim.cmd [[setlocal formatprg=hindent]]
+    map("n", "Q", "<cmd>%!hindent<CR>", { buffer = true, noremap = true })
+    map({ "v", "x" }, "Q", "<esc><cmd>'<,'>!hindent<cr>", { buffer = true, noremap = true })
+  else
+    local disable_formatting = vim.g.disable_formatting
+    disable_formatting.hls = false
+    vim.g.disable_formatting = disable_formatting
+  end
+end
 
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if cmp_status_ok then

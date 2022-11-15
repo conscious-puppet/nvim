@@ -3,11 +3,14 @@ local status_ok_mason_lsp_config, mason_lsp_config = pcall(require, "mason-lspco
 local status_ok_lspconfig, lspconfig = pcall(require, "lspconfig")
 
 if not status_ok_lspconfig or not status_ok_mason or not status_ok_mason_lsp_config then
--- if not status_ok_mason then
+  -- if not status_ok_mason then
   return
 end
 
 mason.setup {
+  ui = {
+    border = vim.g.border_style,
+  }
 }
 
 local servers = {

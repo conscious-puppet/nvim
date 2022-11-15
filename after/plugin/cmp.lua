@@ -10,6 +10,11 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
+
+local border = cmp.config.window.bordered()
+border.border = vim.g.border_style
+border.winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None"
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -54,6 +59,10 @@ cmp.setup {
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
+  },
+  window = {
+    documentation = border,
+    completion = border
   },
 }
 
