@@ -21,7 +21,7 @@ map("n", "//", ":noh<CR>", opts)
 
 map("n", "gf", "gF", opts)
 
-map("n", "<C-q>", ":bd<CR>", opts) -- close current buffer
+-- map("n", "<C-q>", ":bd<CR>", opts) -- close current buffer
 map("n", "<C-w>m", ":tabedit %<cr>", opts) -- replicate current buffer into new tab
 -- Resize with arrows
 map("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -52,9 +52,6 @@ end
 
 -- Telescope
 local telescope_status_ok, telescope = pcall(require, "telescope.builtin")
--- local project_nvim_status, _ = pcall(require, "project_nvim")
--- local ezbookmarks_status_ok, ezbookmarks = pcall(require, "ezbookmarks")
-
 if telescope_status_ok then
   map("n", "<leader>tt", telescope.resume, opts)
   map("n", "<leader>fw", telescope.live_grep, opts)
@@ -79,16 +76,6 @@ if telescope_status_ok then
   map("n", "<leader>lR", telescope.lsp_references, opts)
   -- map("n", "<leader>lD", telescope.diagnostics, opts)
   map("n", "<leader>j", telescope.jumplist, opts)
-
-  -- if project_nvim_status then
-  --   map("n", "<leader>pp", "<cmd>Telescope projects<cr>", opts)
-  -- end
-  --
-  -- if ezbookmarks_status_ok then
-  --   map("n", "<leader><CR>", ezbookmarks.OpenBookmark, opts)
-  --   map("n", "<leader>bm", ezbookmarks.AddBookmark, opts)
-  --   map("n", "<leader>bM", ezbookmarks.RemoveBookmark, opts)
-  -- end
 end
 
 
@@ -127,10 +114,10 @@ map("v", ">", ">gv", opts)
 -- map("v", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<cr>", opts)
 
 -- Ctrl hjkl in command line mode, not needed as nvim-cmp as auto trigger
--- map("c", "<C-j>", "<C-n>", { noremap = true })
--- map("c", "<C-k>", "<C-p>", { noremap = true })
--- map("c", "<C-h>", "<Up>", { noremap = true })
--- map("c", "<C-l>", "<Down>", { noremap = true })
+map("c", "<C-j>", "<C-n>", { noremap = true })
+map("c", "<C-k>", "<C-p>", { noremap = true })
+map("c", "<C-h>", "<Up>", { noremap = true })
+map("c", "<C-l>", "<Down>", { noremap = true })
 
 -- Improved Terminal Mappings
 map("t", "<esc>", "<C-\\><C-n>")

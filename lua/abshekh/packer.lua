@@ -66,14 +66,13 @@ return packer.startup(function(use)
     "saadparwaiz1/cmp_luasnip", ------------------- Snippet completions
     "hrsh7th/cmp-nvim-lsp", ----------------------- LSP completion
     "hrsh7th/cmp-nvim-lua", ----------------------- LSP completion for neovim lsp
-    "hrsh7th/cmp-cmdline", ----------------------- Command mode auto trigger and completion
 
 
     "L3MON4D3/LuaSnip", --------------------------- Snippet engine
     "rafamadriz/friendly-snippets", --------------- A bunch of snippets to use
   }
 
-  -- LSP
+  -- LSP, DAP
   use {
     "neovim/nvim-lspconfig",
     {
@@ -86,10 +85,10 @@ return packer.startup(function(use)
     },
     "jose-elias-alvarez/null-ls.nvim",
     "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim", -- not required, since it is just a shallow abstraction
-    -- "williamboman/nvim-lsp-installer", -- not required, using mason
-
+    "williamboman/mason-lspconfig.nvim",
     -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    "purescript-contrib/purescript-vim", -- for purescript
+    "simrat39/rust-tools.nvim"
   }
 
   -- Telescope
@@ -100,8 +99,6 @@ return packer.startup(function(use)
       "nvim-telescope/telescope-smart-history.nvim",
       requires = "kkharji/sqlite.lua",
     },
-    -- "nvim-telescope/telescope-ui-select.nvim",
-    -- "nvim-telescope/telescope-file-browser.nvim"
   }
 
   -- Treesitter
@@ -111,7 +108,6 @@ return packer.startup(function(use)
       run = ":TSUpdate",
     },
     "nvim-treesitter/playground", ----------- treesitter playground
-    -- "p00f/nvim-ts-rainbow", ----------------- Rainbow Parens, performance issue
     "windwp/nvim-autopairs", ---------------- Autopairs, integrates with both cmp and treesitter
     { --------------------------------------- Easily comment stuff
       'numToStr/Comment.nvim',
@@ -131,28 +127,13 @@ return packer.startup(function(use)
     -- "TimUntersberger/neogit",
   }
 
-  -- -- Session
-  -- use {
-  --   "rmagatti/auto-session",
-  --   "rmagatti/session-lens",
-  -- }
-
   -- Utilities
   use {
     "kyazdani42/nvim-tree.lua", -------------- Explorer
-    -- "ahmedkhalf/project.nvim",
-    -- "lifer0se/ezbookmarks.nvim",
     --   -- "dstein64/vim-startuptime",
     "junegunn/vim-easy-align",
     "dhruvasagar/vim-table-mode",
-
   }
-
-  -- for purescript
-  use {
-    "purescript-contrib/purescript-vim"
-  }
-
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
