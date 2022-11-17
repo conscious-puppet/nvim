@@ -51,9 +51,9 @@ return packer.startup(function(use)
 
   -- ui
   use {
-    "bluz71/vim-moonfly-colors",
+    -- "bluz71/vim-moonfly-colors",
     "folke/tokyonight.nvim",
-    "monsonjeremy/onedark.nvim",
+    -- "monsonjeremy/onedark.nvim",
     'nvim-lualine/lualine.nvim',
     "lukas-reineke/indent-blankline.nvim", -------- indent guides
     "j-hui/fidget.nvim", -------------------------- progress bar

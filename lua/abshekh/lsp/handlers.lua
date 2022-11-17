@@ -2,7 +2,7 @@ local M = {}
 local ts_utils_status, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
 local keymaps = require "abshekh.keymaps.lsp"
 
-local function setup()
+M.setup = function()
   local signs = {
     -- { name = "DiagnosticSignError", text = "" },
     -- { name = "DiagnosticSignWarn", text = "" },
@@ -127,7 +127,6 @@ M.on_attach = function(client, bufnr)
     client.server_capabilities.documentRangeFormattingProvider = false
   end
 
-  setup()
   keymaps.lsp_keymaps(client, bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")

@@ -146,6 +146,9 @@ diffview.setup({
       ["<leader>ct"] = actions.conflict_choose("theirs"),
       ["<leader>cb"] = actions.conflict_choose("base"),
       ["<leader>ca"] = actions.conflict_choose("all"),
+      ["d1o"]        = actions.conflict_choose("all"),
+      ["d2o"]        = actions.conflict_choose("ours"),
+      ["d3o"]        = actions.conflict_choose("theirs"),
       ["dx"]         = actions.conflict_choose("none"),
       ["<leader>gg"] = "<cmd>DiffviewClose<cr>",
       ["[c"]         = "[c",
@@ -169,9 +172,9 @@ diffview.setup({
     },
     diff4 = {
       ["<leader>gg"] = "<cmd>DiffviewClose<cr>",
-      { { "n", "x" }, "1do", actions.diffget("base") },
-      { { "n", "x" }, "2do", actions.diffget("ours") },
-      { { "n", "x" }, "3do", actions.diffget("theirs") },
+      { { "n", "x" }, "d1o", actions.diffget("all") },
+      { { "n", "x" }, "d2o", actions.diffget("ours") },
+      { { "n", "x" }, "d3o", actions.diffget("theirs") },
     },
     file_panel = {
       ["<leader>gg"]    = "<cmd>DiffviewClose<cr>",
