@@ -1,10 +1,12 @@
+vim.g.disable_formatting = {}
+
 require "abshekh.options"
 require "abshekh.keymaps.general"
 require "abshekh.autocmds"
 require "abshekh.commands"
-require "abshekh.themes.tokyonight"
+require "abshekh.themes".set()
 require "abshekh.packer"
-require "abshekh.lsp"
+-- require "abshekh.lsp"
 
 -- horizontal split toggle term
 -- nvim dap
@@ -24,4 +26,4 @@ require "abshekh.lsp"
 -- extract all keymaps into one place
 -- update lsp handler code lens, document highlight autocmds. refer to lunarvim
 -- put all icons in one place
-
+-- change error curly to simple underline

@@ -71,6 +71,9 @@ map("n", "<S-h>", ":bprevious<CR>", opts)
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 
+map("v", "J", ":m '>+1<CR>gv=gv", opts)
+map("v", "K", ":m '<-2<CR>gv=gv", opts)
+
 -- Comment
 -- map("n", "<leader>/", function() require("Comment.api").toggle_current_linewise() end, opts)
 -- map("v", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<cr>", opts)

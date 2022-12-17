@@ -53,39 +53,16 @@ return packer.startup(function(use)
   use {
     -- "bluz71/vim-moonfly-colors",
     "folke/tokyonight.nvim",
+    "sainnhe/sonokai",
     -- "monsonjeremy/onedark.nvim",
     'nvim-lualine/lualine.nvim',
     "lukas-reineke/indent-blankline.nvim", -------- indent guides
     "j-hui/fidget.nvim", -------------------------- progress bar
     "norcalli/nvim-colorizer.lua", ---------------- Colorize hex colors in terminal
-    --
-    --   -- { "folke/todo-comments.nvim", ----------------- todo highlight
-    --   --   config = function()
-    --   --     require("todo-comments").setup {
-    --   --       -- your configuration comes here
-    --   --       -- or leave it empty to use the default settings
-    --   --       -- refer to the configuration section below
-    --   --     }
-    --   --   end
-    --   -- },
-  }
-  -- cmp plugins
-  use {
-    "hrsh7th/nvim-cmp", --------------------------- The completion plugin
-    "hrsh7th/cmp-buffer", ------------------------- Buffer completions
-    "hrsh7th/cmp-path", --------------------------- Path completions
-    "saadparwaiz1/cmp_luasnip", ------------------- Snippet completions
-    "hrsh7th/cmp-nvim-lsp", ----------------------- LSP completion
-    "hrsh7th/cmp-nvim-lua", ----------------------- LSP completion for neovim lsp
-
-
-    "L3MON4D3/LuaSnip", --------------------------- Snippet engine
-    "rafamadriz/friendly-snippets", --------------- A bunch of snippets to use
   }
 
   -- LSP, DAP
   use {
-    "neovim/nvim-lspconfig",
     {
       "folke/trouble.nvim",
       config = function()
@@ -95,11 +72,30 @@ return packer.startup(function(use)
       end
     },
     "jose-elias-alvarez/null-ls.nvim",
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
     -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     "purescript-contrib/purescript-vim", -- for purescript
-    "simrat39/rust-tools.nvim"
+    "simrat39/rust-tools.nvim",
+    {
+      'VonHeikemen/lsp-zero.nvim',
+      requires = {
+        -- LSP Support
+        { 'neovim/nvim-lspconfig' },
+        { 'williamboman/mason.nvim' },
+        { 'williamboman/mason-lspconfig.nvim' },
+
+        -- Autocompletion
+        { 'hrsh7th/nvim-cmp' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' },
+        { 'saadparwaiz1/cmp_luasnip' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-nvim-lua' },
+
+        -- Snippets
+        { 'L3MON4D3/LuaSnip' },
+        { 'rafamadriz/friendly-snippets' },
+      }
+    }
   }
 
   -- Telescope

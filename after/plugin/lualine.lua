@@ -4,65 +4,11 @@ if not status_ok then
   return
 end
 
-local theme = vim.g.colors_name
-local active_buffers_color = "lualine_a_normal"
-local inactive_buffers_color = "lualine_a_active"
-
-local function transparenct_sections(theme)
-  for k, _ in pairs(theme) do
-    if k == "normal" then
-      theme[k].b.bg = nil
-      theme[k].b.fg= "#a9b1d6"
-      theme[k].c.bg = nil
-      theme[k].c.fg= "#a9b1d6"
-    elseif k == "insert"
-        or k == "visual"
-        or k == "command"
-        or k == "replace" then
-      theme[k].a.bg = nil
-      theme[k].a.fg= "#a9b1d6"
-      theme[k].b.bg = nil
-      theme[k].b.fg= "#a9b1d6"
-    elseif k == "inactive" then
-      theme[k].a.bg = nil
-      theme[k].a.fg = '#545c7e'
-      theme[k].b.bg = nil
-      theme[k].b.fg = '#545c7e'
-      theme[k].c.bg = nil
-      theme[k].c.fg = '#545c7e'
-    end
-  end
-  return theme
-end
-
-if theme == "moonfly" then
-  theme = require 'lualine.themes.moonfly'
-  theme.normal.c.bg = '#080808'
-elseif theme == "tokyonight" then
-  theme = require 'lualine.themes.tokyonight'
-  theme.inactive.c.fg = '#545c7e'
-  theme = transparenct_sections(theme) -- for transparency
-  active_buffers_color = "lualine_a_normal"
-  inactive_buffers_color = "lualine_c_inactive"
-elseif theme == "onedark" then
-  theme = require 'lualine.themes.onedark'
-  theme.normal.a.gui = nil
-  theme.insert.a.gui = nil
-  theme.visual.a.gui = nil
-  theme.command.a.gui = nil
-  theme.terminal.a.gui = nil
-  theme.replace.a.gui = nil
-  theme.inactive.a.gui = nil
-  theme.normal.c.fg = '#798294'
-  theme.normal.c.bg = '#21252b'
-  active_buffers_color = "lualine_a_insert"
-  inactive_buffers_color = "lualine_c_normal"
-end
-
+local theme = require("abshekh.themes")
 
 lualine.setup {
   options = {
-    theme = theme,
+    theme = theme.colors,
     section_separators = '',
     component_separators = '',
   },
@@ -73,11 +19,13 @@ lualine.setup {
       -- 'branch', 
     },
     lualine_c = {
-      { 'FugitiveHead', icon = 'שׂ',
+      { 'FugitiveHead',
+        -- icon = 'שׂ',
+        icon = "#",
         color = {
-          fg = theme.normal.a.fg,
-          bg = theme.normal.a.bg,
-        }
+          fg = theme.fugitive_branch_fg,
+          bg = theme.fugitive_branch_bg
+        },
       },
       {
         'diff',
@@ -105,8 +53,8 @@ lualine.setup {
       {
         'tabs',
         tabs_color = {
-          active = active_buffers_color,
-          inactive = inactive_buffers_color,
+          active = theme.active_buffers_color,
+          inactive = theme.inactive_buffers_color,
         },
       }
     }
@@ -124,6 +72,10 @@ lualine.setup {
           modified = '',
           readonly = '',
           unnamed = '[No Name]',
+        },
+        color = {
+          fg = "none",
+          bg = "none",
         }
       },
     },
@@ -144,6 +96,10 @@ lualine.setup {
           modified = '',
           readonly = '',
           unnamed = '[No Name]',
+        },
+        color = {
+          fg = "none",
+          bg = "none",
         }
       },
     },

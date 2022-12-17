@@ -4,7 +4,7 @@ local M = {}
 M.lsp_keymaps = function (client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
-  map({ "n", "v" }, "K", vim.lsp.buf.hover, opts)
+  map({ "n", "v" }, "<leader>k", vim.lsp.buf.hover, opts)
   map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts)
   map({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
   -- map("n", "<leader>c", find_and_run_codelens, opts)
