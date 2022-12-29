@@ -2,12 +2,7 @@ local status_ok_mason, mason = pcall(require, "mason")
 local status_ok_mason_lsp_config, mason_lsp_config = pcall(require, "mason-lspconfig")
 local status_ok_lspconfig, lspconfig = pcall(require, "lspconfig")
 
-if true then
-  return
-end
-
 if not status_ok_lspconfig or not status_ok_mason or not status_ok_mason_lsp_config then
-  -- if not status_ok_mason then
   return
 end
 

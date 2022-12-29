@@ -6,7 +6,7 @@ require "abshekh.autocmds"
 require "abshekh.commands"
 require "abshekh.themes".set()
 require "abshekh.packer"
--- require "abshekh.lsp"
+require "abshekh.lsp"
 
 -- horizontal split toggle term
 -- nvim dap

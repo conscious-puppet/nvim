@@ -1,4 +1,6 @@
-local lsp = require('lsp-zero')
+local lsp = pcall(require, 'lsp-zero')
+
+-- disable it
 if true then
   return
 end
