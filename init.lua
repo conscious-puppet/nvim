@@ -1,5 +1,3 @@
-vim.g.disable_formatting = {}
-
 require "abshekh.options"
 require "abshekh.keymaps.general"
 require "abshekh.autocmds"

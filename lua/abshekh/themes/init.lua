@@ -1,15 +1,18 @@
 local theme = require("abshekh.themes.sonokai")
 
 local defaults = {
-  set = function()
+  set                = function()
     vim.cmd.colorscheme("default")
     vim.g.border_style = "single"
   end,
-  colors = "default",
-  active_buffers_color = "lualine_a_normal",
-  inactive_buffers_color = "lualine_a_active",
+  colors             = "default",
+  active_tab_color   = "lualine_a_normal",
+  inactive_tab_color = "lualine_a_active",
   fugitive_branch_bg = "none",
   fugitive_branch_fg = "none",
+  diff_added_fg      = '#1abc9c',
+  diff_modified_fg   = '#0db9d7',
+  diff_removed_fg    = '#db4b4b',
 }
 
 local M = vim.tbl_deep_extend("force", {}, defaults, theme or {})

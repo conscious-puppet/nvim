@@ -57,12 +57,15 @@ end
 local lualine_present, lualine_theme = pcall(require, "lualine.themes.tokyonight")
 if lualine_present then
   lualine_theme.inactive.c.fg = '#545c7e'
-  lualine_theme = transparenct_sections(lualine_theme) -- for transparency
-  M.colors = lualine_theme
-  M.active_buffers_color = "lualine_a_normal"
-  M.inactive_buffers_color = "lualine_c_inactive"
-  M.fugitive_branch_bg = lualine_theme.normal.c.bg
-  M.fugitive_branch_fg = lualine_theme.normal.c.fg
+  lualine_theme               = transparenct_sections(lualine_theme) -- for transparency
+  M.colors                    = lualine_theme
+  M.active_tab_color          = "lualine_a_normal"
+  M.inactive_tab_color        = "lualine_c_inactive"
+  M.fugitive_branch_bg        = lualine_theme.normal.c.bg
+  M.fugitive_branch_fg        = lualine_theme.normal.c.fg
+  M.diff_added_fg             = '#1abc9c'
+  M.diff_modified_fg          = '#0db9d7'
+  M.diff_removed_fg           = '#db4b4b'
 end
 
 return M

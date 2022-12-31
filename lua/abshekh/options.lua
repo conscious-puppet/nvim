@@ -59,3 +59,4 @@ set.listchars:append("trail:.") -- show tabs and spaces
 -- set.iskeyword:append({',', '_', '@', '.', '-'})
 vim.cmd [[ set isfname-=: ]]
 vim.cmd [[ autocmd FileType * set formatoptions-=o ]]
+vim.cmd [[ autocmd User TelescopePreviewerLoaded setlocal wrap nu ]] -- wrap + line number telescope

@@ -121,7 +121,7 @@ end
 -- end
 
 M.on_attach = function(client, bufnr)
-  if vim.g.disable_formatting[client.name] then
+  if vim.g.disable_formatting[client.name] == true then
     client.server_capabilities.documentFormatting              = false
     client.server_capabilities.documentFormattingProvider      = false
     client.server_capabilities.documentRangeFormatting         = false

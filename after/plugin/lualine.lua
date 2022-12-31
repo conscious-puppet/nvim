@@ -31,9 +31,9 @@ lualine.setup {
         'diff',
         colored = true,
         diff_color = {
-          added    = { fg = '#1abc9c' },
-          modified = { fg = '#0db9d7' },
-          removed  = { fg = '#db4b4b' },
+          added    = { fg = theme.diff_added_fg },
+          modified = { fg = theme.diff_modified_fg },
+          removed  = { fg = theme.diff_removed_fg },
         },
         symbols = { added = ' ', modified = '柳', removed = ' ' },
       },
@@ -53,8 +53,8 @@ lualine.setup {
       {
         'tabs',
         tabs_color = {
-          active = theme.active_buffers_color,
-          inactive = theme.inactive_buffers_color,
+          active = theme.active_tab_color,
+          inactive = theme.inactive_tab_color,
         },
       }
     }
