@@ -16,8 +16,8 @@ local list = {
 }
 
 nvim_tree.setup {
-  disable_netrw = true,
-  hijack_netrw = true,
+  disable_netrw = false,
+  hijack_netrw = false,
   hijack_unnamed_buffer_when_opening = false,
   open_on_setup = false,
   renderer = {

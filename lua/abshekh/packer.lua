@@ -134,6 +134,13 @@ return packer.startup(function(use)
     --   -- "dstein64/vim-startuptime",
     "junegunn/vim-easy-align",
     "dhruvasagar/vim-table-mode",
+    {
+      'phaazon/mind.nvim',
+      branch = 'v2.2',
+      config = function()
+        require 'mind'.setup()
+      end
+    }
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
