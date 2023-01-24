@@ -37,7 +37,7 @@ create_command("CopyBufferFilepath", "let @+ = expand('%:p')", { desc = "Copy Bu
 create_command("TodoCapture", ":5sp ~/notes/todo.md", { desc = "Write to todo.md" })
 create_command("WorkCapture", ":5sp ~/notes/work/work.md", { desc = "Write to work.md" })
 
-vim.cmd [[  
+vim.cmd [[
 	:command -nargs=1 Bufname keepalt file <args>
 	:command -nargs=1 Type set filetype <args>
 
@@ -55,7 +55,7 @@ vim.cmd [[
 ]]
 
 
-vim.cmd [[  
+vim.cmd [[
   function! CopyMessages(...)
       execute printf('redir @+')
       execute printf('%smessage', a:1)
@@ -65,7 +65,7 @@ vim.cmd [[
 	:command -nargs=1 CopyMessages call CopyMessages(<f-args>)
 ]]
 
-vim.cmd [[ 
+vim.cmd [[
   augroup neovim_terminal
       autocmd!
       " Enter Terminal-mode (insert) automatically

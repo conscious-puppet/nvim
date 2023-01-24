@@ -15,7 +15,7 @@ set.expandtab      = true -- Enable the use of space in tab
 set.fileencoding   = "utf-8" -- File content encoding for the buffer
 set.history        = 100 -- Number of commands to remember in a history table
 set.ignorecase     = true -- Case insensitive searching
-set.laststatus     = 3 -- globalstatus
+set.laststatus     = 2
 set.lazyredraw     = true -- lazily redraw screen
 set.mouse          = "a" -- Enable mouse support
 set.number         = true -- Show numberline
@@ -52,6 +52,7 @@ set.shell          = "/bin/zsh" -- set zsh as shell for integrated terminal
 set.timeout        = false -- don't timeout on pressing leader key
 set.fillchars      = set.fillchars + 'diff:╱' + 'fold: '
 set.shortmess      = set.shortmess + "atI" -- I to remove intro screen for now
+set.guicursor      = "" -- set cursor to block even in insert mode
 set.listchars:append("nbsp:␣") -- show tabs and spaces
 -- set.listchars:append("eol:↴") -- show tabs and spaces
 set.listchars:append("trail:.") -- show tabs and spaces
@@ -60,3 +61,4 @@ set.listchars:append("trail:.") -- show tabs and spaces
 vim.cmd [[ set isfname-=: ]]
 vim.cmd [[ autocmd FileType * set formatoptions-=o ]]
 vim.cmd [[ autocmd User TelescopePreviewerLoaded setlocal wrap nu ]] -- wrap + line number telescope
+vim.cmd [[ set diffopt+=vertical ]] -- vertical fugitive diffs

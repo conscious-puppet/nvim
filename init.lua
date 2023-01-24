@@ -6,6 +6,13 @@ require "abshekh.themes".set()
 require "abshekh.packer"
 require "abshekh.lsp"
 
+-- 1g<C-a> -- increment selection by 1
+-- split and then we can diff files
+-- :windo diffthis
+-- :diffupdate
+-- :diffoff!
+
+
 -- horizontal split toggle term
 -- nvim dap
 -- register | paste registers

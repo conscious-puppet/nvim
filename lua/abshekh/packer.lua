@@ -90,6 +90,26 @@ return packer.startup(function(use)
     -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     "purescript-contrib/purescript-vim", -- for purescript
     "simrat39/rust-tools.nvim",
+    -- {
+    --   "ldelossa/litee-calltree.nvim",
+    --   requires = "ldelossa/litee.nvim",
+    --   config = function()
+    --     require("litee.lib").setup({})
+    --     require("litee.calltree").setup({})
+    --   end
+    -- },
+
+    -- "ldelossa/nvim-ide"
+    { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' },
+    "mfussenegger/nvim-jdtls",
+    {
+      "rcarriga/nvim-dap-ui",
+      after = "nvim-lspconfig",
+      requires = { "mfussenegger/nvim-dap" },
+      config = function()
+        require("dapui").setup()
+      end,
+    },
   }
 
   -- Telescope
@@ -140,7 +160,8 @@ return packer.startup(function(use)
       config = function()
         require 'mind'.setup()
       end
-    }
+    },
+    "christoomey/vim-tmux-navigator"
   }
 
   -- Automatically set up your configuration after cloning packer.nvim

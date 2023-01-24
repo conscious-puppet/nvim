@@ -43,6 +43,16 @@ M.setup = function()
     { border = vim.g.border_style })
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help,
     { border = vim.g.border_style })
+  -- --
+  -- local lite_lsp_handlers_status_ok, lite_lsp_handlers = pcall(require, "lite.lsp.handlers")
+  -- if lite_lsp_handlers_status_ok then
+  --   vim.lsp.handlers['callHierarchy/incomingCalls'] = vim.lsp.with(
+  --     lite_lsp_handlers.ch_lsp_handler("from"), {}
+  --   )
+  --   vim.lsp.handlers['callHierarchy/outgoingCalls'] = vim.lsp.with(
+  --     lite_lsp_handlers.ch_lsp_handler("to"), {}
+  --   )
+  -- end
 end
 
 local function highlight_references()
