@@ -55,7 +55,6 @@ return packer.startup(function(use)
     "folke/tokyonight.nvim",
     "sainnhe/sonokai",
     -- "monsonjeremy/onedark.nvim",
-    'nvim-lualine/lualine.nvim',
     "lukas-reineke/indent-blankline.nvim", -------- indent guides
     "j-hui/fidget.nvim", -------------------------- progress bar
     "norcalli/nvim-colorizer.lua", ---------------- Colorize hex colors in terminal
