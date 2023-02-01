@@ -146,7 +146,7 @@ Statusline.active = function()
     mode(),
     "%#Normal# ",
     vcs(),
-    "%=",
+    "%=%m ",
     filepath(),
     filename(),
     "%#Normal#",

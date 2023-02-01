@@ -39,7 +39,8 @@ map("n", "<leader>ff", "<cmd>NvimTreeFocus<cr>", opts)
 
 -- map("n", "<leader>g", "<cmd>LazyGit<cr>", opts)
 -- map("n", "<leader>g", "<cmd>tab G<cr>", opts)
-map("n", "<leader>gg", "<cmd>DiffviewOpen<cr>", opts)
+-- map("n", "<leader>gg", "<cmd>DiffviewOpen<cr>", opts)
+map("n", "<leader>gg", "<cmd>tab G<cr>", opts)
 
 -- lsp lines
 -- local lsp_lines_status_ok, lsp_lines = pcall(require, "lsp_lines")

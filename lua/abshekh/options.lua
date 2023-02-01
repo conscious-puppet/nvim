@@ -1,6 +1,5 @@
 -- :help options
 local set = vim.opt
--- :set diffopt+=vertical
 
 set.cmdheight      = 1 -- Less space in neovim command line for displaying messages
 set.conceallevel   = 0 -- So that `` is visile in markdown files
@@ -37,7 +36,7 @@ set.undofile       = true -- Enable persistent undo
 set.updatetime     = 300 -- Length of time to wait before triggering the plugin
 set.wrap           = false -- Disable wrapping of lines longer than the width of window
 set.writebackup    = false -- Disable making a backup before overwriting a file
-set.showmode       = true -- Show --INSERT--
+set.showmode       = false -- Don't Show --INSERT--
 set.wildignorecase = true -- Ignorecase in wildmenu (primarily in command line mode i guess)
 set.list           = true -- show tabs and spaces
 set.foldmethod     = "expr" -- auto folds based on exprs
@@ -52,7 +51,7 @@ set.shell          = "/bin/zsh" -- set zsh as shell for integrated terminal
 set.timeout        = false -- don't timeout on pressing leader key
 set.fillchars      = set.fillchars + 'diff:╱' + 'fold: '
 set.shortmess      = set.shortmess + "atI" -- I to remove intro screen for now
-set.guicursor      = "" -- set cursor to block even in insert mode
+-- set.guicursor      = "" -- set cursor to block even in insert mode
 set.listchars:append("nbsp:␣") -- show tabs and spaces
 -- set.listchars:append("eol:↴") -- show tabs and spaces
 set.listchars:append("trail:.") -- show tabs and spaces

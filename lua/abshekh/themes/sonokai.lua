@@ -17,6 +17,7 @@ M.set = function()
   vim.api.nvim_set_hl(0, "NullLsInfoBorder", { bg = "none", fg = "#7f8490" })
   vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
   vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none", fg="none" })
+  vim.api.nvim_set_hl(0, "SagaBorder", { bg = "none", fg = "#7f8490" })
 
     -- NvimTreeNormal = { fg = c.fg_sidebar, bg = c.bg_sidebar },
   vim.g.border_style = "rounded"
