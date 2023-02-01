@@ -32,6 +32,7 @@ end
 
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+-- extendedClientCapabilities.progressReportProvider = false
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
@@ -130,10 +131,10 @@ local config = {
         downloadSources = true,
       },
       implementationsCodeLens = {
-        enabled = true,
+        enabled = false,
       },
       referencesCodeLens = {
-        enabled = true,
+        enabled = false,
       },
       references = {
         includeDecompiledSources = true,
@@ -153,6 +154,7 @@ local config = {
     },
     signatureHelp = { enabled = true },
     completion = {
+      overwrite = true,
       favoriteStaticMembers = {
         "org.hamcrest.MatcherAssert.assertThat",
         "org.hamcrest.Matchers.*",

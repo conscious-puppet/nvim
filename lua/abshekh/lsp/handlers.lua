@@ -152,9 +152,12 @@ M.on_attach = function(client, bufnr)
   --   vim.api.nvim_del_augroup_by_name("lsp_document_highlight")
   -- end
 
-  if client.supports_method "textDocument/codeLens" then
-    buf_autocmd_codelens(bufnr)
-    vim.schedule(vim.lsp.codelens.refresh)
+
+  if vim.g.disable_codelens[client.name] == false then
+    if client.supports_method "textDocument/codeLens" then
+      buf_autocmd_codelens(bufnr)
+      vim.schedule(vim.lsp.codelens.refresh)
+    end
   end
 end
 

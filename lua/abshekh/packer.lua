@@ -85,7 +85,7 @@ return packer.startup(function(use)
     -- Snippets
     { 'L3MON4D3/LuaSnip' },
     { 'rafamadriz/friendly-snippets' },
-    "jose-elias-alvarez/null-ls.nvim",
+    -- "jose-elias-alvarez/null-ls.nvim",
     -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     "purescript-contrib/purescript-vim", -- for purescript
     "simrat39/rust-tools.nvim",
@@ -108,6 +108,14 @@ return packer.startup(function(use)
       config = function()
         require("dapui").setup()
       end,
+    },
+    {
+      "glepnir/lspsaga.nvim",
+      branch = "main",
+      config = function()
+        require("lspsaga").setup({})
+      end,
+      requires = { { "nvim-tree/nvim-web-devicons" } }
     },
   }
 
