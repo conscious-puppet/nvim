@@ -30,7 +30,7 @@ M.telescope_picker_mapping = function()
   map("n", "<leader><leader>", telescope.find_files, opts)
   -- map("n", "<leader><leader>", telescope.find_files, opts, { hidden = true })
   map("n", "<leader>gs", telescope.git_status, opts)
-  map("n", "<leader>gb", telescope.git_branches, opts)
+  -- map("n", "<leader>gb", telescope.git_branches, opts)
   map("n", "<leader>gc", telescope.git_commits, opts)
   map("n", "<leader>fb", telescope.buffers, opts)
   map("n", "<leader>,", telescope.buffers, opts)
@@ -101,6 +101,15 @@ M.telescope_mappings = {
     -- ["M"] = actions.move_to_middle,
     -- ["L"] = actions.move_to_bottom,
     -- ["<C-s>"] = actions.send_selected_to_qflist + actions.open_qflist,
+  },
+}
+
+M.telescope_buffer_keymaps = {
+  i = {
+    ["<C-d>"] = actions.delete_buffer,
+  },
+  n = {
+    ["dd"] = actions.delete_buffer,
   },
 }
 

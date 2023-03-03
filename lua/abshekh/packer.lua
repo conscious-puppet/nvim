@@ -23,7 +23,7 @@ vim.cmd [[
   augroup end
 ]]
 
--- Use a protected call so we don't error out on first use
+-- Use a protected call so we don"t error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
   return
@@ -55,9 +55,14 @@ return packer.startup(function(use)
     "folke/tokyonight.nvim",
     "sainnhe/sonokai",
     -- "monsonjeremy/onedark.nvim",
+    { "catppuccin/nvim",             as = "catppuccin" },
+    "gbprod/nord.nvim",
+    "JoosepAlviste/palenightfall.nvim",
+    { "projekt0n/github-nvim-theme", tag = "v0.0.7" },
     "lukas-reineke/indent-blankline.nvim", -------- indent guides
     "j-hui/fidget.nvim", -------------------------- progress bar
     "norcalli/nvim-colorizer.lua", ---------------- Colorize hex colors in terminal
+    "nvim-lualine/lualine.nvim",
   }
 
   -- LSP, DAP
@@ -70,21 +75,21 @@ return packer.startup(function(use)
         }
       end
     },
-    { 'neovim/nvim-lspconfig' },
-    { 'williamboman/mason.nvim' },
-    { 'williamboman/mason-lspconfig.nvim' },
+    { "neovim/nvim-lspconfig" },
+    { "williamboman/mason.nvim" },
+    { "williamboman/mason-lspconfig.nvim" },
 
     -- Autocompletion
-    { 'hrsh7th/nvim-cmp' },
-    { 'hrsh7th/cmp-buffer' },
-    { 'hrsh7th/cmp-path' },
-    { 'saadparwaiz1/cmp_luasnip' },
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/cmp-nvim-lua' },
+    { "hrsh7th/nvim-cmp" },
+    { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-path" },
+    { "saadparwaiz1/cmp_luasnip" },
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "hrsh7th/cmp-nvim-lua" },
 
     -- Snippets
-    { 'L3MON4D3/LuaSnip' },
-    { 'rafamadriz/friendly-snippets' },
+    { "L3MON4D3/LuaSnip" },
+    { "rafamadriz/friendly-snippets" },
     -- "jose-elias-alvarez/null-ls.nvim",
     -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     "purescript-contrib/purescript-vim", -- for purescript
@@ -99,7 +104,7 @@ return packer.startup(function(use)
     -- },
 
     -- "ldelossa/nvim-ide"
-    { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' },
+    { "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" },
     "mfussenegger/nvim-jdtls",
     {
       "rcarriga/nvim-dap-ui",
@@ -109,10 +114,10 @@ return packer.startup(function(use)
         require("dapui").setup()
       end,
     },
+    "Pocco81/DAPInstall.nvim",
     {
       "glepnir/lspsaga.nvim",
       branch = "main",
-      requires = { { "nvim-tree/nvim-web-devicons" } }
     },
   }
 
@@ -135,9 +140,9 @@ return packer.startup(function(use)
     "nvim-treesitter/playground", ----------- treesitter playground
     "windwp/nvim-autopairs", ---------------- Autopairs, integrates with both cmp and treesitter
     { --------------------------------------- Easily comment stuff
-      'numToStr/Comment.nvim',
+      "numToStr/Comment.nvim",
       config = function()
-        require('Comment').setup()
+        require("Comment").setup()
       end
     },
     "JoosepAlviste/nvim-ts-context-commentstring",
@@ -148,6 +153,7 @@ return packer.startup(function(use)
     "lewis6991/gitsigns.nvim", -------------- Shows git changes
     "tpope/vim-fugitive", ------------------- Git Wrapper
     "sindrets/diffview.nvim",
+    "idanarye/vim-merginal",
     -- "kdheepak/lazygit.nvim",
     -- "TimUntersberger/neogit",
   }
@@ -159,13 +165,13 @@ return packer.startup(function(use)
     "junegunn/vim-easy-align",
     "dhruvasagar/vim-table-mode",
     {
-      'phaazon/mind.nvim',
-      branch = 'v2.2',
+      "phaazon/mind.nvim",
+      branch = "v2.2",
       config = function()
-        require 'mind'.setup()
+        require "mind".setup()
       end
     },
-    "christoomey/vim-tmux-navigator"
+    "christoomey/vim-tmux-navigator",
   }
 
   -- Automatically set up your configuration after cloning packer.nvim

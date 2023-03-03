@@ -33,6 +33,7 @@ map("n", "<C-Down>", ":resize -2<CR>", opts)
 map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
+
 -- File Related
 map("n", "<leader>ft", ":NvimTreeToggle<CR>", opts)
 map("n", "<leader>ff", "<cmd>NvimTreeFocus<cr>", opts)
@@ -41,6 +42,8 @@ map("n", "<leader>ff", "<cmd>NvimTreeFocus<cr>", opts)
 -- map("n", "<leader>g", "<cmd>tab G<cr>", opts)
 -- map("n", "<leader>gg", "<cmd>DiffviewOpen<cr>", opts)
 map("n", "<leader>gg", "<cmd>tab G<cr>", opts)
+map("n", "<leader>gb", "<cmd>MerginalToggle<cr>", opts)
+map("n", "<leader>gB", "<cmd>G blame<cr>", opts)
 
 -- lsp lines
 -- local lsp_lines_status_ok, lsp_lines = pcall(require, "lsp_lines")

@@ -1,4 +1,4 @@
-local theme = require("abshekh.themes.sonokai")
+local theme = require("abshekh.themes.tokyonight")
 
 local defaults = {
   set                = function()

@@ -6,8 +6,9 @@ local status_ok, _ = pcall(require, "lspsaga")
 if status_ok then
   local function lspsaga_keymaps(client, bufnr)
     local opts = { noremap = true, silent = true, buffer = bufnr }
+    map({ "n", "v" }, "K", vim.lsp.buf.hover, opts)
     -- map("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-    map("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>", opts)
+    -- map("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>", opts)
     map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
     map("n", "<leader>cl", vim.lsp.codelens.run, opts)
 
@@ -26,7 +27,8 @@ if status_ok then
 
     -- map("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
     map("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
-    map("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
+    -- map("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
+    map("n", "gl", vim.diagnostic.open_float, opts)
 
     -- map("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
     -- map("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>", opts)

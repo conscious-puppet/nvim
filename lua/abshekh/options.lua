@@ -4,7 +4,7 @@ local set = vim.opt
 set.cmdheight      = 1 -- Less space in neovim command line for displaying messages
 set.conceallevel   = 0 -- So that `` is visile in markdown files
 set.ignorecase     = true -- Ignore case in search patterns
-set.showtabline    = 0 -- Don't show tab line
+set.showtabline    = 2 -- show tab line
 set.backspace      = set.backspace + { "nostop" } -- Don't stop backspace at insert
 set.clipboard      = "unnamedplus" -- Connection to the system clipboard
 set.completeopt    = { "menu", "menuone", "noselect" } -- Options for insert mode completion
@@ -55,6 +55,7 @@ set.shortmess      = set.shortmess + "atI" -- I to remove intro screen for now
 set.listchars:append("nbsp:␣") -- show tabs and spaces
 -- set.listchars:append("eol:↴") -- show tabs and spaces
 set.listchars:append("trail:.") -- show tabs and spaces
+set.nrformats      = set.nrformats + "alpha" -- I to remove intro screen for now
 
 -- set.iskeyword:append({',', '_', '@', '.', '-'})
 vim.cmd [[ set isfname-=: ]]

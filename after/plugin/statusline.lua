@@ -1,3 +1,6 @@
+if true then
+  return
+end
 local modes = {
   ["n"] = "NORMAL",
   ["no"] = "NORMAL",
@@ -51,7 +54,8 @@ local function filepath()
       return " "
   end
 
-  return string.format(" %%<%s/", fpath)
+  -- return string.format(" %%<%s/", fpath)
+  return string.format(" %s/", fpath)
 end
 
 local function filename()
@@ -124,7 +128,7 @@ local vcs = function()
   if git_info.removed == 0 then
     removed = ""
   end
-  return table.concat {
+  local git_status_line = table.concat {
      " ",
      added,
      changed,
@@ -134,24 +138,38 @@ local vcs = function()
      git_info.head,
      " %#Normal#",
   }
+  local raw_git_status_line = table.concat {
+     " ",
+     git_info.added and (git_info.added .. " ") or "",
+     git_info.changed and (git_info.changed .. " ") or "",
+     git_info.removed and (git_info.removed .. " ") or "",
+     " ",
+     git_info.head,
+  }
+  return git_status_line, raw_git_status_line
 end
 
 
 Statusline = {}
 
 Statusline.active = function()
+  -- local git_status = {}
+  -- git_status[1], git_status[2] = vcs()
+  -- local padding = git_status[2] and string.gsub(git_status[2], ".", " ") or ""
   return table.concat {
     "%#Statusline#",
     update_mode_colors(),
     mode(),
     "%#Normal# ",
-    vcs(),
+    -- git_status[1],
     "%=%m ",
     filepath(),
     filename(),
     "%#Normal#",
     lsp(),
-    "%=%#StatusLineExtra#",
+    "%=",
+    -- padding,
+    "%#StatusLineExtra#",
     filetype(),
     lineinfo(),
   }

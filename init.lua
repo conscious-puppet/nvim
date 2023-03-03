@@ -7,10 +7,16 @@ require "abshekh.packer"
 require "abshekh.lsp"
 
 -- 1g<C-a> -- increment selection by 1
+-- 1g<C-x> -- decrement selection by 1
 -- split and then we can diff files
 -- :windo diffthis
 -- :diffupdate
 -- :diffoff!
+
+-- change shells 
+-- chsh -s $(which fish)
+
+-- tab G | vnew | exe "normal! \<C-w>\<C-w>" | vertical resize 36
 
 
 -- horizontal split toggle term

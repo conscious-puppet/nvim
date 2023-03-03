@@ -13,7 +13,7 @@ mason.setup {
 }
 
 local servers = {
-  "sumneko_lua",
+  "lua_ls"
 }
 
 mason_lsp_config.setup {
@@ -30,11 +30,11 @@ mason_lsp_config.setup_handlers {
   function(server_name) -- default handler (optional)
     lspconfig[server_name].setup(opts)
   end,
-  ["sumneko_lua"] = function()
-    local sumneko_opts = vim.tbl_deep_extend("force",
-      require("abshekh.lsp.settings.sumneko_lua"),
+  ["lua_ls"] = function()
+    local lua_opts = vim.tbl_deep_extend("force",
+      require("abshekh.lsp.settings.lua_ls"),
       opts)
-    lspconfig.sumneko_lua.setup(sumneko_opts)
+    lspconfig.lua_ls.setup(lua_opts)
   end,
   -- ["hls"] = function()
   --   lspconfig["hls"].setup(opts)

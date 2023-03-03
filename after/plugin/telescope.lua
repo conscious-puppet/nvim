@@ -35,6 +35,15 @@ telescope.setup {
       end
     end)()
   },
+  pickers = {
+    buffers = {
+      initial_mode = "normal",
+      mappings = keymaps.telescope_buffer_keymaps,
+    },
+    git_branches = {
+      initial_mode = "normal",
+    },
+  },
   extensions = {
     media_files = {
       -- filetypes whitelist
