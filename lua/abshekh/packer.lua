@@ -119,6 +119,10 @@ return packer.startup(function(use)
       "glepnir/lspsaga.nvim",
       branch = "main",
     },
+    {
+      'dccsillag/magma-nvim',
+      run = ':UpdateRemotePlugins'
+    },
   }
 
   -- Telescope
