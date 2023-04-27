@@ -92,17 +92,17 @@ telescope.setup {
     },
   },
 
-  history = {
-    path = "~/.local/share/nvim/databases/telescope_history.sqlite3",
-    limit = 100,
-  },
+  -- history = {
+  --   path = "~/.local/share/nvim/databases/telescope_history.sqlite3",
+  --   limit = 100,
+  -- },
 }
 
 local function load_extension(ext)
   pcall(telescope.load_extension, ext)
 end
 
-load_extension("smart_history")
+-- load_extension("smart_history") -- to see old changes
 load_extension("media_files")
 -- load_extension("ui-select")
 -- load_extension("file_browser")

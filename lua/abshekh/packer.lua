@@ -43,9 +43,9 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
   use {
-    "wbthomason/packer.nvim", --------------------- Have packer manage itself
-    "nvim-lua/popup.nvim", ------------------------ An implementation of the Popup API from vim in Neovim
-    "nvim-lua/plenary.nvim", ---------------------- Useful lua functions used ny lots of plugins
+    "wbthomason/packer.nvim",       --------------------- Have packer manage itself
+    "nvim-lua/popup.nvim",          ------------------------ An implementation of the Popup API from vim in Neovim
+    "nvim-lua/plenary.nvim",        ---------------------- Useful lua functions used ny lots of plugins
     "kyazdani42/nvim-web-devicons", --------------- Icons used by a bunch of plugins
   }
 
@@ -55,13 +55,14 @@ return packer.startup(function(use)
     "folke/tokyonight.nvim",
     "sainnhe/sonokai",
     -- "monsonjeremy/onedark.nvim",
+    "rebelot/kanagawa.nvim",
     { "catppuccin/nvim",             as = "catppuccin" },
     "gbprod/nord.nvim",
     "JoosepAlviste/palenightfall.nvim",
     { "projekt0n/github-nvim-theme", tag = "v0.0.7" },
     "lukas-reineke/indent-blankline.nvim", -------- indent guides
-    "j-hui/fidget.nvim", -------------------------- progress bar
-    "norcalli/nvim-colorizer.lua", ---------------- Colorize hex colors in terminal
+    "j-hui/fidget.nvim",                   -------------------------- progress bar
+    "norcalli/nvim-colorizer.lua",         ---------------- Colorize hex colors in terminal
     "nvim-lualine/lualine.nvim",
   }
 
@@ -142,8 +143,9 @@ return packer.startup(function(use)
       run = ":TSUpdate",
     },
     "nvim-treesitter/playground", ----------- treesitter playground
-    "windwp/nvim-autopairs", ---------------- Autopairs, integrates with both cmp and treesitter
-    { --------------------------------------- Easily comment stuff
+    "windwp/nvim-autopairs",      ---------------- Autopairs, integrates with both cmp and treesitter
+    {
+                                  --------------------------------------- Easily comment stuff
       "numToStr/Comment.nvim",
       config = function()
         require("Comment").setup()
@@ -155,7 +157,7 @@ return packer.startup(function(use)
   -- Git
   use {
     "lewis6991/gitsigns.nvim", -------------- Shows git changes
-    "tpope/vim-fugitive", ------------------- Git Wrapper
+    "tpope/vim-fugitive",      ------------------- Git Wrapper
     "sindrets/diffview.nvim",
     "idanarye/vim-merginal",
     -- "kdheepak/lazygit.nvim",
