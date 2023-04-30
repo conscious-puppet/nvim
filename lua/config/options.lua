@@ -7,9 +7,12 @@ local set = vim.opt
 set.timeout = false -- don't timeout on pressing leader key
 set.fillchars = set.fillchars + "diff:╱" + "fold: "
 set.nrformats = set.nrformats + "alpha" -- increment aplhabets as well
+set.conceallevel = 0
+set.swapfile = false -- Disable use of swapfile for the buffer
+-- set.shortmess:append({ I = false })
+set.showtabline = 0 -- tabline is integrated in status line
+vim.b.autoformat = false
 
 vim.cmd([[ autocmd FileType * set formatoptions-=o ]]) -- don't continue comments
 vim.cmd([[ autocmd User TelescopePreviewerLoaded setlocal wrap nu ]]) -- wrap + line number telescope
 vim.cmd([[ set diffopt+=vertical ]]) -- vertical fugitive diffs
-
--- vim.cmd.colorscheme("tokyonight")
