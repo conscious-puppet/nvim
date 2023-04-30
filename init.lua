@@ -33,6 +33,10 @@ require "abshekh.lsp"
 -- d2o (accept left changes)  | diffget
 -- d3o (accept right changes) |
 
+-- diffget LO, local
+-- diffget RE, remote
+-- diffget BA, base
+
 -- lsp handlers, code lens and debugger
 -- extract all keymaps into one place
 -- update lsp handler code lens, document highlight autocmds. refer to lunarvim

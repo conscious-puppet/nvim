@@ -8,8 +8,11 @@ lspsaga.setup {
   ui = {
     border = vim.g.border_style,
   },
+  lightbulb = {
+    enable = false,
+  },
   symbol_in_winbar = {
-    enable = true,
+    enable = false,
     -- separator = " 〉",
     separator = " › ",
     hide_keyword = true,

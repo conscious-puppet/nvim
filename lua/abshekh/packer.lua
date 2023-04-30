@@ -64,7 +64,22 @@ return packer.startup(function(use)
     "j-hui/fidget.nvim",                   -------------------------- progress bar
     "norcalli/nvim-colorizer.lua",         ---------------- Colorize hex colors in terminal
     "nvim-lualine/lualine.nvim",
+    {
+      "utilyre/barbecue.nvim",
+      tag = "*",
+      requires = {
+        "SmiteshP/nvim-navic",
+        "nvim-tree/nvim-web-devicons", -- optional dependency
+      },
+      after = "nvim-web-devicons", -- keep this if you're using NvChad
+      config = function()
+        require("barbecue").setup({
+          show_modified = true,
+        })
+      end,
+    }
   }
+
 
   -- LSP, DAP
   use {
@@ -145,7 +160,7 @@ return packer.startup(function(use)
     "nvim-treesitter/playground", ----------- treesitter playground
     "windwp/nvim-autopairs",      ---------------- Autopairs, integrates with both cmp and treesitter
     {
-                                  --------------------------------------- Easily comment stuff
+      --------------------------------------- Easily comment stuff
       "numToStr/Comment.nvim",
       config = function()
         require("Comment").setup()

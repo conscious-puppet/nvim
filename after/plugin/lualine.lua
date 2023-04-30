@@ -6,15 +6,32 @@ end
 
 lualine.setup {
   options = {
-    component_separators = { left = '', right = '' },
-    section_separators = { left = '', right = '' },
+    globalstatus = true,
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
   },
-  tabline = {
-    lualine_a = { 'buffers' },
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = { 'tabs' }
+  sections = {
+    lualine_a = { "mode" },
+    lualine_b = { "branch" },
+    lualine_c = {
+      {
+        "diff",
+      },
+    },
+    lualine_x = {
+      {
+        "diagnostics",
+      },
+    },
+    lualine_y = {
+      { "progress", separator = " ",                  padding = { left = 1, right = 0 } },
+      { "location", padding = { left = 0, right = 1 } },
+    },
+    lualine_z = {
+      {
+        "tabs",
+        use_mode_colors = true,
+      },
+    },
   },
 }

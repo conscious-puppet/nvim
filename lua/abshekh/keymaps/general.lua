@@ -22,7 +22,7 @@ map("n", "//", "<CMD>noh<CR>", opts)
 map("n", "gf", "gF", opts)
 
 -- map("n", "<C-q>", ":bd<CR>", opts) -- close current buffer
-map("n", "<C-w>m", "<CMD>tabedit %<CR>", opts) -- replicate current buffer into new tab
+map("n", "<C-w>m", "<CMD>tabedit % | norm <C-o><CR>", opts) -- replicate current buffer into new tab
 map("n", "]q", "<CMD>cnext<CR>", opts)
 map("n", "[q", "<CMD>cprev<CR>", opts)
 map("n", "<C-q>", "<CMD>call QuickFixToggle()<CR>", opts)
@@ -75,7 +75,7 @@ if gitsigns_status_ok then
     if vim.wo.diff then return '[c' end
     vim.schedule(function() gitsigns.prev_hunk() end)
     return '<Ignore>'
-  end, { expr = true, noremap = true})
+  end, { expr = true, noremap = true })
 end
 
 -- Navigate buffers
