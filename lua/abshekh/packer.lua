@@ -43,10 +43,18 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
   use {
-    "wbthomason/packer.nvim",       --------------------- Have packer manage itself
-    "nvim-lua/popup.nvim",          ------------------------ An implementation of the Popup API from vim in Neovim
-    "nvim-lua/plenary.nvim",        ---------------------- Useful lua functions used ny lots of plugins
-    "kyazdani42/nvim-web-devicons", --------------- Icons used by a bunch of plugins
+    "wbthomason/packer.nvim",      --------------------- Have packer manage itself
+    "nvim-lua/popup.nvim",         ------------------------ An implementation of the Popup API from vim in Neovim
+    "nvim-lua/plenary.nvim",       ---------------------- Useful lua functions used ny lots of plugins
+    "nvim-tree/nvim-web-devicons", --------------- Icons used by a bunch of plugins
+  }
+
+  -- filepath plugins
+  use {
+    "$HOME/dev/lua/calltree.nvim",
+    config = function()
+      require("calltree").setup()
+    end,
   }
 
   -- ui
@@ -71,7 +79,7 @@ return packer.startup(function(use)
         "SmiteshP/nvim-navic",
         "nvim-tree/nvim-web-devicons", -- optional dependency
       },
-      after = "nvim-web-devicons", -- keep this if you're using NvChad
+      after = "nvim-web-devicons",     -- keep this if you're using NvChad
       config = function()
         require("barbecue").setup({
           show_modified = true,
@@ -110,14 +118,6 @@ return packer.startup(function(use)
     -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     "purescript-contrib/purescript-vim", -- for purescript
     "simrat39/rust-tools.nvim",
-    -- {
-    --   "ldelossa/litee-calltree.nvim",
-    --   requires = "ldelossa/litee.nvim",
-    --   config = function()
-    --     require("litee.lib").setup({})
-    --     require("litee.calltree").setup({})
-    --   end
-    -- },
 
     -- "ldelossa/nvim-ide"
     { "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" },
@@ -131,17 +131,17 @@ return packer.startup(function(use)
       end,
     },
     "Pocco81/DAPInstall.nvim",
-    {
-      "glepnir/lspsaga.nvim",
-      branch = "main",
-    },
+    -- {
+    --   "glepnir/lspsaga.nvim",
+    --   -- branch = "main",
+    --   commit = "109286f8def4187c3a35494b8760fd14105e9d8c",
+    -- },
     {
       'dccsillag/magma-nvim',
       run = ':UpdateRemotePlugins'
     },
   }
 
-  -- Telescope
   use {
     "nvim-telescope/telescope.nvim",
     "nvim-telescope/telescope-media-files.nvim",
@@ -157,10 +157,8 @@ return packer.startup(function(use)
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
     },
-    "nvim-treesitter/playground", ----------- treesitter playground
-    "windwp/nvim-autopairs",      ---------------- Autopairs, integrates with both cmp and treesitter
+    "windwp/nvim-autopairs",
     {
-      --------------------------------------- Easily comment stuff
       "numToStr/Comment.nvim",
       config = function()
         require("Comment").setup()
@@ -183,7 +181,12 @@ return packer.startup(function(use)
   use {
     "kyazdani42/nvim-tree.lua", -------------- Explorer
     --   -- "dstein64/vim-startuptime",
-    "junegunn/vim-easy-align",
+    {
+      "junegunn/vim-easy-align",
+      config = function()
+        vim.g.easy_align_ignore_groups = {}
+      end
+    },
     "dhruvasagar/vim-table-mode",
     {
       "phaazon/mind.nvim",

@@ -4,6 +4,13 @@ if not status_ok then
   return
 end
 
+-- call hierarchy
+-- open folds -> u
+-- edit -> e
+-- tabe -> t
+-- jump -> o
+-- quit -> q
+
 lspsaga.setup {
   ui = {
     border = vim.g.border_style,

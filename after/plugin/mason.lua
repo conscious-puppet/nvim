@@ -36,7 +36,10 @@ mason_lsp_config.setup_handlers {
       opts)
     lspconfig.lua_ls.setup(lua_opts)
   end,
-  -- ["hls"] = function()
-  --   lspconfig["hls"].setup(opts)
-  -- end,
+  ["hls"] = function()
+    lspconfig.hls.setup(opts)
+  end,
+  ["zls"] = function()
+    lspconfig.zls.setup(opts)
+  end,
 }

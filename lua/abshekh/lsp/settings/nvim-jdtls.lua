@@ -32,7 +32,7 @@ end
 
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
--- extendedClientCapabilities.progressReportProvider = false
+-- extendedClientCapabilities.progressReportProvider = true
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
@@ -56,9 +56,9 @@ local config = {
   cmd = {
 
     -- 💀
-    home .. "/.sdkman/candidates/java/17.0.5-tem/bin/java", -- or '/path/to/java11_or_newer/bin/java'
+    -- home .. "/.sdkman/candidates/java/17.0.5-tem/bin/java", -- or '/path/to/java11_or_newer/bin/java'
     -- depends on if `java` is in your $PATH env variable and if it points to the right version.
-
+    "java",
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -144,12 +144,12 @@ local config = {
           enabled = "all", -- literals, all, none
         },
       },
-      format = {
-        enabled = true,
-        -- enabled = false,
-        -- settings = {
-        --   profile = "asdf"
-        -- }
+      format = { -- does not work
+        -- enabled = true,
+        settings = {
+          url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+          profile = "GoogleStyle"
+        },
       },
     },
     signatureHelp = { enabled = true },
@@ -197,7 +197,8 @@ local config = {
     bundles = bundles,
   },
   handlers = {
-    ['language/status'] = function() end -- disable language status in command line
+    ['language/status'] = function() end,         -- disable language status in command line
+    ['language/progressReport'] = function() end, -- disable language status in command line
   },
 }
 
