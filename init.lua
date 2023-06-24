@@ -42,3 +42,5 @@ require "abshekh.lsp"
 -- update lsp handler code lens, document highlight autocmds. refer to lunarvim
 -- put all icons in one place
 -- change error curly to simple underline
+
+-- :e +line_num file_name

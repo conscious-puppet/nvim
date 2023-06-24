@@ -22,7 +22,8 @@ map("n", "//", "<CMD>noh<CR>", opts)
 map("n", "gf", "gF", opts)
 
 -- map("n", "<C-q>", ":bd<CR>", opts) -- close current buffer
-map("n", "<C-w>m", "<CMD>tabedit % | norm <C-o><CR>", opts) -- replicate current buffer into new tab
+-- map("n", "<C-w>m", "<CMD>tabedit % | norm <C-o><CR>", opts) -- replicate current buffer into new tab
+map("n", "<C-w>m", "<CMD>tab split<CR>", opts) -- replicate current buffer into new tab
 map("n", "]q", "<CMD>cnext<CR>", opts)
 map("n", "[q", "<CMD>cprev<CR>", opts)
 map("n", "<C-q>", "<CMD>call QuickFixToggle()<CR>", opts)
