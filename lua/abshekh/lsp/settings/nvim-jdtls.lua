@@ -13,20 +13,8 @@ local capabilities = require("abshekh.lsp.handlers").capabilities
 
 -- Determine OS
 local home = os.getenv("HOME")
-local lombok_jar = os.getenv("LOMBOK_JAR")
 
 WORKSPACE_PATH = home .. "/workspace/"
-
-
--- if vim.fn.has("mac") == 1 then
---   WORKSPACE_PATH = home .. "/workspace/"
---   CONFIG = "mac"
--- elseif vim.fn.has("unix") == 1 then
---   WORKSPACE_PATH = home .. "/workspace/"
---   CONFIG = "linux"
--- else
---   print("Unsupported system")
--- end
 
 -- Find root of project
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
@@ -46,13 +34,7 @@ local workspace_dir = WORKSPACE_PATH .. project_name
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
   cmd = {"jdt-language-server", "-data", workspace_dir},
-
-  -- on_attach = require("lvim.lsp").on_attach,
   capabilities = capabilities,
-
-  -- 💀
-  -- This is the default if not provided, you can remove it. Or adjust as needed.
-  -- One dedicated LSP server & client will be started per unique root_dir
   root_dir = root_dir,
 
   -- Here you can configure eclipse.jdt.ls specific settings
@@ -63,24 +45,11 @@ local config = {
     java = {
       -- jdt = {
       --   ls = {
-      --     vmargs = "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m"
+      --     vmargs = "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx4G -Xms100m"
       --   }
       -- },
       eclipse = {
         downloadSources = true,
-      },
-      configuration = {
-        -- updateBuildConfiguration = "interactive",
-        -- runtimes = {
-        --   {
-        --     name = "JavaSE-11",
-        --     path = "~/.sdkman/candidates/java/11.0.2-open",
-        --   },
-        --   {
-        --     name = "JavaSE-18",
-        --     path = "~/.sdkman/candidates/java/18.0.1.1-open",
-        --   },
-        -- },
       },
       maven = {
         downloadSources = true,
@@ -153,7 +122,7 @@ local config = {
   },
   handlers = {
     ['language/status'] = function() end,         -- disable language status in command line
-    ['language/progressReport'] = function() end, -- disable language status in command line
+    -- ['language/progressReport'] = function() end, -- disable language status in command line
     -- ["$/progress"] = function() end,              -- disable language status in command line
   },
 }
@@ -190,13 +159,15 @@ end
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
-jdtls.start_or_attach(config)
+-- jdtls.start_or_attach(config)
 
-vim.cmd(
-  [[command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)]]
-)
+-- vim.cmd(
+--   [[command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)]]
+-- )
 -- vim.cmd "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)"
 -- vim.cmd "command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()"
 -- -- vim.cmd "command! -buffer JdtJol lua require('jdtls').jol()"
 -- vim.cmd "command! -buffer JdtBytecode lua require('jdtls').javap()"
 -- -- vim.cmd "command! -buffer JdtJshell lua require('jdtls').jshell()"
+
+return config
