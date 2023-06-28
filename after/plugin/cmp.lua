@@ -33,9 +33,10 @@ cmp.setup {
     ["<C-e>"] = cmp.mapping.abort(),
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
-    ["<CR>"] = cmp.mapping.confirm { select = false },
+    ["<CR>"] = cmp.mapping.confirm { select = false, behavior = cmp.ConfirmBehavior.Replace },
     -- ["<leader>"] = cmp.mapping.confirm { select = false },
   },
+
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
@@ -56,10 +57,6 @@ cmp.setup {
     { name = "buffer" },
     { name = "path" },
     { name = "spell" },
-  },
-  confirm_opts = {
-    behavior = cmp.ConfirmBehavior.Replace,
-    select = false,
   },
   window = {
     documentation = border,

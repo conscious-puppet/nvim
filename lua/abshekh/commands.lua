@@ -38,6 +38,7 @@ create_command("WorkCapture", ":5sp ~/notes/work/work.md", { desc = "Write to wo
 
 
 create_command("Bonly", ":execute '%bdelete | edit # | normal `\"' | bdelete#", { desc = "Buffer only" })
+create_command("LspClearLog", ":!cat /dev/null > ~/.local/state/nvim/lsp.log", { desc = "Clear LSP Logs" })
 
 vim.cmd [[
   function! QuickFixToggle()

@@ -14,7 +14,7 @@ local capabilities = require("abshekh.lsp.handlers").capabilities
 -- Determine OS
 local home = os.getenv("HOME")
 
-WORKSPACE_PATH = home .. "/workspace/"
+WORKSPACE_PATH = home .. "/.cache/jdtls-workspace/"
 
 -- Find root of project
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
@@ -68,17 +68,18 @@ local config = {
           enabled = "all", -- literals, all, none
         },
       },
-      -- format = { -- does not work
-      --   -- enabled = true,
-      --   settings = {
-      --     url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
-      --     profile = "GoogleStyle"
-      --   },
-      -- },
+      format = {
+        -- enabled = true,
+        settings = {
+          url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+          profile = "GoogleStyle"
+        },
+      },
     },
     signatureHelp = { enabled = true },
     completion = {
-      overwrite = true,
+      enabled = true,
+      -- overwrite = true,
       favoriteStaticMembers = {
         "org.hamcrest.MatcherAssert.assertThat",
         "org.hamcrest.Matchers.*",

@@ -6,6 +6,8 @@ require "abshekh.themes".set()
 require "abshekh.packer"
 require "abshekh.lsp"
 
+-- lsp log -> cat /dev/null > ~/.local/state/nvim/lsp.log
+
 -- 1g<C-a> -- increment selection by 1
 -- 1g<C-x> -- decrement selection by 1
 -- split and then we can diff files
