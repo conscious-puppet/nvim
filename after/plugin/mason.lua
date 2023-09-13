@@ -26,6 +26,8 @@ local opts = {
   capabilities = require("abshekh.lsp.handlers").capabilities,
 }
 
+
+-- todo, this is not working
 mason_lsp_config.setup_handlers {
   function(server_name) -- default handler (optional)
     lspconfig[server_name].setup(opts)
@@ -41,5 +43,8 @@ mason_lsp_config.setup_handlers {
   end,
   ["zls"] = function()
     lspconfig.zls.setup(opts)
+  end,
+  ["gopls"] = function()
+    lspconfig.gopls.setup(opts)
   end,
 }
